@@ -46,13 +46,12 @@ module.exports = {
                         embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
                           .setColor('#1ced3b')
                         embmsg.edit(embed)
-                      } else {
                       }
                     })
-                  }, 2000)
+                  }, 2500)
                 } else {
                   embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:redTick:718980916076347423>   Installing Node Modules...\n<:idle:507524745378398210>   Restarting Bot...\n\nAn unknown Error occured while Updating.\nStopping the Update.')
-                    
+                    .setColor('#ed311c')
                   embed.edit(embed)
                 }
               })
