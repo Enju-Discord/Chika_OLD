@@ -1,7 +1,9 @@
 import {
   exec
 } from 'child_process';
+import { MessageEmbed } from 'discord.js';
 
+//git pull git@chika:Chika-Discord/Chika.git && npm i && pm2 restart chika
 module.exports = {
   name: 'cmd.update.name',
   description: 'cmd.update.description',
@@ -15,10 +17,31 @@ module.exports = {
   aliases: [],
   async execute(message: any, args: any, client: any, prefix: any) {
     if (process.platform == 'linux') {
-      client.embeds.success(message.channel, 'Downloading, Installing and restarting the Bot.');
-      exec('git pull git@chika:Chika-Discord/Chika.git && npm i && pm2 restart chika', (err, stdout, stderr) => {
-        if (err) {
-          return undefined;
+      let embed: any = new MessageEmbed()
+      .setTitle('Update Requested by '+message.author.tag)
+      .setDescription('<a:Loading:800458223891120199> Preparing for Update.')
+      .setColor('#edc01c')
+      let embmsg: any = await message.channel.send(embed)
+
+      embed.setDescription('<a:Loading:800458223891120199>  Pulling changes from GitHub...\n<:idle:507524745378398210>   Installing Node Modules...\n<:idle:507524745378398210>   Restarting Bot...')
+      embmsg.edit(embed)
+      exec('git pull git@chika:Chika-Discord/Chika.git', (err, stdout, stderr) => {
+        if (!err && stderr === "") {
+          embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<a:Loading:800458223891120199>   Installing Node Modules...\n<:idle:507524745378398210>   Restarting Bot...')
+          embmsg.edit(embed)
+          exec('npm i', (err, stdout, stderr) => {
+            if(!err && stderr === "") {
+              embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<a:Loading:800458223891120199>   Restarting Bot...')
+              embmsg.edit(embed)
+              exec('pm2 restart chika', (err, stdout, stderr) => {
+                if(!err && stderr === "") {
+                  embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
+                  .setColor('#1ced3b')
+                  embmsg.edit(embed)
+                }
+              })
+            }
+          })
         }
       });
     } else {
