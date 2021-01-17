@@ -23,21 +23,20 @@ module.exports = {
       .setColor('#edc01c')
       let embmsg: any = await message.channel.send(embed)
 
-      embed.setDescription('<a:Loading:800458223891120199>  Pulling changes from GitHub...\n<:idle:507524745378398210>   Installing Node Modules...\n<:idle:507524745378398210>   Restarting Bot...')
+      embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<a:Loading:800458223891120199>   Installing Node Modules...\n<:idle:507524745378398210>   Restarting Bot...')
       embmsg.edit(embed)
       exec('git pull git@chika:Chika-Discord/Chika.git', (err, stdout, stderr) => {
         if (!err && stderr === "") {
-          embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<a:Loading:800458223891120199>   Installing Node Modules...\n<:idle:507524745378398210>   Restarting Bot...')
+          embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<a:Loading:800458223891120199>   Restarting Bot...')
           embmsg.edit(embed)
           exec('npm i', (err, stdout, stderr) => {
             if(!err && stderr === "") {
-              embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<a:Loading:800458223891120199>   Restarting Bot...')
+              embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
+              .setColor('#1ced3b')
               embmsg.edit(embed)
               exec('pm2 restart chika', (err, stdout, stderr) => {
                 if(!err && stderr === "") {
-                  embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
-                  .setColor('#1ced3b')
-                  embmsg.edit(embed)
+                  
                 }
               })
             }
