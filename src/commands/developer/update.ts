@@ -6,6 +6,7 @@ import {
 } from 'discord.js';
 
 //git pull git@chika:Chika-Discord/Chika.git && npm i && pm2 restart chika
+
 module.exports = {
   name: 'cmd.update.name',
   description: 'cmd.update.description',
