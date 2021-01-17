@@ -26,9 +26,11 @@ module.exports = {
             child_process_1.exec('git pull git@chika:Chika-Discord/Chika.git', (err, stdout, stderr) => {
                 console.log(1);
                 if (!err && stderr === "") {
+                    console.log(2);
                     setTimeout(() => {
                         embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<a:Loading:800458223891120199>   Restarting Bot...');
                         embmsg.edit(embed);
+                        console.log(3);
                         child_process_1.exec('npm i', (err, stdout, stderr) => {
                             if (!err && stderr === "") {
                                 setTimeout(() => {

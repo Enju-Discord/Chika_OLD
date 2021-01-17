@@ -29,19 +29,23 @@ module.exports = {
         console.log(1);
         
         if (!err && stderr === "") {
+          console.log(2);
+          
           setTimeout(() => {
             embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<a:Loading:800458223891120199>   Restarting Bot...')
             embmsg.edit(embed)
+            console.log(3);
+            
             exec('npm i', (err, stdout, stderr) => {
               if(!err && stderr === "") {
                 setTimeout(() => {
                   embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
-                .setColor('#1ced3b')
-                embmsg.edit(embed)
-                exec('pm2 restart chika', (err, stdout, stderr) => {
-                  if(!err && stderr === "") {
-                    
-                  }
+                  .setColor('#1ced3b')
+                  embmsg.edit(embed)
+                  exec('pm2 restart chika', (err, stdout, stderr) => {
+                    if(!err && stderr === "") {
+                      
+                    }
                   })
                 }, 2000) 
               }
