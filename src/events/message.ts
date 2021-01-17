@@ -57,7 +57,7 @@ module.exports = async (client, message) => {
     }
 
     async function executeGuild() {
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?' [message.guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?', [message.guild.id], async (error, result) => {
             if (error) return console.log(error);
             let startsWithPrefix: boolean = false;
             let prefixToUse: string = '';
