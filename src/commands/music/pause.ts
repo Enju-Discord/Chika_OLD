@@ -28,7 +28,7 @@ module.exports = {
 
                 async function pause() {
                     if (serverQueue.playing === true) {
-                        serverQueue.playin = false;
+                        serverQueue.playing = false;
                         serverQueue.connection.dispatcher.pause();
                         return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.pause.paused'));
                     } else {

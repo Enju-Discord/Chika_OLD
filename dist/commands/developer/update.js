@@ -13,7 +13,7 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
-        child_process_1.exec('git pull git@chika:Chika-Discord/Chika.git && pm2 restart chika', (err, stdout, stderr) => {
+        child_process_1.exec('git pull git@chika:Chika-Discord/Chika.git && npm i && pm2 restart chika', (err, stdout, stderr) => {
             if (err) {
                 return;
             }
