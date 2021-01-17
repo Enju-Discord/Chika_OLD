@@ -11,7 +11,7 @@ module.exports = async (client, message) => {
         return executeGuild();
     }
     async function executeDM() {
-        if (message.content && message.author.id !== client.user.id && !client.config.basics.developers.includes(message.author.id)) {
+        if (message.content && message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) {
             if (!message.content.startsWith(client.config.basics.prefix))
                 return client.embeds.uni(webhookDM, `I recieved a message from ${message.author.tag} (${message.author.id}): ` + message.content, null, null, null, null, client.config.colors.standard, null);
         }
@@ -29,7 +29,7 @@ module.exports = async (client, message) => {
         if (!client.cooldowns.has(cmd.name))
             client.cooldowns.set(cmd.name, new discord_js_1.Collection());
         const current = Date.now();
-        const timestamp = client.cooldows.get(cmd.name);
+        const timestamp = client.cooldowns.get(cmd.name);
         const cooldown = (cmd.cooldown) * 1000;
         if (timestamp.has(message.author.id)) {
             const wait = timestamp.get(message.author.id) + cooldown;
@@ -74,7 +74,7 @@ module.exports = async (client, message) => {
                 startsWithPrefix = true;
             if (!startsWithPrefix || message.author.bot)
                 return undefined;
-            const args = message.content.slice(client.config.secrets.prefix).trim().split(' ');
+            const args = message.content.slice(prefixToUse.length).trim().split(' ');
             const cmdName = args.shift().toLowerCase();
             const cmd = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
             if (!cmd)
@@ -84,7 +84,7 @@ module.exports = async (client, message) => {
             if (!client.cooldowns.has(cmd.name))
                 client.cooldowns.set(cmd.name, new discord_js_1.Collection());
             const current = Date.now();
-            const timestamp = client.cooldows.get(cmd.name);
+            const timestamp = client.cooldowns.get(cmd.name);
             const cooldown = (cmd.cooldown) * 1000;
             if (timestamp.has(message.author.id)) {
                 const wait = timestamp.get(message.author.id) + cooldown;
@@ -128,11 +128,12 @@ module.exports = async (client, message) => {
                 timestamp.delete(message.author.id);
             }, cooldown);
             try {
-                if (message.author.id !== client.user.id && !client.config.basics.developers.includes(message.author.id))
+                if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id))
                     client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmd}\non ${message.guild.name}\nin ${message.channel.name}`, null, null, null, null, client.config.colors.standard, null);
                 cmd.execute(message, args, client, prefixToUse);
             }
             catch (error) {
+                console.log(error);
                 return client.embeds.error(message.channel, await client.strings(message.guild, 'message.server.error'));
             }
         });

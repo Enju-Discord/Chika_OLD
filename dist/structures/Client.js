@@ -50,14 +50,14 @@ class Chika extends discord_js_1.Client {
                 resolve(languageSelected.default[strings]);
                 return undefined;
             }
-            Database_1.connection.query('SELECT * FROM settings WHERE guildid = ?;', [guild.id], async (e, r) => {
+            Database_1.connection.query('SELECT * FROM guild_settings WHERE id = ?;', [guild.id], async (e, r) => {
                 let language;
                 if (!r[0]) {
                     language = 'en_us';
-                    Database_1.connection.query('INSERT INTO settings(guildid, lang) VALUES(?, ?);', [guild.id, language]);
+                    Database_1.connection.query('INSERT INTO guild_settings(id, language) VALUES(?, ?);', [guild.id, language]);
                 }
                 else {
-                    language = r[0].lang;
+                    language = r[0].language;
                 }
                 const languageSelected = require('../utils/languages/' + language + '.js');
                 resolve(languageSelected.default[strings]);

@@ -31,7 +31,7 @@ module.exports = {
             result = await result.json();
     
             if (client.functions.clean(evaled).length > 2000) return client.embeds.uni(message.channel, 'https://hasteb.in/' + result.key, null, null, null, null, client.config.colors.invisible, null);
-            else return client.embeds.success(message.channel, '```js\n' + client.functions.clean(evaled) + '```');
+            else return message.channel.send('a')
         } catch (error) {
             return client.embeds.error(message.channel + '```js\n' + error + '```');
         }

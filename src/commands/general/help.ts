@@ -95,56 +95,56 @@ module.exports = {
                 prefix = result[0].prefix;
 
                 let contents: Array < any > = [
-                    [
-                        await client.strings(message.guild, 'cmd.help.configuration'),
-                        client.functions.generateCommands('configuration', prefix),
-                        false
-                    ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.help.configuration'),
+                    //     client.functions.generateCommands('configuration', prefix),
+                    //     false
+                    // ],
                     [
                         await client.strings(message.guild, 'cmd.help.developer'),
                         client.functtions.generateCommands('developer', prefix),
                         false
                     ],
-                    [
-                        await client.strings(message.guild, 'cmd.help.economy'),
-                        client.functions.generateCommands('economy', prefix),
-                        false
-                    ],
-                    [
-                        await client.strings(message.guild, 'cmd.help.fun'),
-                        client.functions.generateCommands('fun', prefix),
-                        false
-                    ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.help.economy'),
+                    //     client.functions.generateCommands('economy', prefix),
+                    //     false
+                    // ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.help.fun'),
+                    //     client.functions.generateCommands('fun', prefix),
+                    //     false
+                    // ],
                     [
                         await client.strings(message.guild, 'cmd.help.general'),
                         client.functions.generateCommands('general', prefix),
                         false
                     ],
-                    [
-                        await client.strings(message.guild, 'cmd.help.image'),
-                        client.functions.generateCommands('image', prefix),
-                        false
-                    ],
-                    [
-                        await client.strings(message.guild, 'cmd.help.moderation'),
-                        client.functions.generateCommands('moderation', prefix),
-                        false
-                    ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.help.image'),
+                    //     client.functions.generateCommands('image', prefix),
+                    //     false
+                    // ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.help.moderation'),
+                    //     client.functions.generateCommands('moderation', prefix),
+                    //     false
+                    // ],
                     [
                         await client.strings(message.guild, 'cmd.help.music'),
                         client.functions.generateCommands('music', prefix),
                         false
                     ],
-                    [
-                        await client.strings(message.guild, 'cmd.help.roleplay'),
-                        client.functions.generateCommands('roleplay', prefix),
-                        false
-                    ],
-                    [
-                        await client.strings(message.guild, 'cmd.help.utility'),
-                        client.functions.generateCommands('utility', prefix),
-                        false
-                    ]
+                    // [
+                    //     await client.strings(message.guild, 'cmd.help.roleplay'),
+                    //     client.functions.generateCommands('roleplay', prefix),
+                    //     false
+                    // ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.help.utility'),
+                    //     client.functions.generateCommands('utility', prefix),
+                    //     false
+                    // ]
                 ];
                 return client.embeds.uni(message.channel, null, await client.strings(message.guild, 'cmd.help.title'), contents, null, null, client.config.colors.default, null);
             }
