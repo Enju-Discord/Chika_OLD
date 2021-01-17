@@ -12,6 +12,7 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
+        client.embeds.success(message.channel, "Downloading, Installing and restarting the Bot.")
         exec('git pull git@chika:Chika-Discord/Chika.git && npm i && pm2 restart chika', (err, stdout, stderr) => {
           if (err) {return;}
         });

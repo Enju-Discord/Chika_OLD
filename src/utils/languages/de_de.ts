@@ -67,5 +67,13 @@ export default {
     "cmd.queue.description": "zeigt die Musikwarteschlange für deinen Server an",
     "cmd.queue.usage": "``queue``",
     "cmd.queue.noqueue": "🚫 Auf diesem Server befindet sich keine Musikwarteschlange.",
-    "cmd.queue.queue": "Musikwarteschlange: $server"
+    "cmd.queue.queue": "Musikwarteschlange: $server",
+    "cmd.resume.name": "resume",
+    "cmd.resume.description": "setze die Wiedergabe des aktuellen Songs fort",
+    "cmd.resume.usage": "``resume`` - setze die Wiedergabe fort",
+    "cmd.resume.noqueue": "🚫 There is nothing playing.",
+    "cmd.resume.nochannel": "🚫 You need to be in a voice channel to use the ``resume`` command.",
+    "cmd.resume.nochannel_bot": "🚫 I'm not in your voice channel.",
+    "cmd.resume.resumed": "▶ Wiedergabe wurde forgesetzt.",
+    "cmd.resume.resumed_no": "Aktuell wird nichts abgespielt was ich fortsetzen könnte.",
 }

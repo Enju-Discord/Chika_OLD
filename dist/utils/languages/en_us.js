@@ -69,5 +69,13 @@ exports.default = {
     "cmd.queue.description": "displays the music queue for your server",
     "cmd.queue.usage": "``queue``",
     "cmd.queue.noqueue": "🚫 There is no music queue on this server.",
-    "cmd.queue.queue": "Queue: $server"
+    "cmd.queue.queue": "Queue: $server",
+    "cmd.resume.name": "resume",
+    "cmd.resume.description": "resume the current song",
+    "cmd.resume.usage": "``resume`` - resume the playback",
+    "cmd.resume.noqueue": "🚫 There is nothing playing.",
+    "cmd.resume.nochannel": "🚫 You need to be in a voice channel to use the ``resume`` command.",
+    "cmd.resume.nochannel_bot": "🚫 I'm not in your voice channel.",
+    "cmd.resume.resumed": "⏸ Playback has been resumed.",
+    "cmd.resume.resumd_no": "There is nothing playing that I could resume."
 };

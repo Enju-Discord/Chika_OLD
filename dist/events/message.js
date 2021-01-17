@@ -15,6 +15,8 @@ module.exports = async (client, message) => {
             if (!message.content.startsWith(client.config.secrets.prefix))
                 return client.embeds.uni(webhookDM, `I recieved a message from ${message.author.tag} (${message.author.id}): ` + message.content, null, null, null, null, client.config.colors.standard, null);
         }
+        if (message.author.id === '386523395371696128')
+            return;
         if (!message.content.startsWith(client.config.secrets.prefix) || message.author.bot)
             return undefined;
         const args = message.content.slice(client.config.secrets.prefix).trim().split(' ');
@@ -35,7 +37,7 @@ module.exports = async (client, message) => {
             const wait = timestamp.get(message.author.id) + cooldown;
             if (current < wait) {
                 const timeLeft = (wait - current) / 1000;
-                return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', "``" + cmdName + "``"));
+                return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', "``" + cmd.name + "``"));
             }
         }
         timestamp.set(message.author.id, current);
@@ -44,7 +46,7 @@ module.exports = async (client, message) => {
         }, cooldown);
         try {
             if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id))
-                client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmdName}\nin DM's`, null, null, null, null, client.config.colors.standard, null);
+                client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmd.name}\nin DM's`, null, null, null, null, client.config.colors.standard, null);
             cmd.execute(message, args, client, client.config.secrets.prefix);
         }
         catch (error) {
@@ -55,6 +57,8 @@ module.exports = async (client, message) => {
         client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
             if (error)
                 return console.log(error);
+            if (message.author.id === '386523395371696128')
+                return;
             let startsWithPrefix = false;
             let prefixToUse = '';
             if (result.length === 0) {
@@ -90,7 +94,7 @@ module.exports = async (client, message) => {
                 const wait = timestamp.get(message.author.id) + cooldown;
                 if (current < wait) {
                     const timeLeft = (wait - current) / 1000;
-                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', "``" + cmdName + "``"));
+                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', "``" + cmd.name + "``"));
                 }
             }
             if (cmd.bot_permissions.length > 0) {
@@ -129,7 +133,7 @@ module.exports = async (client, message) => {
             }, cooldown);
             try {
                 if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id))
-                    client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmd}\non ${message.guild.name}\nin ${message.channel.name}`, null, null, null, null, client.config.colors.standard, null);
+                    client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmd.name}\non ${message.guild.name}\nin ${message.channel.name}`, null, null, null, null, client.config.colors.standard, null);
                 cmd.execute(message, args, client, prefixToUse);
             }
             catch (error) {
