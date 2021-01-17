@@ -19,12 +19,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProgressBar = exports.setRolePermissions = exports.resetRolePermissions = exports.shuffleSongs = exports.generateCommands = exports.generateLength = exports.generateXP = exports.compare = exports.getUptime = exports.mock = exports.shorten = exports.numberWithCommas = void 0;
+exports.ProgressBar = exports.setRolePermissions = exports.resetRolePermissions = exports.shuffleSongs = exports.generateCommands = exports.generateLength = exports.generateXP = exports.compare = exports.getUptime = exports.mock = exports.shorten = exports.clean = exports.numberWithCommas = void 0;
 const fs = __importStar(require("fs"));
 function numberWithCommas(numb) {
     return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 exports.numberWithCommas = numberWithCommas;
+function clean(text) {
+    if (typeof text === 'string')
+        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+    else
+        return text;
+}
+exports.clean = clean;
 function shorten(string, maxLength, separator = ' ') {
     let array = [];
     if (string.length <= maxLength) {

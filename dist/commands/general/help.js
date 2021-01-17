@@ -105,7 +105,7 @@ module.exports = {
                     // ],
                     [
                         await client.strings(message.guild, 'cmd.help.developer'),
-                        client.functtions.generateCommands('developer', prefix),
+                        client.functions.generateCommands('developer', prefix),
                         false
                     ],
                     // [

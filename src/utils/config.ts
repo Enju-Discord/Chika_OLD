@@ -14,7 +14,7 @@ export const secrets = {
     "DMLogsToken": "VEiE4wIBFJUULrnNx65bq_pp6mcbgbSTCQsXkW8ZFOXooYi4C6LruLHaaBtRgnzFS-Bm",
     "CMDLogsID": "800136897719435264",
     "CMDLogsToken": "5gS3LDBfmba_bi7cTYN2_yVQNmbDZm4EHBf4I-98q1KdmnVaGYWFoyyo8TVzb7xQuKnu",
-    "developers": ["402483602094555138", "292588280304893952"]
+    "developers": ["402483602094555138", "292588280304893952", "273797150880563201"]
 }
 
 export const emotes = {

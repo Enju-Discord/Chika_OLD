@@ -32,35 +32,52 @@ module.exports = {
     user_permissions: [],
     aliases: ['ev'],
     async execute(message, args, client, prefix) {
-        function clean(text) {
-            if (typeof (text) === 'string') {
-                return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-            }
-            else {
-                return text;
-            }
-        }
+        /*args = await message.content.split(' ').slice(1);
+        let msg = message
+        let config = client.config
+        if (args.join(' ').includes('token'))
+            return message.channel.send('Client token access denied');
+        try {
+            const code = await client.functions.clean(args.join(' '));
+            let evaled = (eval(`async (message, client, msg, config, args) => {${code}}`))(message, client, msg, config, args);
+            console.log(evaled);
+            
+            if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
+            console.log(evaled);
+            
+                const embed = new MessageEmbed()
+                .setDescription('**Input:**\n```'+code+'```\n***Output:***\n```'+client.functions.clean(evaled)+'```')
+                .setColor('#45cbf7');
+                message.channel.send(embed);
+            } catch (err) {
+                const embed = new MessageEmbed()
+                .setDescription('***Error:***\n```' + client.functions.clean(err) + '```')
+                .setColor('#45cbf7');
+                message.channel.send(embed);
+            }*/
         try {
             let code = args.join(' ');
-            let evaled = await eval(code);
+            let evaled = await client.functions.clean(code);
+            evaled = (eval(`async (message, client, args) => {${code}}`))(message, client, args);
             if (typeof evaled !== 'string')
                 evaled = require('util').inspect(evaled);
-            const options = {
-                method: 'POST',
-                body: clean(evaled),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            };
-            let result = await fetch(`https://hasteb.in/documents`, options);
-            result = await result.json();
-            if (clean(evaled).length > 2000)
+            if (client.functions.clean(evaled).length > 2000) {
+                const options = {
+                    method: 'POST',
+                    body: client.functions.clean(evaled),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+                let result = await fetch(`https://hastebin.com/documents`, options);
+                result = await result.json();
                 return client.embeds.uni(message.channel, 'https://hasteb.in/' + result.key, null, null, null, null, client.config.colors.invisible, null);
+            }
             else
-                return client.embeds.success(message.channel, '```js\n' + clean(evaled) + '```');
+                return client.embeds.success(message.channel, '```js\n' + client.functions.clean(evaled) + '```');
         }
         catch (error) {
-            return client.embeds.error(message.channel + '```js\n' + error + '```');
+            return client.embeds.error(message.channel, '```js\n' + error + '```');
         }
     }
 };
