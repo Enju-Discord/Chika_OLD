@@ -25,20 +25,20 @@ module.exports = {
             embmsg.edit(embed);
             child_process_1.exec('git pull git@chika:Chika-Discord/Chika.git', (err, stdout, stderr) => {
                 console.log(1);
-                if (!err && stderr === "") {
+                if (!err) {
                     console.log(2);
                     setTimeout(() => {
                         embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<a:Loading:800458223891120199>   Restarting Bot...');
                         embmsg.edit(embed);
                         console.log(3);
                         child_process_1.exec('npm i', (err, stdout, stderr) => {
-                            if (!err && stderr === "") {
+                            if (!err) {
                                 setTimeout(() => {
                                     embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
                                         .setColor('#1ced3b');
                                     embmsg.edit(embed);
                                     child_process_1.exec('pm2 restart chika', (err, stdout, stderr) => {
-                                        if (!err && stderr === "") {
+                                        if (!err) {
                                         }
                                     });
                                 }, 2000);

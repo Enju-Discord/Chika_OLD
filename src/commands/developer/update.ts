@@ -28,7 +28,7 @@ module.exports = {
       exec('git pull git@chika:Chika-Discord/Chika.git', (err, stdout, stderr) => {
         console.log(1);
         
-        if (!err && stderr === "") {
+        if (!err) {
           console.log(2);
           
           setTimeout(() => {
@@ -37,13 +37,13 @@ module.exports = {
             console.log(3);
             
             exec('npm i', (err, stdout, stderr) => {
-              if(!err && stderr === "") {
+              if(!err) {
                 setTimeout(() => {
                   embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
                   .setColor('#1ced3b')
                   embmsg.edit(embed)
                   exec('pm2 restart chika', (err, stdout, stderr) => {
-                    if(!err && stderr === "") {
+                    if(!err) {
                       
                     }
                   })
