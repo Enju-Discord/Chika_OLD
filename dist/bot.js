@@ -21,7 +21,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
 const config = __importStar(require("./utils/config"));
-const Shard = new discord_js_1.ShardingManager('./dist/main.js', {
+const Shard = new discord_js_1.ShardingManager('./main.js', {
     respawn: true,
     token: config.secrets.token
 });
