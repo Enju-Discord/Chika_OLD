@@ -24,6 +24,7 @@ module.exports = {
             embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<a:Loading:800458223891120199>   Installing Node Modules...\n<:idle:507524745378398210>   Restarting Bot...');
             embmsg.edit(embed);
             child_process_1.exec('git pull git@chika:Chika-Discord/Chika.git', (err, stdout, stderr) => {
+                console.log(1);
                 if (!err && stderr === "") {
                     setTimeout(() => {
                         embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<a:Loading:800458223891120199>   Restarting Bot...');
