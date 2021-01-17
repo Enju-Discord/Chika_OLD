@@ -40,7 +40,7 @@ module.exports = {
                   setTimeout(() => {
                     embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:redTick:718980916076347423>   Restarting Bot...\n\nAn unknown Error occured while Updating.\nStopping the Update.')
                       .setColor('#ed311c')
-                    embed.edit(embed)
+                    embmsg.edit(embed)
                     exec('pm2 restart chika', (err, stdout, stderr) => {
                       if (err) {
                         embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
