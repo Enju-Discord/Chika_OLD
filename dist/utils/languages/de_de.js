@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
+    "dj.perms_missing": "🚫 $user, du benötigst die ``Nachrichten verwalten`` Berechtigung oder die $role Rolle um diesen Befehl ausführen zu können.",
     "message.dev": "🚫 Dir ist es nicht gestattet diesen Befehl auszuführen.",
     "message.dm": "🚫 Du kannst diesen Befehl nicht in den Direktnachrichten ausführen.",
     "message.cooldown": "🚫 Du musst noch $seconds Sekunden warten bevor du den $cmd Befehl erneut verwenden kannst.",
@@ -32,6 +33,15 @@ exports.default = {
     "cmd.help.roleplay": "Roleplay",
     "cmd.help.utility": "Nützliches",
     "cmd.help.title": "Befehlsliste",
+    "cmd.help.footer": "<> benötigt | [] optional",
+    "cmd.djrole.name": "djrole",
+    "cmd.djrole.description": "lege eine Rolle fest, die Nutzer benötigen um Musikbefehle ausführen zu können\nsollte dies deaktiviert werden sollen, verwende ein ``delete`` anstatt der Rolle",
+    "cmd.djrole.usage": "``djrole`` (<rolle>) - lege eine DJ Rolle fest",
+    "cmd.djrole.rolerequired": "⚠️ Bitte gib eine Rolle an.",
+    "cmd.djrole.currentrole": "Aktuell ist $role als DJ Rolle festgelegt.",
+    "cmd.djrole.roledeleted": "DJ Rolle wurde gelöscht.",
+    "cmd.djrole.rolenotexist": "🚫 Diese Rolle existiert nicht auf diesem Server.",
+    "cmd.djrole.set": "$role wurde als DJ Rolle festgelegt.",
     "cmd.play.name": "play",
     "cmd.play.description": "spiele Musik in einem Sprachkanal ab",
     "cmd.play.usage": "``play`` (<link>) - spiele ein Youtube Video ab\n``play`` (<arguments>) - suche nach einem Youtube Video",
@@ -42,6 +52,8 @@ exports.default = {
     "cmd.play.requester": "Hinzugefügt von",
     "cmd.play.duration": "Dauer",
     "cmd.play.channel": "Youtube Kanal",
+    "cmd.play.added": "✅ Hinzugefügt zur Musikwarteschlange",
+    "cmd.play.start": "🎶 Musik hat angefangen zu spielen",
     "cmd.play.noresults": "🚫 Ich konnte keine Suchergebnisse erhalten.",
     "cmd.play.enter": "Bitte gib eine Zahl zwischen 1-$videos ein, um deinen Song auszuwählen.",
     "cmd.play.canceled": "🚫 Keine oder ungültige Nummer eingegeben, Songauswahl wurde abgebrochen.",

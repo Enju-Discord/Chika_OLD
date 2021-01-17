@@ -12,7 +12,7 @@ module.exports = async (client, message) => {
     }
     async function executeDM() {
         if (message.content && message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) {
-            if (!message.content.startsWith(client.config.basics.prefix))
+            if (!message.content.startsWith(client.config.secrets.prefix))
                 return client.embeds.uni(webhookDM, `I recieved a message from ${message.author.tag} (${message.author.id}): ` + message.content, null, null, null, null, client.config.colors.standard, null);
         }
         if (!message.content.startsWith(client.config.secrets.prefix) || message.author.bot)
@@ -31,7 +31,7 @@ module.exports = async (client, message) => {
         const current = Date.now();
         const timestamp = client.cooldowns.get(cmd.name);
         const cooldown = (cmd.cooldown) * 1000;
-        if (timestamp.has(message.author.id)) {
+        if (timestamp.has(message.author.id) && !client.config.secrets.developers.includes(message.author.id)) {
             const wait = timestamp.get(message.author.id) + cooldown;
             if (current < wait) {
                 const timeLeft = (wait - current) / 1000;
@@ -52,7 +52,7 @@ module.exports = async (client, message) => {
         }
     }
     async function executeGuild() {
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?', [message.guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
             if (error)
                 return console.log(error);
             let startsWithPrefix = false;
@@ -86,7 +86,7 @@ module.exports = async (client, message) => {
             const current = Date.now();
             const timestamp = client.cooldowns.get(cmd.name);
             const cooldown = (cmd.cooldown) * 1000;
-            if (timestamp.has(message.author.id)) {
+            if (timestamp.has(message.author.id) && !client.config.secrets.developers.includes(message.author.id)) {
                 const wait = timestamp.get(message.author.id) + cooldown;
                 if (current < wait) {
                     const timeLeft = (wait - current) / 1000;
@@ -99,7 +99,7 @@ module.exports = async (client, message) => {
                 if (!bot_permissions_channel.has(cmd.bot_permissions)) {
                     let bot_permissions_filter = cmd.bot_permissions.filter(permission => bot_permissions_channel.has(permission) === false).join(', ');
                     let bot_permissions_missing = '';
-                    client.con.query('SELECT * FROM guild_settings WHERE id = ?', [message.guild.id], async (error, result) => {
+                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
                         if (result[0].language === 'en_us')
                             return bot_permissions_missing = client.config.permissions.EN[bot_permissions_filter];
                         if (result[0].language === 'de_de')
@@ -114,7 +114,7 @@ module.exports = async (client, message) => {
                 if (!user_permissions_channel.has(cmd.bot_permissions)) {
                     let user_permissions_filter = cmd.user_permissions.filter(permission => user_permissions_channel.has(permission) === false).join(', ');
                     let user_permissions_missing = '';
-                    client.con.query('SELECT * FROM guild_settings WHERE id = ?', [message.guild.id], async (error, result) => {
+                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
                         if (result[0].language === 'en_us')
                             return user_permissions_missing = client.config.permissions.EN[user_permissions_filter];
                         if (result[0].language === 'de_de')

@@ -27,14 +27,14 @@ module.exports = {
                     if (cmd.bot_permissions.length > 0) {
                         let bot_permissions_array = '';
                         if (result[0].language === 'en_us')
-                            bot_permissions_array = cmd.bot_permissions.map(permission => client.config.permissions.EN[permission].join('\n'));
+                            bot_permissions_array = cmd.bot_permissions.map(permission => client.config.permissions.EN[permission]).join('\n');
                         bot_permissions = bot_permissions_array;
                         if (result[0].language === 'de_de')
-                            bot_permissions_array = cmd.bot_permissions.map(permission => client.config.permissions.DE[permission].join('\n'));
+                            bot_permissions_array = cmd.bot_permissions.map(permission => client.config.permissions.DE[permission]).join('\n');
                         bot_permissions = bot_permissions_array;
                     }
                     else
-                        bot_permissions = null;
+                        bot_permissions = '-';
                     if (cmd.user_permissions.length > 0) {
                         let user_permissions_array = '';
                         if (result[0].language === 'en_us')
@@ -45,7 +45,7 @@ module.exports = {
                         user_permissions = user_permissions_array;
                     }
                     else
-                        user_permissions = null;
+                        user_permissions = '-';
                     if (cmd.aliases.length > 0)
                         commandAliases = cmd.aliases.join('\n');
                     else

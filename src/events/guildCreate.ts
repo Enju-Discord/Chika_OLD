@@ -57,6 +57,6 @@ module.exports = async (client, guild) => {
         ];
 
         client.con.query('INSERT INTO guild_settings(id, language, autorole_id, muted_id, dj_id, welcome_id, welcome_msg, bye_id, bye_msg, prefix) VALUES(?, ?, null, null, null, null, null, null, null, ?);', [guild.id, 'en_us', client.config.secrets.prefix]);
-        client.embeds.uni(webhook, 'Joined Server', `Logs`, contents, null, ServerIcon, client.vars.colors.logGreen, null);
+        client.embeds.uni(webhook, 'Joined Server', `Logs`, contents, null, ServerIcon, client.config.colors.logGreen, null);
     });
 }

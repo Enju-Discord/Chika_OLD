@@ -170,7 +170,7 @@ exports.verification = {
 exports.colors = {
     "error": "#dc143c",
     "dev": "#ffa000",
-    "notice": "#be0930",
+    "notice": "#f1c40f",
     "default": "#00b7eb",
     "standard": "#7289da",
     "logGreen": "#00ff00",

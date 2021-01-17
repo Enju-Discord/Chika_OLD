@@ -116,7 +116,7 @@ module.exports = {
                     true
                 ]
             ];
-            return client.embeds.uni(message.channel, `[${song.title}](${song.url})`, 'Queue', contents, song.thumbnail, GuildIcon, client.config.colors.default, null);
+            return client.embeds.uni(message.channel, `[${song.title}](${song.url})`, await client.strings(message.guild, 'cmd.play.added'), contents, song.thumbnail, GuildIcon, client.config.colors.default, null);
         }
         client.queue.set(message.guild.id, queueConstruct);
         queueConstruct.songs.push(song);

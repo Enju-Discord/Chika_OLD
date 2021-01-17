@@ -17,7 +17,7 @@ module.exports = async (client, message) => {
 
     async function executeDM() {
         if (message.content && message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) {
-            if (!message.content.startsWith(client.config.basics.prefix)) return client.embeds.uni(webhookDM, `I recieved a message from ${message.author.tag} (${message.author.id}): ` + message.content, null, null, null, null, client.config.colors.standard, null);
+            if (!message.content.startsWith(client.config.secrets.prefix)) return client.embeds.uni(webhookDM, `I recieved a message from ${message.author.tag} (${message.author.id}): ` + message.content, null, null, null, null, client.config.colors.standard, null);
         }
         if (!message.content.startsWith(client.config.secrets.prefix) || message.author.bot) return undefined;
 
@@ -34,7 +34,7 @@ module.exports = async (client, message) => {
         const timestamp: any = client.cooldowns.get(cmd.name);
         const cooldown: number = (cmd.cooldown) * 1000;
 
-        if (timestamp.has(message.author.id)) {
+        if (timestamp.has(message.author.id) && !client.config.secrets.developers.includes(message.author.id)) {
             const wait: any = timestamp.get(message.author.id) + cooldown;
 
             if (current < wait) {
@@ -58,7 +58,7 @@ module.exports = async (client, message) => {
     }
 
     async function executeGuild() {
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?', [message.guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
             if (error) return console.log(error);
             let startsWithPrefix: boolean = false;
             let prefixToUse: string = '';
@@ -90,7 +90,7 @@ module.exports = async (client, message) => {
             const current: number = Date.now();
             const timestamp: any = client.cooldowns.get(cmd.name);
             const cooldown: number = (cmd.cooldown) * 1000;
-            if (timestamp.has(message.author.id)) {
+            if (timestamp.has(message.author.id) && !client.config.secrets.developers.includes(message.author.id)) {
                 const wait: any = timestamp.get(message.author.id) + cooldown;
 
                 if (current < wait) {
@@ -108,7 +108,7 @@ module.exports = async (client, message) => {
                     let bot_permissions_filter: any = cmd.bot_permissions.filter(permission => bot_permissions_channel.has(permission) === false).join(', ');
                     let bot_permissions_missing: string = '';
 
-                    client.con.query('SELECT * FROM guild_settings WHERE id = ?', [message.guild.id], async (error, result) => {
+                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
                         if (result[0].language === 'en_us') return bot_permissions_missing = client.config.permissions.EN[bot_permissions_filter];
                         if (result[0].language === 'de_de') return bot_permissions_missing = client.config.permissions.DE[bot_permissions_filter];
                     });
@@ -125,7 +125,7 @@ module.exports = async (client, message) => {
                     let user_permissions_filter: any = cmd.user_permissions.filter(permission => user_permissions_channel.has(permission) === false).join(', ');
                     let user_permissions_missing: string = '';
 
-                    client.con.query('SELECT * FROM guild_settings WHERE id = ?', [message.guild.id], async (error, result) => {
+                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
                         if (result[0].language === 'en_us') return user_permissions_missing = client.config.permissions.EN[user_permissions_filter];
                         if (result[0].language === 'de_de') return user_permissions_missing = client.config.permissions.DE[user_permissions_filter];
                     });

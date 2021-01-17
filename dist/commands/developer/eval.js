@@ -32,49 +32,28 @@ module.exports = {
     user_permissions: [],
     aliases: ['ev'],
     async execute(message, args, client, prefix) {
-        /*args = await message.content.split(' ').slice(1);
-        let msg = message
-        let config = client.config
-        if (args.join(' ').includes('token'))
-            return message.channel.send('Client token access denied');
-        try {
-            const code = await client.functions.clean(args.join(' '));
-            let evaled = (eval(`async (message, client, msg, config, args) => {${code}}`))(message, client, msg, config, args);
-            console.log(evaled);
-            
-            if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
-            console.log(evaled);
-            
-                const embed = new MessageEmbed()
-                .setDescription('**Input:**\n```'+code+'```\n***Output:***\n```'+client.functions.clean(evaled)+'```')
-                .setColor('#45cbf7');
-                message.channel.send(embed);
-            } catch (err) {
-                const embed = new MessageEmbed()
-                .setDescription('***Error:***\n```' + client.functions.clean(err) + '```')
-                .setColor('#45cbf7');
-                message.channel.send(embed);
-            }*/
         try {
             let code = args.join(' ');
-            let evaled = await client.functions.clean(code);
-            evaled = (eval(`async (message, client, args) => {${code}}`))(message, client, args);
+            //let evaled: string = await client.functions.clean(code);
+            // let evaled = (eval(`async (message, client, args) => {${code}}`))(message, client, args);
+            let evaled = eval(code);
             if (typeof evaled !== 'string')
                 evaled = require('util').inspect(evaled);
-            if (client.functions.clean(evaled).length > 2000) {
+            if (evaled.length > 2000) {
                 const options = {
                     method: 'POST',
-                    body: client.functions.clean(evaled),
+                    body: (client.functions.clean(evaled)).replace(client.token, "You tried, but you dont get the Token!"),
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 };
-                let result = await fetch(`https://hastebin.com/documents`, options);
+                //Lasst haste.newtox.de als Server.
+                let result = await fetch(`https://haste.newtox.de/documents`, options);
                 result = await result.json();
-                return client.embeds.uni(message.channel, 'https://hasteb.in/' + result.key, null, null, null, null, client.config.colors.invisible, null);
+                return client.embeds.uni(message.channel, 'https://haste.newtox.de/' + result.key, null, null, null, null, client.config.colors.default, null);
             }
             else
-                return client.embeds.success(message.channel, '```js\n' + client.functions.clean(evaled) + '```');
+                return client.embeds.success(message.channel, '```js\n' + evaled + '```');
         }
         catch (error) {
             return client.embeds.error(message.channel, '```js\n' + error + '```');
