@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.colors = exports.verification = exports.permissions = exports.badges = exports.status = exports.emotes = exports.secrets = void 0;
 exports.secrets = {
     "token": "NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY",
+    "devToken": "Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA",
+    "runOnDev": false,
     "prefix": "c+",
     "mysqlhost": "newtox.de",
     "mysqluser": "admin",

@@ -1,43 +1,37 @@
 module.exports = {
-    name: 'cmd.resume.name',
-    description: 'cmd.resume.description',
-    usage: 'cmd.resume.usage',
+    name: 'cmd.loop.name',
+    description: 'cmd.loop.description',
+    usage: 'cmd.loop.usage',
     args: true,
     dm: false,
     group: 'Music',
     cooldown: 10,
     bot_permissions: ['EMBED_LINKS'],
     user_permissions: [],
-    aliases: ['unpause'],
+    aliases: [],
     async execute(message, args, client, prefix) {
         const voiceChannel = message.member.voice.channel;
         const serverQueue = client.queue.get(message.guild.id);
         try {
             if (!serverQueue)
-                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.resume.noqueue'));
+                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.loop.noqueue'));
             if (!voiceChannel)
-                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.resume.nochannel'));
+                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.loop.nochannel'));
             if (voiceChannel !== message.guild.me.voice.channel)
-                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.resume.nochannel_bot'));
+                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.loop.nochannel_bot'));
             client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
                 if (error)
                     return client.embeds.error(message.channel, '```js\n' + error + '```');
                 if (result[0].dj_id == null)
-                    return resume();
+                    return loop();
                 const role = message.guild.roles.cache.get(result[0].dj_id);
                 if (message.member.roles.cache.has(role.id) || message.member.permissions.has('MANAGE_GUILD') || message.member.permissions.has('ADMINISTRATOR') || message.member.permissions.has('MANAGE_MESSAGES') || client.config.secrets.developers.includes(message.author.id))
-                    return resume();
+                    return loop();
                 else
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'dj.perms_missing')).replace('$user', message.member.user.tag).replace('$role', role));
-                async function resume() {
-                    if (serverQueue.playing === false) {
-                        serverQueue.playing = true;
-                        serverQueue.connection.dispatcher.resume();
-                        return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.resume.resumed'));
-                    }
-                    else {
-                        return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.resume.resumed_no'));
-                    }
+                async function loop() {
+                    serverQueue.loop = !serverQueue.loop;
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.loop.looped')).replace('$looped', serverQueue.loop ? await client.strings(message.guild, 'cmd.loop.enabled') : await client.strings(message.guild, 'cmd.loop.disabled')));
                 }
             });
         }

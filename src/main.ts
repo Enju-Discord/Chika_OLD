@@ -29,4 +29,8 @@ for (const file of fs.readdirSync(join(__dirname, 'events'))) {
 	client.on(eventName, event.bind(null, client));
 }
 
-client.login(config.secrets.token);
+if(config.secrets.runOnDev == true) {
+	client.login(config.secrets.devToken);
+} else {
+	client.login(config.secrets.token);
+}

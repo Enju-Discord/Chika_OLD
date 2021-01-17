@@ -73,7 +73,7 @@ module.exports = {
                     songData = args[0];
                 }
                 catch (error) {
-                    return client.embeds.error(message.channel + '```js\n' + error + '```');
+                    return client.embeds.error(message.channel, '```js\n' + error + '```');
                 }
             }
             else {
@@ -83,10 +83,10 @@ module.exports = {
                 return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.play.playlistuse'));
         }
         catch (error) {
-            return client.embeds.error(message.channel + '```js\n' + error + '```');
+            return client.embeds.error(message.channel, '```js\n' + error + '```');
         }
         songData = await ytdl_core_1.default.getInfo(songData).catch(async (error) => {
-            return client.embeds.error(message.channel + '```js\n' + error + '```');
+            return client.embeds.error(message.channel, '```js\n' + error + '```');
         });
         song = {
             title: songData.videoDetails.title,
@@ -132,12 +132,20 @@ module.exports = {
                 queue.voiceChannel.leave();
                 client.queue.delete(message.guild.id);
             }
+            if (!song)
+                return undefined;
             const dispatcher = queue.connection.play(await ytdl_core_1.default(song.url), {
                 quality: 'highestaudio',
                 filter: 'audioonly',
                 highWaterMark: 1024
             })
                 .on('finish', async (reason) => {
+                if (reason == undefined) {
+                    client.embeds.error(message.channel, (await client.strings(message.guild, 'cmd.play.error_dl')).replace('$song', song.title));
+                    queueConstruct.songs.shift();
+                    play(queueConstruct.songs[0]);
+                    return undefined;
+                }
                 if (queue.loop) {
                     if (reason === 'Stream is not generating quickly enough')
                         return client.embeds.error(message.channel, 'Stream is not generating quickly enough');
@@ -153,7 +161,13 @@ module.exports = {
                 }
             })
                 .on('error', error => {
-                return client.embeds.error(message.channel + '```js\n' + error + '```');
+                if (error == "Error: ffmpeg stream: write EPIPE") {
+                    queueConstruct.songs.shift();
+                    queueConstruct.songs.push(song);
+                    play(queueConstruct.songs[0]);
+                    return undefined;
+                }
+                return client.embeds.error(message.channel, '```js\n' + error + '```');
             });
             dispatcher.setVolume(queue.volume / 200);
             let contents = [
@@ -194,14 +208,14 @@ module.exports = {
         catch (error) {
             client.queue.delete(message.guild.id);
             await voiceChannel.leave();
-            return client.embeds.error(message.channel + '```js\n' + error + '```');
+            return client.embeds.error(message.channel, '```js\n' + error + '```');
         }
         function ytSearch(message, args, client) {
             return new Promise(function (resolve, reject) {
                 if (args.join(' ') !== '') {
                     search.default(args.join(' '), async function (error, result) {
                         if (error)
-                            return client.embeds.error(message.channel + '```js\n' + error + '```');
+                            return client.embeds.error(message.channel, '```js\n' + error + '```');
                         const videos = result.videos.slice(0, 10);
                         if (videos.length === 0)
                             return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.noresults'));

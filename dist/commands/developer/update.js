@@ -13,11 +13,16 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
-        client.embeds.success(message.channel, "Downloading, Installing and restarting the Bot.");
-        child_process_1.exec('git pull git@chika:Chika-Discord/Chika.git && npm i && pm2 restart chika', (err, stdout, stderr) => {
-            if (err) {
-                return;
-            }
-        });
+        if (process.platform == 'linux') {
+            client.embeds.success(message.channel, 'Downloading, Installing and restarting the Bot.');
+            child_process_1.exec('git pull git@chika:Chika-Discord/Chika.git && npm i && pm2 restart chika', (err, stdout, stderr) => {
+                if (err) {
+                    return undefined;
+                }
+            });
+        }
+        else {
+            client.embeds.error(message.channel, 'This Instance is not running on the Server.');
+        }
     }
 };
