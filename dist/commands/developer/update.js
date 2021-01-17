@@ -13,14 +13,10 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
-        child_process_1.exec('', (err, stdout, stderr) => {
+        child_process_1.exec('git pull git@chika:Chika-Discord/Chika.git && pm2 restart chika', (err, stdout, stderr) => {
             if (err) {
-                // node couldn't execute the command
                 return;
             }
-            // the *entire* stdout and stderr (buffered)
-            console.log(`stdout: ${stdout}`);
-            console.log(`stderr: ${stderr}`);
         });
     }
 };

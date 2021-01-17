@@ -32,6 +32,14 @@ module.exports = {
     user_permissions: [],
     aliases: ['ev'],
     async execute(message, args, client, prefix) {
+        function clean(text) {
+            if (typeof (text) === 'string') {
+                return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
+            }
+            else {
+                return text;
+            }
+        }
         try {
             let code = args.join(' ');
             let evaled = await eval(code);
@@ -39,17 +47,17 @@ module.exports = {
                 evaled = require('util').inspect(evaled);
             const options = {
                 method: 'POST',
-                body: client.functions.clean(evaled),
+                body: clean(evaled),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             };
             let result = await fetch(`https://hasteb.in/documents`, options);
             result = await result.json();
-            if (client.functions.clean(evaled).length > 2000)
+            if (clean(evaled).length > 2000)
                 return client.embeds.uni(message.channel, 'https://hasteb.in/' + result.key, null, null, null, null, client.config.colors.invisible, null);
             else
-                return message.channel.send('a');
+                return client.embeds.success(message.channel, '```js\n' + clean(evaled) + '```');
         }
         catch (error) {
             return client.embeds.error(message.channel + '```js\n' + error + '```');

@@ -2,15 +2,7 @@ import * as fs from 'fs';
 
 export function numberWithCommas(numb: number) {
     return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-}
-
-export function clean(text: string) {
-    if (typeof (text) === 'string') {
-        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203));
-    } else {
-        return text;
-    }
-}
+} 
 
 export function shorten(string: string, maxLength: number, separator: string = ' ') {
     let array: Array < any > = [];
