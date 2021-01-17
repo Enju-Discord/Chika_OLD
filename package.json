@@ -1,0 +1,21 @@
+{
+  "name": "chika",
+  "version": "1.0.0",
+  "description": "Connor and Justin Project",
+  "main": "dist/bot.js",
+  "dependencies": {
+    "@types/node": "^14.14.21",
+    "discord.js": "^12.5.1",
+    "ffmpeg": "0.0.4",
+    "mysql2": "^2.2.5",
+    "node-fetch": "^2.6.1",
+    "yt-search": "^2.5.2",
+    "ytdl-core": "^4.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Newtox/oShinu",
+  "license": "MIT"
+}
