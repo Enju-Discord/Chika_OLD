@@ -42,7 +42,8 @@ module.exports = {
                       .setColor('#ed311c')
                     embmsg.edit(embed)
                     exec('pm2 restart chika', (err, stdout, stderr) => {
-                      if (err) {
+                      if (err && stderr !== "") {
+                        console.log(err);
                         embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365>   Installing Node Modules...\n<:greenTick:718980916449378365>   Restarting Bot...\n\nSuccessfully updated the Bot!')
                           .setColor('#1ced3b')
                         embmsg.edit(embed)
