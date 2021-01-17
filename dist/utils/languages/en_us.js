@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
-    "dj.perms_missing": "🚫 $user, you need the ``Manage Messages`` permission or the $role role to execute this command.",
+    "dj.perms_missing": "🚫 $user, you need the ``Manage Messages`` permission or the $role role to use this command.",
     "message.dev": "🚫 You are not permitted to use this command.",
-    "message.dm": "🚫 You cannot execute this command inside Direct Messages.",
+    "message.dm": "🚫 You cannot use this command inside Direct Messages.",
     "message.cooldown": "🚫 You have to wait $seconds seconds before you're able to reuse the $cmd command.",
     "message.dm.error": "🚫 There was an error while trying to execute this command.",
     "message.bot_permissions_missing": "🚫 I'm missing permissions to perform this action.\nI need the ``$permission`` permission to do so.",
-    "message.user_permissions_missing": "🚫 $user, you need the ``$permission`` permission so you're able to execute this command.",
+    "message.user_permissions_missing": "🚫 $user, you need the ``$permission`` permission so you're able to use this command.",
     "message.server.error": "🚫 There was an error while trying to execute this command.",
     "cmd.eval.name": "eval",
     "cmd.eval.description": "Evaluate code snippets inside Discord Chat",
