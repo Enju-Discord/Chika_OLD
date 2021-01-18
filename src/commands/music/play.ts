@@ -1,6 +1,5 @@
 import ytdl from 'ytdl-core';
 import * as search from 'yt-search';
-import * as fs from 'fs';
 
 module.exports = {
     name: 'cmd.play.name',
