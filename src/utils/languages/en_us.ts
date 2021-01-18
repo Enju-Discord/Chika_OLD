@@ -92,7 +92,7 @@ export default {
     "cmd.play.added": "✅ Added to queue",
     "cmd.play.start": "🎶 Music started playing",
     "cmd.play.noresults": "🚫 I was not able to obtain any search results.",
-    "cmd.play.enter": "Please enter a number between 1-$video to select your song.",
+    "cmd.play.enter": "Please enter a number between 1-$videos to select your song.",
     "cmd.play.canceled": "🚫 No or invalid number entered, song selection has been canceled.",
     "cmd.queue.name": "queue",
     "cmd.queue.description": "displays the music queue for your server",
