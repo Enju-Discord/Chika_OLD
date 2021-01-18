@@ -4,7 +4,7 @@ module.exports = {
     usage: 'cmd.prefix.usage',
     args: true,
     dm: false,
-    group: 'Music',
+    group: 'Configuration',
     cooldown: 10,
     bot_permissions: ['EMBED_LINKS'],
     user_permissions: ['MANAGE_GUILD'],

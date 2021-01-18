@@ -49,7 +49,7 @@ module.exports = {
                     if (cmd.aliases.length > 0)
                         commandAliases = cmd.aliases.join('\n');
                     else
-                        commandAliases = null;
+                        commandAliases = '-';
                     let contents = [
                         [
                             await client.strings(message.guild, 'cmd.help.aliases_field'),

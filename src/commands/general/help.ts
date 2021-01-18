@@ -45,7 +45,7 @@ module.exports = {
                     } else user_permissions = '-';
 
                     if (cmd.aliases.length > 0) commandAliases = cmd.aliases.join('\n');
-                    else commandAliases = null;
+                    else commandAliases = '-';
 
                     let contents: Array < any > = [
                         [
