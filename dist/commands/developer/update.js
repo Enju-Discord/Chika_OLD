@@ -31,7 +31,7 @@ module.exports = {
                             embmsg.edit(embed);
                             child_process_1.exec('npm i', (err, stdout, stderr) => {
                                 if (!err) {
-                                    embed.setDescription('<:greenTick:718980916449378365>   Pulling changes from GitHub...\n<:greenTick:718980916449378365> Installing Node Modules...\n<a:Loading:800458223891120199> Restarting bot...');
+                                    embed.setDescription('<:greenTick:718980916449378365> Pulling changes from GitHub...\n<:greenTick:718980916449378365> Installing Node Modules...\n<a:Loading:800458223891120199> Restarting bot...');
                                     embmsg.edit(embed);
                                     setTimeout(() => {
                                         embed.setDescription('<:greenTick:718980916449378365> Pulling changes from GitHub...\n<:greenTick:718980916449378365> Installing Node Modules...\n<:greenTick:718980916449378365> Restarting bot...\n\nSuccessfully updated the bot!')
