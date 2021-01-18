@@ -31,7 +31,7 @@ class Chika extends discord_js_1.Client {
             disableMentions: 'everyone',
             shardCount: 1,
             ws: {
-                intents: 32511
+                intents: discord_js_1.Intents.ALL
             }
         });
         this.commands = new discord_js_1.Collection();

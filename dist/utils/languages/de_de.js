@@ -184,5 +184,12 @@ exports.default = {
     "cmd.userinfo.badges": "Abzeichen",
     "cmd.userinfo.createdAt": "Account-Erstellungsdatum",
     "cmd.userinfo.joinedAt": "Server-Beitrittsdatum",
-    "cmd.userinfo.avatar": "Avatar"
+    "cmd.userinfo.avatar": "Avatar",
+    "cmd.waifu.no": "🚫Sorry aber du besitzt kein Waifu.",
+    "cmd.waifu.name_field": "Name",
+    "cmd.waifu.health_field": "Leben",
+    "cmd.waifu.strength_field": "Stärke",
+    "cmd.waifu.second": "Zweites Waifu",
+    "cmd.waifu.description": "Beschreibung",
+    "cmd.waifu.footer": "Waifu System <3"
 };

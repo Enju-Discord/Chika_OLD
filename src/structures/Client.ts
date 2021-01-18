@@ -27,7 +27,7 @@ export class Chika extends Client {
             disableMentions: 'everyone',
             shardCount: 1,
             ws: {
-                intents: 32511
+                intents: Intents.ALL
             }
         });
         this.commands = new Collection();

@@ -182,5 +182,12 @@ export default {
     "cmd.userinfo.badges": "Badges",
     "cmd.userinfo.createdAt": "Account creation date",
     "cmd.userinfo.joinedAt": "Server joining date",
-    "cmd.userinfo.avatar": "Avatar"
+    "cmd.userinfo.avatar": "Avatar",
+    "cmd.waifu.nope": "🚫Sorry you but don't own a Waifu.",
+    "cmd.waifu.name_field": "Name",
+    "cmd.waifu.health_field": "Health",
+    "cmd.waifu.strength_field": "Strength",
+    "cmd.waifu.second": "Second Waifu",
+    "cmd.waifu.description": "Description",
+    "cmd.waifu.footer": "Waifu System <3"
 }
