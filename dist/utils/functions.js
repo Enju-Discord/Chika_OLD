@@ -14,7 +14,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -96,7 +96,7 @@ function generateCommands(category, prefix) {
     let commandsListed = '';
     const group = fs.readdirSync(`./src/commands/${category}`);
     for (const command of group) {
-        commandsListed += '``' + prefix + command.split('.')[0] + '``\n';
+        commandsListed += '`' + prefix + command.split('.')[0] + '`\n';
     }
     commandsListed = commandsListed.slice(0, -1);
     return commandsListed;
