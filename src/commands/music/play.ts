@@ -127,13 +127,6 @@ module.exports = {
                     highWaterMark: 1024
                 })
                 .on('finish', async reason => {
-                    if (reason == undefined) {
-                        client.embeds.error(message.channel, (await client.strings(message.guild, 'cmd.play.error_dl')).replace('$song', song.title));
-                        queueConstruct.songs.shift();
-                        play(queueConstruct.songs[0]);
-                        return undefined;
-                    }
-
                     if (queue.loop) {
                         if (reason === 'Stream is not generating quickly enough') return client.embeds.error(message.channel, 'Stream is not generating quickly enough');
                         queueConstruct.songs.shift();

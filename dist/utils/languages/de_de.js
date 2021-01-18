@@ -92,7 +92,6 @@ exports.default = {
     "cmd.play.duration": "Dauer",
     "cmd.play.channel": "Youtube Kanal",
     "cmd.play.added": "✅ Hinzugefügt zur Musikwarteschlange",
-    "cmd.play.error_dl": "🚫 Es ist ein unbekannter Fehler aufgetreten während ich versucht habe den folgenden Song abzuspielen: $song",
     "cmd.play.start": "🎶 Musik hat angefangen zu spielen",
     "cmd.play.noresults": "🚫 Ich konnte keine Suchergebnisse erhalten.",
     "cmd.play.enter": "Bitte gib eine Zahl zwischen 1-$videos ein, um deinen Song auszuwählen.",

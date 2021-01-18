@@ -14,7 +14,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -140,12 +140,6 @@ module.exports = {
                 highWaterMark: 1024
             })
                 .on('finish', async (reason) => {
-                if (reason == undefined) {
-                    client.embeds.error(message.channel, (await client.strings(message.guild, 'cmd.play.error_dl')).replace('$song', song.title));
-                    queueConstruct.songs.shift();
-                    play(queueConstruct.songs[0]);
-                    return undefined;
-                }
                 if (queue.loop) {
                     if (reason === 'Stream is not generating quickly enough')
                         return client.embeds.error(message.channel, 'Stream is not generating quickly enough');

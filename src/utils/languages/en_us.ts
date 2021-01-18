@@ -90,7 +90,6 @@ export default {
     "cmd.play.duration": "Duration",
     "cmd.play.channel": "Youtube Channel",
     "cmd.play.added": "✅ Added to queue",
-    "cmd.play.error_dl": "🚫 An unknown error occured while trying to play the following song: $song",
     "cmd.play.start": "🎶 Music started playing",
     "cmd.play.noresults": "🚫 I was not able to obtain any search results.",
     "cmd.play.enter": "Please enter a number between 1-$video to select your song.",
