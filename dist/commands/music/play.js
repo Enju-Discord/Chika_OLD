@@ -14,7 +14,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -77,7 +77,7 @@ module.exports = {
                 }
             }
             else {
-                return ytSearch(message, args, client);
+                songData = await ytSearch(message, args, client);
             }
             if (playlistRegExp.test(args[0]))
                 return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.play.playlistuse'));
@@ -187,7 +187,7 @@ module.exports = {
                 if (index > -1)
                     client.oldsongs.splice(index, 1);
             }
-            const msg = await client.embeds.uni(queueConstruct.textChannel, `[${song.title}](${song.url})`, 'Start', contents, song.thumbnail, GuildIcon, client.config.colors.default, null);
+            const msg = await client.embeds.uni(queueConstruct.textChannel, `[${song.title}](${song.url})`, await client.strings(message.guild, 'cmd.play.start'), contents, song.thumbnail, GuildIcon, client.config.colors.default, null);
             client.oldsongs.push({
                 message: msg,
                 guildid: message.guild.id
@@ -204,35 +204,35 @@ module.exports = {
             await voiceChannel.leave();
             return client.embeds.error(message.channel, '```js\n' + error + '```');
         }
-        function ytSearch(message, args, client) {
-            return new Promise(function (resolve, reject) {
-                if (args.join(' ') !== '') {
-                    search.default(args.join(' '), async function (error, result) {
-                        if (error)
-                            return client.embeds.error(message.channel, '```js\n' + error + '```');
-                        const videos = result.videos.slice(0, 10);
-                        if (videos.length === 0)
-                            return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.noresults'));
-                        let response = '';
-                        for (const i in videos) {
-                            response += `${parseInt(i) + 1}: [${videos[i].title}](${videos[i].url})\n`;
-                        }
-                        client.embeds.uni(message.channel, response, (await client.strings(message.guild, 'cmd.play.enter')).replace('$videos', videos.length), null, null, null, client.config.colors.default, null);
-                        try {
-                            const videocollection = await message.channel.awaitMessages(music => !isNaN(music.content) && music.content > 0 && music.content < 11 && music.author.id === message.author.id, {
-                                max: 1,
-                                time: 10000,
-                                errors: ['time']
-                            });
-                            const videoIndex = parseInt(videocollection.first().content);
-                            resolve(videos[videoIndex - 1].url);
-                        }
-                        catch (e) {
-                            return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.canceled'));
-                        }
+    }
+};
+function ytSearch(message, args, client) {
+    return new Promise(function (resolve, reject) {
+        if (args.join(' ') !== '') {
+            search.default(args.join(' '), async function (error, result) {
+                if (error)
+                    return client.embeds.error(message.channel, '```js\n' + error + '```');
+                const videos = result.videos.slice(0, 10);
+                if (videos.length === 0)
+                    return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.noresults'));
+                let response = '';
+                for (const i in videos) {
+                    response += `${parseInt(i) + 1}: [${videos[i].title}](${videos[i].url})\n`;
+                }
+                client.embeds.uni(message.channel, response, (await client.strings(message.guild, 'cmd.play.enter')).replace('$videos', videos.length), null, null, null, client.config.colors.default, null);
+                try {
+                    const videocollection = await message.channel.awaitMessages(music => !isNaN(music.content) && music.content > 0 && music.content < 11 && music.author.id === message.author.id, {
+                        max: 1,
+                        time: 10000,
+                        errors: ['time']
                     });
+                    const videoIndex = parseInt(videocollection.first().content);
+                    resolve(videos[videoIndex - 1].url);
+                }
+                catch (e) {
+                    return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.canceled'));
                 }
             });
         }
-    }
-};
+    });
+}

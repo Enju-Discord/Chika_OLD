@@ -20,7 +20,7 @@ module.exports = {
 
             client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
                 if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
-                if (result[0].dj_id == null) return undefined;
+                if (result[0].dj_id == null) return stopmusic();
 
                 const role: any = message.guild.roles.cache.get(result[0].dj_id);
 

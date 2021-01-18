@@ -183,14 +183,14 @@ export default {
     "cmd.userinfo.createdAt": "Account creation date",
     "cmd.userinfo.joinedAt": "Server joining date",
     "cmd.userinfo.avatar": "Avatar",
-    "cmd.waifu.nope": "🚫Sorry you but don't own a Waifu.",
+    "cmd.waifu.name": "Waifu",
+    "cmd.waifu.description": "displays your selected waifu",
+    "cmd.waifu.usage": "`waifu` - display your waifu",
+    "cmd.waifu.nope": "🚫 Sorry but you do not own a Waifu.",
     "cmd.waifu.name_field": "Name",
     "cmd.waifu.health_field": "Health",
     "cmd.waifu.strength_field": "Strength",
     "cmd.waifu.second": "Second Waifu",
     "cmd.waifu.field_description": "Description",
     "cmd.waifu.footer": "Waifu System <3",
-    "cmd.waifu.name": "Waifu",
-    "cmd.waifu.description": "Displaying your Waifu",
-    "cmd.waifu.usage": "`waifu` Displaying your Waifu"
 }

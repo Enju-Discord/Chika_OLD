@@ -23,7 +23,7 @@ module.exports = {
                 if (error)
                     return client.embeds.error(message.channel, '```js\n' + error + '```');
                 if (result[0].dj_id == null)
-                    return undefined;
+                    return stopmusic();
                 const role = message.guild.roles.cache.get(result[0].dj_id);
                 if (message.member.roles.cache.has(role.id) || message.member.permissions.has('MANAGE_GUILD') || message.member.permissions.has('ADMINISTRATOR') || message.member.permissions.has('MANAGE_MESSAGES') || client.config.secrets.developers.includes(message.author.id))
                     return stopmusic();

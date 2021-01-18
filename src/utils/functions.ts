@@ -76,7 +76,7 @@ export function generateCommands(category: string, prefix: string) {
     const group: Array < string > = fs.readdirSync(`./src/commands/${category}`);
 
     for (const command of group) {
-        commandsListed += '``' + prefix + command.split('.')[0] + '``\n';
+        commandsListed += '`' + prefix + command.split('.')[0] + '`\n';
     }
 
     commandsListed = commandsListed.slice(0, -1);
