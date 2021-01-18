@@ -188,6 +188,9 @@ export default {
     "cmd.waifu.health_field": "Leben",
     "cmd.waifu.strength_field": "Stärke",
     "cmd.waifu.second": "Zweites Waifu",
-    "cmd.waifu.description": "Beschreibung",
-    "cmd.waifu.footer": "Waifu System <3"
+    "cmd.waifu.field_description": "Beschreibung",
+    "cmd.waifu.footer": "Waifu System <3",
+    "cmd.waifu.name": "Waifu",
+    "cmd.waifu.description": "Zeigt dir dein .",
+    "cmd.waifu.usage": "`waifu` zeigt deinen Waifu"
 }

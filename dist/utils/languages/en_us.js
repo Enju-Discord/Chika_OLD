@@ -190,6 +190,9 @@ exports.default = {
     "cmd.waifu.health_field": "Health",
     "cmd.waifu.strength_field": "Strength",
     "cmd.waifu.second": "Second Waifu",
-    "cmd.waifu.description": "Description",
-    "cmd.waifu.footer": "Waifu System <3"
+    "cmd.waifu.field_description": "Description",
+    "cmd.waifu.footer": "Waifu System <3",
+    "cmd.waifu.name": "Waifu",
+    "cmd.waifu.description": "Displaying your Waifu",
+    "cmd.waifu.usage": "`waifu` Displaying your Waifu"
 };
