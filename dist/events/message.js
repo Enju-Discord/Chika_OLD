@@ -94,7 +94,7 @@ module.exports = async (client, message) => {
                 const wait = timestamp.get(message.author.id) + cooldown;
                 if (current < wait) {
                     const timeLeft = (wait - current) / 1000;
-                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', "``" + cmd.name + "``"));
+                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', '`' + cmd.name + '`'));
                 }
             }
             if (cmd.bot_permissions.length > 0) {

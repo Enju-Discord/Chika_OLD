@@ -33,8 +33,8 @@ module.exports = {
                 ],
                 [
                     await client.strings(message.guild, 'cmd.info.resources'),
-                    (await client.strings(message.guild, 'cmd.info.resources.info')).replace('$usage', `\`\`` + Math.round((await si.currentLoad()).currentload) + '%' + `\`\``)
-                    .replace('$usage2', `\`\`` + ((os.totalmem() - os.freemem()) / 1.074e+9).toFixed(2) + 'GiB' + `\`\``).replace('$usage3', `\`\`` + (os.totalmem() / 1.074e+9).toFixed(2) + 'GiB' + `\`\``),
+                    (await client.strings(message.guild, 'cmd.info.resources.info')).replace('$usage', '`' + Math.round((await si.currentLoad()).currentload) + '%' + '`')
+                    .replace('$usage2', '`' + ((os.totalmem() - os.freemem()) / 1.074e+9).toFixed(2) + 'GiB' + '`').replace('$usage3', '`' + (os.totalmem() / 1.074e+9).toFixed(2) + 'GiB' + '`'),
                     false
                 ],
                 [

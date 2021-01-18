@@ -18,7 +18,7 @@ module.exports = {
           // let evaled = (eval(`async (message, client, args) => {${code}}`))(message, client, args);
           let evaled = eval(code)
             if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
-            evaled = (evaled).replace('NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY', "You tried, but you won't get the token!").replace('Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA', "You tried, but you won't get the token!")
+            evaled = (evaled).replace('NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY', 'You tried, but you won't get the token!').replace('Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA', 'You tried, but you won't get the token!')
     
             if (evaled.length > 2000) {
                 const options = {

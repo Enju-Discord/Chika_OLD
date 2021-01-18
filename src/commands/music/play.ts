@@ -138,7 +138,7 @@ module.exports = {
                     }
                 })
                 .on('error', error => {
-                    if (error == "Error: ffmpeg stream: write EPIPE") {
+                    if (error == 'Error: ffmpeg stream: write EPIPE') {
                         queueConstruct.songs.shift();
                         queueConstruct.songs.push(song);
                         play(queueConstruct.songs[0]);
