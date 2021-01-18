@@ -4,8 +4,8 @@ import {
 
 module.exports = async (client, guild) => {
     const webhook: WebhookClient = new WebhookClient(client.config.secrets.guildLogsID, client.config.secrets.guildLogsToken);
-    const getOwnerOnShard: any = await client.shard.broadcastEval(`[this.shard.ids, this.users.cache.get("${guild.ownerID}")];`);
-    const pickedShard: any = getOwnerOnShard.find((x) => !!x[1]);
+    const getGuildOwner: any = await client.shard.broadcastEval(`[this.shard.ids, this.users.cache.get("${guild.ownerID}")];`);
+    const pickedShard: any = getGuildOwner.find((x) => !!x[1]);
     let ServerIcon: string = '';
 
     if (guild.iconURL()) {
