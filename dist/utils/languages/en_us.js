@@ -16,7 +16,7 @@ exports.default = {
     "cmd.language.set.en": "<:flagus:800512866775728188> Language has been set to `$lang`.",
     "cmd.prefix.name": "prefix",
     "cmd.prefix.description": "change the bots prefix",
-    "cmd.prefix.usage": "`prefix` (<prefix>) - change prefix",
+    "cmd.prefix.usage": "`prefix` (<prefix>) - change prefix\n`prefix` (<reset>) - reset to default value",
     "cmd.prefix.currentprefix": "The current prefix is `$prefix`",
     "cmd.prefix.length": "🚫 You cannot set a prefix with more than 5 chars.",
     "cmd.prefix.default": "The prefix has been reset to it's default value.",
