@@ -165,7 +165,7 @@ export default {
     "cmd.poll.options": "🚫 You cannot add more than 10 options.",
     "cmd.poll.error": "\n\n🚫 This may be because you forgot to enter options.",
     "cmd.serverinfo.name": "serverinfo",
-    "cmd.serverinfo.description": "displays Information about this server.",
+    "cmd.serverinfo.description": "displays Information about this server",
     "cmd.serverinfo.usage": "`serverinfo` - get server info",
     "cmd.serverinfo.noservericon": "No Server Icon URL",
     "cmd.serverinfo.nosplashicon": "No Splash Icon URL",
