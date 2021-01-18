@@ -1,7 +1,7 @@
 module.exports = {
-    name: 'cmd.play.name',
-    description: 'cmd.play.description',
-    usage: 'cmd.play.usage',
+    name: 'cmd.prefix.name',
+    description: 'cmd.prefix.description',
+    usage: 'cmd.prefix.usage',
     args: true,
     dm: false,
     group: 'Music',
