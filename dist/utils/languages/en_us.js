@@ -185,14 +185,20 @@ exports.default = {
     "cmd.userinfo.createdAt": "Account creation date",
     "cmd.userinfo.joinedAt": "Server joining date",
     "cmd.userinfo.avatar": "Avatar",
-    "cmd.waifu.nope": "🚫Sorry you but don't own a Waifu.",
+    "cmd.waifu.nope": "🚫 Sorry you but don't own a Waifu.",
     "cmd.waifu.name_field": "Name",
     "cmd.waifu.health_field": "Health",
     "cmd.waifu.strength_field": "Strength",
-    "cmd.waifu.second": "Second Waifu",
+    "cmd.waifu.second": "Other Waifus",
     "cmd.waifu.field_description": "Description",
     "cmd.waifu.footer": "Waifu System <3",
     "cmd.waifu.name": "Waifu",
     "cmd.waifu.description": "Displaying your Waifu",
-    "cmd.waifu.usage": "`waifu` Displaying your Waifu"
+    "cmd.waifu.usage": "`waifu` Displaying your Waifu",
+    "cmd.waifu.type_field": "Type",
+    "cmd.waifupack.already": "🚫 You already have 5 Waifus.",
+    "cmd.waifupack.nomoney": "🚫 You don't have enough money!",
+    "cmd.switch.nope": "🚫 You don't have more then one waifu!",
+    "cmd.switch.noid": "🚫 I can't finde a Waifu with this ID.",
+    "cmd.switch.switched": "Successful switched to:"
 };
