@@ -5,7 +5,7 @@ import {
 module.exports = async (client, guild) => {
     const webhook: WebhookClient = new WebhookClient(client.config.secrets.guildLogsID, client.config.secrets.guildLogsToken);
     const getNewGuildOwner: any = await client.shard.broadcastEval(`[this.shard.ids, this.users.cache.get("${guild.ownerID}")];`);
-    const pickedShardO: any = getNewGuildOwner.find((x) => !!x[1]);
+    const pickedShard: any = getNewGuildOwner.find((x) => !!x[1]);
 
     let ServerIcon: string = '';
 
@@ -36,7 +36,7 @@ module.exports = async (client, guild) => {
             ],
             [
                 'Owner',
-                pickedShardO[1].tag,
+                pickedShard[1].tag,
                 true
             ],
             [
@@ -56,7 +56,12 @@ module.exports = async (client, guild) => {
             ]
         ];
 
-        client.con.query('INSERT INTO guild_settings(id, language, autorole_id, muted_id, dj_id, welcome_id, welcome_msg, bye_id, bye_msg, prefix) VALUES(?, ?, null, null, null, null, null, null, null, ?);', [guild.id, 'en_us', client.config.secrets.prefix]);
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [guild.id], async (error, result) => {
+            if (result.length === 1) return undefined;
+            else {
+                client.con.query('INSERT INTO guild_settings(id, language, autorole_id, muted_id, dj_id, welcome_id, welcome_msg, bye_id, bye_msg, prefix) VALUES(?, ?, null, null, null, null, null, null, null, ?);', [guild.id, 'en_us', client.config.secrets.prefix]);
+            }
+        });
         client.embeds.uni(webhook, 'Joined Server', `Logs`, contents, null, ServerIcon, client.config.colors.logGreen, null);
     });
 }
