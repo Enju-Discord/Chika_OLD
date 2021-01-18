@@ -51,7 +51,7 @@ export default {
     "cmd.info.description": "Etwas zusätzliche Hilfe.",
     "cmd.info.usage": "`info` - bot statistiken",
     "cmd.info.basics": "Basics",
-    "cmd.info.basics.info": "$client\nAktuell aktiv auf $guilds Servern mit einer Gesamtzahl von $users Nutzern\n\nBetriebszeit: $uptime\nPing: $ping",
+    "cmd.info.basics.info": "$client, created by $devs\nAktuell aktiv auf $guilds Servern mit einer Gesamtzahl von $users Nutzern\n\nBetriebszeit: $uptime\nPing: $ping",
     "cmd.info.resources": "Ressourcennutzung",
     "cmd.info.resources.info": "CPU-Auslastung: $usage\nRAM-Nutzung: $usage2 verwendet von $usage3",
     "cmd.info.support": "Support",
