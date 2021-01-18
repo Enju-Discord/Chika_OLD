@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const discord_js_1 = require("discord.js");
 module.exports = async (client, guild) => {
     const webhook = new discord_js_1.WebhookClient(client.config.secrets.guildLogsID, client.config.secrets.guildLogsToken);
-    const getOwnerOnShard = await client.shard.broadcastEval(`[this.shard.ids, this.users.cache.get("${guild.ownerID}")];`);
-    const pickedShard = getOwnerOnShard.find((x) => !!x[1]);
+    const getGuildOwner = await client.shard.broadcastEval(`[this.shard.ids, this.users.cache.get("${guild.ownerID}")];`);
+    const pickedShard = getGuildOwner.find((x) => !!x[1]);
     let ServerIcon = '';
     if (guild.iconURL()) {
         ServerIcon = guild.iconURL({
