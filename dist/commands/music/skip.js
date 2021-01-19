@@ -22,24 +22,28 @@ module.exports = {
             client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
                 if (error)
                     return client.embeds.error(message.channel, '```js\n' + error + '```');
-                if (result[0].dj_id == null)
-                    return skip();
                 const role = message.guild.roles.cache.get(result[0].dj_id);
                 if (!serverQueue.playing)
                     return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.skip.pause'));
                 const amountSkip = Math.ceil(voiceChannel.members.size / 2);
-                if (!serverQueue.songs[0].voteSkips)
-                    serverQueue.songs[0].voteSkips = [];
-                if (serverQueue.songs[0].voteSkips.includes(message.member.id))
-                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'cmd.skip.voted')).replace('$user', message.member.user.tag).replace('$votes', serverQueue.songs[0].voteSkips.length + '/' + amountSkip));
-                serverQueue.songs[0].voteSkips.push(message.member.id);
-                client.queue.set(message.guild.id, serverQueue);
-                if (message.member.roles.cache.has(role.id) || serverQueue.songs[0].voteSkips.length >= amountSkip || message.member.permissions.has('MANAGE_GUILD') || message.member.permissions.has('ADMINISTRATOR') || message.member.permissions.has('MANAGE_MESSAGES') || client.config.basics.developers.includes(message.author.id))
-                    return skip();
-                return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.skip.votes')).replace('$votes', `${serverQueue.songs[0].voteSkips.length}/${amountSkip}`));
+                if (result[0].dj_id == null)
+                    return voteSkip();
+                else
+                    skip();
                 async function skip() {
                     client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.skip.skipped')).replace('$song', `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`));
                     return serverQueue.connection.dispatcher.end();
+                }
+                async function voteSkip() {
+                    if (!serverQueue.songs[0].voteSkips)
+                        serverQueue.songs[0].voteSkips = [];
+                    if (message.member.roles.cache.has(role.id) || serverQueue.songs[0].voteSkips.length >= amountSkip || message.member.permissions.has('MANAGE_GUILD') || message.member.permissions.has('ADMINISTRATOR') || message.member.permissions.has('MANAGE_MESSAGES') || client.config.basics.developers.includes(message.author.id))
+                        return skip();
+                    if (serverQueue.songs[0].voteSkips.includes(message.member.id))
+                        return client.embeds.error(message.channel, (await client.strings(message.guild, 'cmd.skip.voted')).replace('$user', message.member.user.tag).replace('$votes', serverQueue.songs[0].voteSkips.length + '/' + amountSkip));
+                    serverQueue.songs[0].voteSkips.push(message.member.id);
+                    client.queue.set(message.guild.id, serverQueue);
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.skip.votes')).replace('$votes', `${serverQueue.songs[0].voteSkips.length}/${amountSkip}`));
                 }
             });
         }

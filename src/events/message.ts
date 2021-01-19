@@ -39,7 +39,7 @@ module.exports = async (client, message) => {
 
             if (current < wait) {
                 const timeLeft: number = (wait - current) / 1000;
-                return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', '`' + cmd.name + '`'));
+                return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', '`' + cmdName + '`'));
             }
         }
 
@@ -96,7 +96,7 @@ module.exports = async (client, message) => {
                 if (current < wait) {
                     
                     const timeLeft: number = (wait - current) / 1000;
-                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', '`' + cmd.name + '`'));
+                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', '`' + cmdName + '`'));
                 }
             }
             
