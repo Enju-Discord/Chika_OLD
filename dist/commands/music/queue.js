@@ -14,7 +14,7 @@ module.exports = {
         if (!serverQueue)
             return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.queue.noqueue'));
         let page = 1;
-        const songList = serverQueue.songs.map((song, index) => `\`\`${index + 1}\`\` ${song.requester} \`\`[${song.duration}]\`\` [${song.title}](${song.url})`).join('\n');
+        const songList = serverQueue.songs.map((song, index) => `\`${index + 1}\` ${song.requester} \`[${song.duration}]\` [${song.title}](${song.url})`).join('\n');
         const shortLists = client.functions.shorten(songList, 1000, '\n');
         let contents = [
             [

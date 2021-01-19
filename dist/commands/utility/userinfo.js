@@ -49,9 +49,9 @@ module.exports = {
                 Object.entries(Discord.Permissions.FLAGS).forEach(perm => {
                     if (target.permissions.has(perm[0])) {
                         if (result[0].language === 'en_us')
-                            perms += `\`\`` + client.config.permissions.EN[perm[0]] + `\`\`` + ', ';
+                            perms += '`' + client.config.permissions.EN[perm[0]] + '`' + ', ';
                         if (result[0].language === 'de_de')
-                            perms += `\`\`` + client.config.permissions.DE[perm[0]] + `\`\`` + ', ';
+                            perms += '`' + client.config.permissions.DE[perm[0]] + '`' + ', ';
                     }
                 });
                 Object.entries(Discord.UserFlags.FLAGS).forEach(flag => {

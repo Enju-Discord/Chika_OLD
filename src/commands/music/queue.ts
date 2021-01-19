@@ -16,7 +16,7 @@ module.exports = {
 
 		let page: number = 1;
 
-		const songList: any = serverQueue.songs.map((song, index) => `\`\`${index + 1}\`\` ${song.requester} \`\`[${song.duration}]\`\` [${song.title}](${song.url})`).join('\n');
+		const songList: any = serverQueue.songs.map((song, index) => `\`${index + 1}\` ${song.requester} \`[${song.duration}]\` [${song.title}](${song.url})`).join('\n');
 
 		const shortLists: any = client.functions.shorten(songList, 1000, '\n');
 
