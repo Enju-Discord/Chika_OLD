@@ -214,7 +214,6 @@ export default {
     "cmd.skip.pause": "🚫 Dieser Befehl ist nicht verfügbar da die Wiedergabe pausiert ist.",
     "cmd.skip.voted": "🚫 $user, du hast bereits abgestimmt.\nAktuelle Votes: $votes",
     "cmd.skip.skipped": "⏩ $song wurde übersprungen.",
-    "cmd.skip.votes": "Aktuelle Votes: $votes",
     "cmd.skipto.name": "skipto",
     "cmd.skipto.description": "springe zu einem bestimmten Song in der Musikwarteschlange indem du die Song-Nummer eingibst.",
     "cmd.skipto.usage": "`skipto` (<nummer>) - überspringe songs",

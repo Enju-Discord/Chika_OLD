@@ -214,7 +214,6 @@ export default {
     "cmd.skip.pause": "🚫 This command is not available because the playback is paused.",
     "cmd.skip.voted": "🚫 $user, you already voted.\nCurrent votes: $votes",
     "cmd.skip.skipped": "⏩ $song has been skipped.",
-    "cmd.skip.votes": "Current votes: $votes",
     "cmd.skipto.name": "skipto",
     "cmd.skipto.description": "skip to a specific song in the music queue by entering the song number",
     "cmd.skipto.usage": "`skipto` (<number>) - skip to a song",
