@@ -18,10 +18,10 @@ module.exports = {
 
                 if (result.length === 1) {
                     client.con.query('UPDATE economy SET yen = ? WHERE id = ?;', [result[0].yen + amount, message.author.id]);
-                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.daily.get')).replace('$yen', amount).replace('$user', message.author.tag));
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', amount).replace('$user', message.author.tag));
                 } else {
                     client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [message.author.id, amount]);
-                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.daily.get')).replace('$yen', amount).replace('$user', message.author.tag));
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', amount).replace('$user', message.author.tag));
                 }
             });
         }
@@ -42,7 +42,7 @@ module.exports = {
                     } else {
                         timeLeft = differenceDate.getUTCHours() + 'h ' + differenceDate.getUTCMinutes() + 'm ' + differenceDate.getUTCSeconds() + 's ';
                     }
-                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'cmd.daily.claimed')).replace('$timeleft', timeLeft).replace('$user', message.author.tag));
+                    return client.embeds.error(message.channel, (await client.strings(message.guild, 'cmd.monthly.claimed')).replace('$timeleft', timeLeft).replace('$user', message.author.tag));
                 } else {
                     client.con.query('UPDATE user_cooldowns SET monthly = ? WHERE id = ?;', [new Date(), message.author.id]);
                     return addYen(newYen);
