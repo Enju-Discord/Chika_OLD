@@ -60,6 +60,7 @@ module.exports = {
             });
         }
         catch (error) {
+            return client.embeds.error(message.channel, '```js\n' + error + '```');
         }
     }
 };
