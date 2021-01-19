@@ -7,7 +7,7 @@ module.exports = {
     group: 'Music',
     cooldown: 10,
     bot_permissions: ['EMBED_LINKS', 'MANAGE_ROLES'],
-    user_permissions: [],
+    user_permissions: ['MANAGE_MESSAGES'],
     aliases: ['setdj', 'dj'],
     async execute(message, args, client, prefix) {
         client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
