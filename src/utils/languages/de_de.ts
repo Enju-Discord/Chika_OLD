@@ -222,4 +222,6 @@ export default {
     "cmd.waifu.second": "Zweite Waifu",
     "cmd.waifu.field_description": "Beschreibung",
     "cmd.waifu.footer": "Waifu System <3",
+    "cmd.switch.noid": "🚫 Ich konnte kein Waifu mit der ID finden.",
+    "cmd.switch.switched": "Erfolgreich gewechselt zu:"
 }

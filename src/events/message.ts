@@ -19,7 +19,6 @@ module.exports = async (client, message) => {
         if (message.content && message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) {
             if (!message.content.startsWith(client.config.secrets.prefix)) return client.embeds.uni(webhookDM, `I recieved a message from ${message.author.tag} (${message.author.id}): ` + message.content, null, null, null, null, client.config.colors.standard, null);
         }
-        if (message.author.id === '386523395371696128') return;
         if (!message.content.startsWith(client.config.secrets.prefix) || message.author.bot) return undefined;
 
         const args: any = message.content.slice(client.config.secrets.prefix).trim().split(' ');
@@ -61,7 +60,6 @@ module.exports = async (client, message) => {
     async function executeGuild() {
         client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
             if (error) return console.log(error);
-            if (message.author.id === '386523395371696128') return;
             let startsWithPrefix: boolean = false;
             let prefixToUse: string = '';
 
