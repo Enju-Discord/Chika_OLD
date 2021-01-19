@@ -16,7 +16,7 @@ module.exports = {
                 if (error)
                     return client.embeds.error(message.channel, '```js\n' + error + '```');
                 if (result.length === 1) {
-                    client.con.query('UPDATE economy SET yen = ? WHERE id = ?;', [result[0].yen + amount, message.author.id]);
+                    client.con.query('UPDATE economy SET yen = ? WHERE id = ?;', [Number(result[0].yen) + amount, message.author.id]);
                     return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.daily.get')).replace('$yen', amount).replace('$user', message.author.tag));
                 }
                 else {
