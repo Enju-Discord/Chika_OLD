@@ -34,7 +34,7 @@ module.exports = {
                         true
                     ]
                 ];
-                return client.embeds.uni(message.channel, anime.synopsis.replace(/<[^>]*>/g, null).split('\n')[0].substr(0, 2048), anime.titles.english ? anime.titles.english : args.join(' '), contents, null, anime.posterImage.original, client.vars.colors.default, null);
+                return client.embeds.uni(message.channel, anime.synopsis.replace(/<[^>]*>/g, null).split('\n')[0].substr(0, 2048), anime.titles.english ? anime.titles.english : args.join(' '), contents, null, anime.posterImage.original, client.config.colors.default, null);
             }).catch(async (error) => {
                 return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.anime.noresult'));
             });
