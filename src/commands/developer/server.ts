@@ -8,7 +8,7 @@ module.exports = {
     cooldown: 10,
     bot_permissions: ['EMBED_LINKS'],
     user_permissions: [],
-    aliases: ['p'],
+    aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
         const findServers: any = await client.shard.broadcastEval(`(this.guilds.cache.find(server => server.name === "${args.join(' ')}") || this.guilds.cache.get("${args.join(' ')}"));`);
         const guild: any = (findServers.find((x) => !!x) || false);
