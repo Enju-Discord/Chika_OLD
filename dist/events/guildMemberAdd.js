@@ -1,5 +1,5 @@
 module.exports = async (client, member) => {
-    client.con.query('SELECT * FROM guild_settings WHERE guildid = ?;', [member.guild.id], async (error, result) => {
+    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [member.guild.id], async (error, result) => {
         if (result.length === 0)
             return undefined;
         else {
