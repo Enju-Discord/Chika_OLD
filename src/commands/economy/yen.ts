@@ -14,7 +14,12 @@ module.exports = {
 
         client.con.query('SELECT * FROM economy WHERE id = ?;', [target.id], async (error, result) => {
             if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
-            client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.yen.result').replace('$yen', result[0].yen).replace('$user', target.user.tag)));
+            if (result.length === 1) {
+                client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.yen.result').replace('$yen', result[0].yen).replace('$user', target.user.tag)));
+            } else {
+                client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [target.id, 0]);
+                client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.yen.result').replace('$yen', result[0].yen).replace('$user', target.user.tag)));
+            }
         });
     }
 }
