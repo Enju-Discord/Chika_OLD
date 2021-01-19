@@ -221,7 +221,25 @@ export default {
     "cmd.waifu.strength_field": "Strength",
     "cmd.waifu.second": "Second Waifu",
     "cmd.waifu.field_description": "Description",
+    "cmd.waifu.type_field": "Type",
     "cmd.waifu.footer": "Waifu System <3",
+    "cmd.switch.name": "Switch",
+    "cmd.switch.description": "Switch to a other Waifu",
     "cmd.switch.noid": "🚫 I can't finde a Wiafu with this ID.",
-    "cmd.switch.switched": "Successful switched to:"
+    "cmd.switch.switched": "Successful switched to:",
+    "cmd.switch.usage": "`switch` switch to a other Waifu.",
+    "cmd.waifupack.name": "Waifupack",
+    "cmd.waifupack.description": "Buy a Waifu pack.",
+    "cmd.waifupack.usage": "`waifupack` buy a Waifu pack",
+    "cmd.waifupack.already": "🚫 You already have 5 Waifus.",
+    "cmd.waifupack.nomoney": "🚫 You don't have enough money!",
+    "cmd.coins.name": "Coins",
+    "cmd.coins.description": "Shows your coins.",
+    "cmd.coins.usage": "`coins` Shows your coins.",
+    "cmd.coins.has": " currently has $coins Yen 💴",
+    "cmd.daily.reward": " You have claimed your daily $coins Yen 💴",
+    "cmd.daily.wait": "🚫 You can't claim your daily reward!",
+    "cmd.weekly.reward": " You have claimed your weekly $coins Yen 💴",
+    "cmd.weekly.wait": "🚫 You can't claim your weekly reward!"
+
 }

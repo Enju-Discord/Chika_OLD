@@ -14,7 +14,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -39,7 +39,7 @@ module.exports = {
             let evaled = eval(code);
             if (typeof evaled !== 'string')
                 evaled = require('util').inspect(evaled);
-            evaled = (evaled).replace('NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY', 'You tried, but you won', t, get, the, token, ').replace(', Nzk3ODE2Njc5NjU5NzMzMDIz.X_r - rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA, ', ', You, tried, but, you, won, 't get the token!');
+            evaled = (evaled).replace('NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY', 'You tried, but you won\'t get the token!').replace('Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA', 'You tried, but you won\'t get the token!');
             if (evaled.length > 2000) {
                 const options = {
                     method: 'POST',

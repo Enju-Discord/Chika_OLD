@@ -221,7 +221,22 @@ export default {
     "cmd.waifu.strength_field": "Stärke",
     "cmd.waifu.second": "Zweite Waifu",
     "cmd.waifu.field_description": "Beschreibung",
+    "cmd.waifu.type_field": "Type",
     "cmd.waifu.footer": "Waifu System <3",
+    "cmd.switch.name": "Switch",
+    "cmd.switch.description": "Wechsel zu einem anderen Waifu.",
+    "cmd.switch.usage": "`switch` wechsel zu einem anderen Waifu.",
     "cmd.switch.noid": "🚫 Ich konnte kein Waifu mit der ID finden.",
-    "cmd.switch.switched": "Erfolgreich gewechselt zu:"
+    "cmd.switch.switched": "Erfolgreich gewechselt zu:",
+    "cmd.waifupack.name": "Waifupack",
+    "cmd.waifupack.description": "Kauf ein pack Waifus.",
+    "cmd.waifupack.usage": "`waifupack` kauf ein pack Waifus.",
+    "cmd.waifupack.already": "🚫 Du hast schon 5 Waifus.",
+    "cmd.waifupack.nomoney": "🚫 Du hast nicht genug geld!",
+    "cmd.coins.name": "Coins",
+    "cmd.coins.description": "Zeigt dir deine Coins.",
+    "cmd.coins.usage": "`coins` Zeigt dir deine Coins.",
+    "cmd.coins.has": " hat derzeit $coins Yen 💴",
+    "cmd.daily.reward": " Du hast deine täglichen $coins Yen 💴 abgeholt.",
+    "cmd.daily.wait": "🚫 Du kannst deinen daily reward noch nicht claimen!"
 }
