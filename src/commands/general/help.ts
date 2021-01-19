@@ -105,11 +105,11 @@ module.exports = {
                         client.functions.generateCommands('developer', prefix),
                         false
                     ],
-                    // [
-                    //     await client.strings(message.guild, 'cmd.help.economy'),
-                    //     client.functions.generateCommands('economy', prefix),
-                    //     false
-                    // ],
+                    [
+                        await client.strings(message.guild, 'cmd.help.economy'),
+                        client.functions.generateCommands('economy', prefix),
+                        false
+                    ],
                     // [
                     //     await client.strings(message.guild, 'cmd.help.fun'),
                     //     client.functions.generateCommands('fun', prefix),
