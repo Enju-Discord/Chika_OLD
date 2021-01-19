@@ -17,11 +17,11 @@ module.exports = {
                     return client.embeds.error(message.channel, '```js\n' + error + '```');
                 if (result.length === 1) {
                     client.con.query('UPDATE economy SET yen = ? WHERE id = ?;', [Number(result[0].yen) + amount, message.author.id]);
-                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', amount).replace('$user', message.author.tag));
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', client.functions.numberWithCommas(amount)).replace('$user', message.author.tag));
                 }
                 else {
                     client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [message.author.id, amount]);
-                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', amount).replace('$user', message.author.tag));
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', client.functions.numberWithCommas(amount)).replace('$user', message.author.tag));
                 }
             });
         }
