@@ -143,6 +143,8 @@ module.exports = {
                 if (queue.loop) {
                     if (reason === 'Stream is not generating quickly enough')
                         return client.embeds.error(message.channel, 'Stream is not generating quickly enough');
+                    if (!queueConstruct.songs[0].voteSkips)
+                        queueConstruct.songs[0].voteSkips = [];
                     queueConstruct.songs.shift();
                     queueConstruct.songs.push(song);
                     play(queueConstruct.songs[0]);
@@ -150,6 +152,8 @@ module.exports = {
                 else {
                     if (reason === 'Stream is not generating quickly enough')
                         return client.embeds.error(message.channel, 'Stream is not generating quickly enough');
+                    if (!queueConstruct.songs[0].voteSkips)
+                        queueConstruct.songs[0].voteSkips = [];
                     queueConstruct.songs.shift();
                     play(queueConstruct.songs[0]);
                 }
