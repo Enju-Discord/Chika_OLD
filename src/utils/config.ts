@@ -1,7 +1,7 @@
 export const secrets = {
     "token": "NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY",
     "devToken": "Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA",
-    "runOnDev": false,
+    "runOnDev": true,
     "prefix": "c+",
     "mysqlhost": "newtox.de",
     "mysqluser": "admin",
@@ -182,6 +182,5 @@ export const colors = {
     "logRed": "#ff0000",
     "logYellow": "#f1c40f",
     "none": "#000000",
-    "invisible": "#36393f",
-    "random": '#' + ((1 << 24) * Math.random() | 0).toString(16)
+    "invisible": "#36393f"
 }

@@ -229,7 +229,7 @@ function ytSearch(message, args, client) {
                     const videoIndex = parseInt(videocollection.first().content);
                     resolve(videos[videoIndex - 1].url);
                 }
-                catch (e) {
+                catch (error) {
                     return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.canceled'));
                 }
             });

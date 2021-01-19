@@ -110,26 +110,26 @@ module.exports = {
                         client.functions.generateCommands('economy', prefix),
                         false
                     ],
-                    // [
-                    //     await client.strings(message.guild, 'cmd.help.fun'),
-                    //     client.functions.generateCommands('fun', prefix),
-                    //     false
-                    // ],
+                    [
+                        await client.strings(message.guild, 'cmd.help.fun'),
+                        client.functions.generateCommands('fun', prefix),
+                        false
+                    ],
                     [
                         await client.strings(message.guild, 'cmd.help.general'),
                         client.functions.generateCommands('general', prefix),
                         false
                     ],
-                    // [
-                    //     await client.strings(message.guild, 'cmd.help.image'),
-                    //     client.functions.generateCommands('image', prefix),
-                    //     false
-                    // ],
-                    // [
-                    //     await client.strings(message.guild, 'cmd.help.moderation'),
-                    //     client.functions.generateCommands('moderation', prefix),
-                    //     false
-                    // ],
+                    [
+                        await client.strings(message.guild, 'cmd.help.image'),
+                        client.functions.generateCommands('image', prefix),
+                        false
+                    ],
+                    [
+                        await client.strings(message.guild, 'cmd.help.moderation'),
+                        client.functions.generateCommands('moderation', prefix),
+                        false
+                    ],
                     [
                         await client.strings(message.guild, 'cmd.help.music'),
                         client.functions.generateCommands('music', prefix),

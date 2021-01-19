@@ -27,7 +27,7 @@ module.exports = {
                             true
                         ]
                     ];
-                    return client.embeds.uni(message.channel, null, null, contents, null, null, client.vars.colors.default, null);
+                    return client.embeds.uni(message.channel, null, null, contents, null, null, client.config.colors.default, null);
                 }
                 else {
                     return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.goodbye.channelrequired'));
