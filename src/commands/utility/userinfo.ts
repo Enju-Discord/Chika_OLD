@@ -26,7 +26,7 @@ module.exports = {
         let TimeJoin: string = '';
 
         try {
-            client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+            client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
                 Object.entries(Discord.Permissions.FLAGS).forEach(perm => {
                     if (target.permissions.has(perm[0])) {
                         if (result[0].language === 'en_us') perms += `\`\`` + client.config.permissions.EN[perm[0]] + `\`\`` + ', ';

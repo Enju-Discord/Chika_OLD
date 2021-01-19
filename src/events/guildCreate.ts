@@ -56,7 +56,7 @@ module.exports = async (client, guild) => {
             ]
         ];
 
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [guild.id], async (error: any, result: any) => {
             if (result.length === 1) return undefined;
             else {
                 client.con.query('INSERT INTO guild_settings(id, language, autorole_id, muted_id, dj_id, welcome_id, welcome_msg, bye_id, bye_msg, prefix) VALUES(?, ?, null, null, null, null, null, null, null, ?);', [guild.id, 'en_us', client.config.secrets.prefix]);

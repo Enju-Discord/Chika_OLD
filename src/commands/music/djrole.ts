@@ -10,7 +10,7 @@ module.exports = {
     user_permissions: [],
     aliases: ['setdj', 'dj'],
     async execute(message: any, args: any, client: any, prefix: any) {
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
 
             const role: any = message.mentions.roles.first() || message.guild.roles.cache.find(role => role.name === args.join(' ')) || message.guild.roles.cache.get(args[0]);
 

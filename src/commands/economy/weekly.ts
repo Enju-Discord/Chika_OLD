@@ -13,7 +13,7 @@ module.exports = {
         const newYen: number = 94000;
 
         async function addYen(amount: number) {
-            client.con.query('SELECT * FROM economy WHERE id = ?;', [message.author.id], async (error, result) => {
+            client.con.query('SELECT * FROM economy WHERE id = ?;', [message.author.id], async (error: any, result: any) => {
                 if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
 
                 if (result.length === 1) {
@@ -26,7 +26,7 @@ module.exports = {
             });
         }
 
-        client.con.query('SELECT * FROM user_cooldowns WHERE id = ?;', [message.author.id], async (error, result) => {
+        client.con.query('SELECT * FROM user_cooldowns WHERE id = ?;', [message.author.id], async (error: any, result: any) => {
             if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
 
             if (result.length === 1) {

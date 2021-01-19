@@ -50,7 +50,7 @@ module.exports = {
         if (message.guild.features.length > 0) ServerPerks = message.guild.features.sort(client.functions.compare).map(f => f).join(', ').toLowerCase();
         else ServerPerks = '-';
 
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
             if (result[0].language === 'en_us') {
                 moment.locale('en');
                 TimeCreated = moment.default(message.guild.createdAt).format('LLLL') + '\n' + moment.default(message.guild.createdAt, 'YYYYMMDD').fromNow();

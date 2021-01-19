@@ -10,7 +10,7 @@ module.exports = {
     user_permissions: ['MANAGE_GUILD'],
     aliases: ['lang'],
     async execute(message: any, args: any, client: any, prefix: any) {
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
             if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
 
             if (args.join(' ') === '') {

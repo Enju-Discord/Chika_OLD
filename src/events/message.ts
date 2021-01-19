@@ -58,7 +58,7 @@ module.exports = async (client, message) => {
     }
 
     async function executeGuild() {
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
             if (error) return console.log(error);
             let startsWithPrefix: boolean = false;
             let prefixToUse: string = '';
@@ -108,7 +108,7 @@ module.exports = async (client, message) => {
                     let bot_permissions_filter: any = cmd.bot_permissions.filter(permission => bot_permissions_channel.has(permission) === false).join(', ');
                     let bot_permissions_missing: string = '';
 
-                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
                         if (result[0].language === 'en_us') return bot_permissions_missing = client.config.permissions.EN[bot_permissions_filter];
                         if (result[0].language === 'de_de') return bot_permissions_missing = client.config.permissions.DE[bot_permissions_filter];
                     });
@@ -125,7 +125,7 @@ module.exports = async (client, message) => {
                     let user_permissions_filter: any = cmd.user_permissions.filter(permission => user_permissions_channel.has(permission) === false).join(', ');
                     let user_permissions_missing: string = '';
 
-                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
                         if (result[0].language === 'en_us') return user_permissions_missing = client.config.permissions.EN[user_permissions_filter];
                         if (result[0].language === 'de_de') return user_permissions_missing = client.config.permissions.DE[user_permissions_filter];
                     });

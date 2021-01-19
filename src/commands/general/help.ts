@@ -10,7 +10,7 @@ module.exports = {
     user_permissions: [],
     aliases: ['h', '?', 'man'],
     async execute(message: any, args: any, client: any, prefix: any) {
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
             if (args !== [] && args[0]) {
                 const cmdName: any = args.shift().toLowerCase();
                 const cmd: any = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));

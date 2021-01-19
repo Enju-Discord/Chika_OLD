@@ -18,7 +18,7 @@ module.exports = {
             if (!voiceChannel) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.pause.nochannel'));
             if (voiceChannel !== message.guild.me.voice.channel) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.pause.nochannel_bot'));
 
-            client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+            client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
                 if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
                 if (result[0].dj_id == null) return pause();
 

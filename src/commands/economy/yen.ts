@@ -12,7 +12,7 @@ module.exports = {
     async execute(message: any, args: any, client: any, prefix: any) {
         const target: any = (message.channel.type === 'dm') ? message.author : (message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member);
 
-        client.con.query('SELECT * FROM economy WHERE id = ?;', [target.id], async (error, result) => {
+        client.con.query('SELECT * FROM economy WHERE id = ?;', [target.id], async (error: any, result: any) => {
             if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
             if (result.length === 1) {
                 client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.yen.result')).replace('$yen', result[0].yen).replace('$user', target.user.tag));
