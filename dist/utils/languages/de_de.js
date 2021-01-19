@@ -36,6 +36,7 @@ exports.default = {
     "cmd.prefix.name": "prefix",
     "cmd.prefix.description": "ändere das bot präfix",
     "cmd.prefix.usage": "`prefix` (<prefix>) - ändere präfix\n`prefix` (<reset>) - setze präfix auf Standardwert zurück",
+    "cmd.prefix.error": "🚫 Ähm... nein.",
     "cmd.prefix.currentprefix": "Das aktuelle Präfix ist `$prefix`",
     "cmd.prefix.length": "🚫 Du kannst kein Präfix mit mehr als 5 Zeichen setzen.",
     "cmd.prefix.default": "Das Präfix wurde zu seinem Standardwert zurückgesetzt.",
