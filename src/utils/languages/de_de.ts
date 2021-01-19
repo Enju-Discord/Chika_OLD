@@ -238,5 +238,7 @@ export default {
     "cmd.coins.usage": "`coins` Zeigt dir deine Coins.",
     "cmd.coins.has": " hat derzeit $coins Yen 💴",
     "cmd.daily.reward": " Du hast deine täglichen $coins Yen 💴 abgeholt.",
-    "cmd.daily.wait": "🚫 Du kannst deinen daily reward noch nicht claimen!"
+    "cmd.daily.wait": "🚫 Du kannst deinen täglichen belohnung noch nicht claimen!",
+    "cmd.weekly.reward": " Du hast deine wöchentliche $coins Yen 💴 abgeholt.",
+    "cmd.weekly.wait": "🚫 Du kannst deine wöchentliche belohnung noch nicht claimen!"
 }
