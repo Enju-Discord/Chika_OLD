@@ -26,13 +26,13 @@ module.exports = {
                 }
             }
             if (args[0].toLowerCase() === 'delete') {
-                client.con.query('UPDATE guild_settings SET autorole_id = ? WHERE guildid = ?;', [null, message.guild.id]);
+                client.con.query('UPDATE guild_settings SET autorole_id = ? WHERE id = ?;', [null, message.guild.id]);
                 return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.autorole.delete'));
             }
             else if (result[0]) {
                 if (!role)
                     return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.autorole.rolenotfound'));
-                client.con.query('UPDATE guild_settings SET autorole_id = ? WHERE guildid = ?;', [role.id, message.guild.id]);
+                client.con.query('UPDATE guild_settings SET autorole_id = ? WHERE id = ?;', [role.id, message.guild.id]);
                 return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.autorole.set')).replace('$autorole', message.guild.roles.cache.get(role.id)));
             }
         });
