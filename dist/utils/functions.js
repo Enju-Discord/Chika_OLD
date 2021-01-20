@@ -96,7 +96,7 @@ function generateCommands(category, prefix) {
     let commandsListed = '';
     const group = fs.readdirSync(`./src/commands/${category}`);
     for (const command of group) {
-        commandsListed += '`' + prefix + command.split('.')[0] + '`, ';
+        commandsListed += ' `' + prefix + command.split('.')[0] + '`,';
     }
     commandsListed = commandsListed.slice(0, -1);
     return commandsListed;

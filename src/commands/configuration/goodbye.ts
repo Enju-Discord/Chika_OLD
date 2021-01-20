@@ -15,7 +15,7 @@ module.exports = {
 
             if (!args[0]) {
                 if (result[0] && result[0].bye_id != null) {
-                    const contents: Array < any > = [
+                    let contents: Array < any > = [
                         [
                             await client.strings(message.guild, 'cmd.goodbye.currentchan'),
                             message.guild.channels.cache.get(result[0].bye_id),

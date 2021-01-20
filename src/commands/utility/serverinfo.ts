@@ -66,7 +66,7 @@ module.exports = {
             }
         });
 
-        const contents: Array < any > = [
+        let contents: Array < any > = [
             [
                 await client.strings(message.guild, 'cmd.serverinfo.id'),
                 message.guild.id,

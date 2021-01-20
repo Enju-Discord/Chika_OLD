@@ -20,7 +20,7 @@ module.exports = {
         ];
 
         Promise.all(promises).then(async results => {
-            const contents: Array < any > = [
+            let contents: Array < any > = [
                 [
                     await client.strings(message.guild, 'cmd.info.basics'),
                     (await client.strings(message.guild, 'cmd.info.basics.info')).replace('$users', client.functions.numberWithCommas(results[1].reduce((x, users) => x + users, 0)))

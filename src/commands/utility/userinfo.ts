@@ -93,7 +93,7 @@ module.exports = {
                 else if (target.user.presence.clientStatus.web) UserClient = 'Web';
                 else UserClient = '-';
 
-                const contents: Array < any > = [
+                let contents: Array < any > = [
                     [
                         await client.strings(message.guild, 'cmd.userinfo.nameAndDis'),
                         target.user.tag,

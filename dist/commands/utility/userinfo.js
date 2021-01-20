@@ -123,7 +123,7 @@ module.exports = {
                     UserClient = 'Web';
                 else
                     UserClient = '-';
-                const contents = [
+                let contents = [
                     [
                         await client.strings(message.guild, 'cmd.userinfo.nameAndDis'),
                         target.user.tag,

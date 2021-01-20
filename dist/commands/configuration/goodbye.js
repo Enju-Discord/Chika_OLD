@@ -15,7 +15,7 @@ module.exports = {
                 return client.embeds.error(message.channel, '```js\n' + error + '```');
             if (!args[0]) {
                 if (result[0] && result[0].bye_id != null) {
-                    const contents = [
+                    let contents = [
                         [
                             await client.strings(message.guild, 'cmd.goodbye.currentchan'),
                             message.guild.channels.cache.get(result[0].bye_id),

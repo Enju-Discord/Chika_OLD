@@ -86,7 +86,7 @@ module.exports = {
                 return undefined;
             }
         });
-        const contents = [
+        let contents = [
             [
                 await client.strings(message.guild, 'cmd.serverinfo.id'),
                 message.guild.id,

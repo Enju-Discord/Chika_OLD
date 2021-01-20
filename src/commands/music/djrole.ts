@@ -31,7 +31,7 @@ module.exports = {
                 client.con.query('UPDATE guild_settings SET dj_id = ? WHERE id = ?;', [null, message.guild.id]);
                 return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.djrole.roledeleted'));
             } else if (result[0]) {
-                if (!role) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.djrole.rolenotexist'));
+                if (!role) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.djrole.rolenotfound'));
                 client.con.query('UPDATE guild_settings SET dj_id = ? WHERE id = ?;', [role.id, message.guild.id]);
                 return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.djrole.set')).replace('$role', message.guild.roles.cache.get(role.id)));
             }

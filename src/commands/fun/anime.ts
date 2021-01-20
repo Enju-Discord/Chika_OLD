@@ -19,7 +19,7 @@ module.exports = {
 
                 const anime: any = result[0];
 
-                const contents: Array < any > = [
+                let contents: Array < any > = [
                     [
                         await client.strings(message.guild, 'cmd.anime.information'),
                         (await client.strings(message.guild, 'cmd.anime.information.info')).replace('$jap_name', anime.titles.romaji).replace('$age', anime.ageRating).replace('$nsfw', anime.nsfw ? await client.strings(message.guild, 'cmd.anime.information.nsfw.yes') : await client.strings(message.guild, 'cmd.anime.information.nsfw.no')),

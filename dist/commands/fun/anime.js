@@ -17,7 +17,7 @@ module.exports = {
                 if (result.length === 0)
                     return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.anime.noresult'));
                 const anime = result[0];
-                const contents = [
+                let contents = [
                     [
                         await client.strings(message.guild, 'cmd.anime.information'),
                         (await client.strings(message.guild, 'cmd.anime.information.info')).replace('$jap_name', anime.titles.romaji).replace('$age', anime.ageRating).replace('$nsfw', anime.nsfw ? await client.strings(message.guild, 'cmd.anime.information.nsfw.yes') : await client.strings(message.guild, 'cmd.anime.information.nsfw.no')),
