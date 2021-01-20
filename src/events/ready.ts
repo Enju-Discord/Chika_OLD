@@ -1,3 +1,4 @@
+import axios from "axios";
 module.exports = async client => {
     setInterval(async function () {
         let presences = [{
@@ -20,6 +21,17 @@ module.exports = async client => {
             type: random.type
         });
     }, 10000)
-
+    setInterval(async () => {
+        axios.post("https://api.voidbots.net/bot/stats/742732203955454044", 
+        {
+           server_count: client.guilds.cache.size,
+           shard_count: 0 
+        }, 
+        {
+            headers: {Authorization: client.config.secrets.VoidbotsToken}
+        })
+        console.log("Posted Stats")
+    
+    }, 300000)
     console.log('READY!');
 }

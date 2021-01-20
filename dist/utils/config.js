@@ -19,6 +19,7 @@ exports.secrets = {
     "DMLogsToken": "VEiE4wIBFJUULrnNx65bq_pp6mcbgbSTCQsXkW8ZFOXooYi4C6LruLHaaBtRgnzFS-Bm",
     "CMDLogsID": "800136897719435264",
     "CMDLogsToken": "5gS3LDBfmba_bi7cTYN2_yVQNmbDZm4EHBf4I-98q1KdmnVaGYWFoyyo8TVzb7xQuKnu",
+    "VoidbotsToken": "VOID_0E7hsTA0dVEicfR4zhfD9HB5JpW5e6IAdy7xYIWtoxouT0gv",
     "developers": ["402483602094555138", "292588280304893952", "273797150880563201"]
 };
 exports.emotes = {
