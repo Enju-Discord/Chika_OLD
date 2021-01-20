@@ -50,7 +50,7 @@ module.exports = async (client, message) => {
         }, cooldown);
 
         try {
-            if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmd.name}\nin DM's`, null, null, null, null, client.config.colors.standard, null);
+            if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmdName}\nin DM's`, null, null, null, null, client.config.colors.standard, null);
             cmd.execute(message, args, client, client.config.secrets.prefix);
         } catch (error) {
             return client.embeds.error(message.channel, await client.strings(message.guild, 'message.dm.error'));
@@ -141,7 +141,7 @@ module.exports = async (client, message) => {
             }, cooldown);
 
             try {
-                if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmd.name}\non ${message.guild.name}\nin ${message.channel.name}`, null, null, null, null, client.config.colors.standard, null);
+                if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmdName}\non ${message.guild.name}\nin ${message.channel.name}`, null, null, null, null, client.config.colors.standard, null);
                 cmd.execute(message, args, client, prefixToUse);
             } catch (error) {
                 console.log(error);
