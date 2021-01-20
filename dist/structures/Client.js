@@ -28,7 +28,7 @@ const embeds = __importStar(require("../structures/Embeds"));
 class Chika extends discord_js_1.Client {
     constructor(options = {}) {
         super({
-            disableMentions: 'everyone',
+            disableMentions: 'all',
             shardCount: 1,
             ws: {
                 intents: discord_js_1.Intents.ALL
