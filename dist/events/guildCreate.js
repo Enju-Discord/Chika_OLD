@@ -5,6 +5,8 @@ module.exports = async (client, guild) => {
     const webhook = new discord_js_1.WebhookClient(client.config.secrets.guildLogsID, client.config.secrets.guildLogsToken);
     const getNewGuildOwner = await client.shard.broadcastEval(`[this.shard.ids, this.users.cache.get("${guild.ownerID}")];`);
     const pickedShard = getNewGuildOwner.find((x) => !!x[1]);
+    if (getNewGuildOwner.id === '801512954273071144')
+        return guild.leave();
     let ServerIcon = '';
     if (guild.iconURL()) {
         ServerIcon = guild.iconURL({
