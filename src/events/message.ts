@@ -9,11 +9,15 @@ module.exports = async (client, message) => {
     const webhookDM: WebhookClient = new WebhookClient(client.config.secrets.DMLogsID, client.config.secrets.DMLogsToken);
     const webhookCMD: WebhookClient = new WebhookClient(client.config.secrets.CMDLogsID, client.config.secrets.CMDLogsToken);
 
-    if (message.channel.type === 'dm') {
-        return executeDM();
-    } else {
-        return executeGuild();
-    }
+    client.con.query("SELECT * FROM `blacklist` WHERE `userid`=?;", [message.author.id], async (error: any, result: any) => {
+        if(result.length == 0) {
+            if (message.channel.type === 'dm') {
+                return executeDM();
+            } else {
+                return executeGuild();
+            }
+        }
+    })
 
     async function executeDM() {
         if (message.content && message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) {

@@ -4,7 +4,7 @@ exports.colors = exports.verification = exports.permissions = exports.badges = e
 exports.secrets = {
     "token": "NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY",
     "devToken": "Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA",
-    "runOnDev": false,
+    "runOnDev": true,
     "prefix": "c+",
     "mysqlhost": "newtox.de",
     "mysqluser": "admin",
