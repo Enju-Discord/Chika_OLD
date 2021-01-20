@@ -4,6 +4,7 @@
   "description": "Connor and Justin Project",
   "main": "dist/bot.js",
   "dependencies": {
+    "@azurapi/azurapi": "^0.2.13",
     "@discordjs/opus": "^0.3.3",
     "@types/node": "^14.14.21",
     "axios": "^0.21.1",
