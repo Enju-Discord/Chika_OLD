@@ -22,7 +22,7 @@ module.exports = async client => {
         });
     }, 10000)
     setInterval(async () => {
-        axios.post("https://api.voidbots.net/bot/stats/742732203955454044", 
+      /*  axios.post("https://api.voidbots.net/bot/stats/742732203955454044", 
         {
            server_count: client.guilds.cache.size,
            shard_count: 0 
@@ -30,7 +30,7 @@ module.exports = async client => {
         {
             headers: {Authorization: client.config.secrets.VoidbotsToken}
         })
-
+*/
         axios.post("https://discordbotlist.com/api/v1/bots/742732203955454044/stats", {
 
         guilds: client.guilds.cache.size,
