@@ -7,8 +7,6 @@ module.exports = async (client, guild) => {
     const getNewGuildOwner: any = await client.shard.broadcastEval(`[this.shard.ids, this.users.cache.get("${guild.ownerID}")];`);
     const pickedShard: any = getNewGuildOwner.find((x) => !!x[1]);
 
-    if (getNewGuildOwner.id === '801512954273071144') return guild.leave();
-
     let ServerIcon: string = '';
 
     if (guild.iconURL()) {
