@@ -17,6 +17,7 @@ export const secrets = {
     "CMDLogsID": "800136897719435264",
     "CMDLogsToken": "5gS3LDBfmba_bi7cTYN2_yVQNmbDZm4EHBf4I-98q1KdmnVaGYWFoyyo8TVzb7xQuKnu",
     "VoidbotsToken": "VOID_0E7hsTA0dVEicfR4zhfD9HB5JpW5e6IAdy7xYIWtoxouT0gv",
+    "DiscordBotlist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoxLCJpZCI6Ijc0MjczMjIwMzk1NTQ1NDA0NCIsImlhdCI6MTYxMTEzMTMwOH0.hzuOQg8F0IzPxZwh55VOtUkn8trhupWx2osnVBvqhzA",
     "developers": ["402483602094555138", "292588280304893952", "273797150880563201"]
 }
 

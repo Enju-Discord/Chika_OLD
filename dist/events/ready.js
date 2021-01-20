@@ -33,6 +33,12 @@ module.exports = async (client) => {
         }, {
             headers: { Authorization: client.config.secrets.VoidbotsToken }
         });
+        axios_1.default.post("https://discordbotlist.com/api/v1/bots/742732203955454044/stats", {
+            guilds: client.guilds.cache.size,
+            users: client.users.cache.size,
+        }, {
+            headers: { Authorization: client.config.secrets.DiscordBotlist }
+        });
         console.log("Posted Stats");
     }, 300000);
     console.log('READY!');
