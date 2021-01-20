@@ -215,7 +215,7 @@ export default {
     "cmd.clear.usage": "`clear` (<number>) - clear messages",
     "cmd.clear.numberrequired": "⚠️ Please enter a number.",
     "cmd.clear.NaN": "⚠️ Please enter a valid number.",
-    "cmd.clear.length": "⚠️ You cannot delete more than 99 messages at once.",
+    "cmd.clear.length": "⚠️ You cannot delete more than 100 messages at once.",
     "cmd.clear.old": "🚫 The messages you're trying to delete are older than 14 days.",
     "cmd.clear.deleted": "I deleted $messages messages from this channel. :wastebasket:",
     "cmd.kick.name": "kick",

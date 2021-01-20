@@ -215,7 +215,7 @@ export default {
     "cmd.clear.usage": "`clear` (<nummer>) - lösche nachrichten",
     "cmd.clear.numberrequired": "⚠️ Bitte gib eine Nummer an.",
     "cmd.clear.NaN": "⚠️ Bitte gib eine gültige Nummer an.",
-    "cmd.clear.length": "⚠️ Du kannst nicht mehr als 99 Nachrichten aufeinmal löschen.",
+    "cmd.clear.length": "⚠️ Du kannst nicht mehr als 100 Nachrichten aufeinmal löschen.",
     "cmd.clear.old": "🚫 Die Nachrichten die du löschen möchtest sind älter als 14 Tage.",
     "cmd.clear.deleted": "Ich habe $messages Nachrichten aus diesem Kanal gelöscht. :wastebasket:",
     "cmd.kick.name": "kick",
