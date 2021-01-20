@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
+
 module.exports = async client => {
     setInterval(async function () {
         let presences = [{
@@ -20,9 +21,10 @@ module.exports = async client => {
         client.user.setActivity(random.text, {
             type: random.type
         });
-    }, 10000)
+    }, 10000);
+
     setInterval(async () => {
-      /*  axios.post("https://api.voidbots.net/bot/stats/742732203955454044", 
+        /*  axios.post('https://api.voidbots.net/bot/stats/742732203955454044', 
         {
            server_count: client.guilds.cache.size,
            shard_count: 0 
@@ -31,16 +33,16 @@ module.exports = async client => {
             headers: {Authorization: client.config.secrets.VoidbotsToken}
         })
 */
-        axios.post("https://discordbotlist.com/api/v1/bots/742732203955454044/stats", {
+        axios.post('https://discordbotlist.com/api/v1/bots/742732203955454044/stats', {
+            guilds: client.guilds.cache.size,
+            users: client.users.cache.size,
+        }, {
+            headers: {
+                Authorization: client.config.secrets.DiscordBotlist
+            }
+        });
+        console.log('Posted Stats');
 
-        guilds: client.guilds.cache.size,
-        users: client.users.cache.size,
-        },
-        {
-            headers: {Authorization: client.config.secrets.DiscordBotlist}
-        })
-        console.log("Posted Stats")
-    
     }, 300000)
     console.log('READY!');
 }
