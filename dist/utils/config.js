@@ -12,7 +12,7 @@ exports.secrets = {
     "mysqlpw": "whQ3GY1vtOjBjVSM",
     "YTAPIKey": "",
     "topggToken": "",
-    "azuToken": "",
+    "azuToken": "9tbzoEZ25a0ISRC121vwK0YVBgxBEgwzdro6Y4y58XwFMUsXLu",
     "guildLogsID": "800137207066394634",
     "guildLogsToken": "uZ4drJiXX5rzmaUPIRXWxMQ6IMoEsdPl6fD231-GyIbXpQdVvU2A29KGtQW4p9oDXt3n",
     "DMLogsID": "800136817906286593",
@@ -180,6 +180,5 @@ exports.colors = {
     "logRed": "#ff0000",
     "logYellow": "#f1c40f",
     "none": "#000000",
-    "invisible": "#36393f",
-    "random": '#' + ((1 << 24) * Math.random() | 0).toString(16)
+    "invisible": "#36393f"
 };

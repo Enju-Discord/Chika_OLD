@@ -19,7 +19,7 @@ module.exports = {
             if (voiceChannel !== message.guild.me.voice.channel) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.remove.nochannel_bot'));
             if (isNaN(args[0])) return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.remove.validsong'));
 
-            client.con.query('SELECT * FROM guild_settings WHERE id = ?;', async (error: any, result: any) => {
+            client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
                 if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
                 if (result[0].dj_id == null) return remove();
 

@@ -54,7 +54,7 @@ module.exports = {
                 return client.embeds.uni(message.channel, '', await client.strings(message.guild, 'cmd.kick.kicked'), contents, '', UserGotAvatar, client.config.colors.default, null);
             });
         } catch (error) {
-            
+            return client.embeds.error(message.channel, '```js\n' + error + '```');
         }
     }
 }
