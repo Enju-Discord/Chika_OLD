@@ -23,7 +23,7 @@ module.exports = {
                     return client.embeds.success(message.channel, 'Removed <@' + target + '> (`' + target + '`) from the blacklist.');
                 }
                 else {
-                    client.con.query('INSERT INTO blacklist(id, blacklisted) VALUES(?, ?)', [target, 'true']);
+                    client.con.query('INSERT INTO blacklist(id) VALUES(?)', [target]);
                     return client.embeds.success(message.channel, 'Added <@' + target + '> (`' + target + '`) to the blacklist.');
                 }
             });
