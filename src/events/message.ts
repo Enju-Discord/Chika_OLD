@@ -5,19 +5,19 @@ import {
 } from 'discord.js'
 
 module.exports = async (client, message) => {
-    
+
     const webhookDM: WebhookClient = new WebhookClient(client.config.secrets.DMLogsID, client.config.secrets.DMLogsToken);
     const webhookCMD: WebhookClient = new WebhookClient(client.config.secrets.CMDLogsID, client.config.secrets.CMDLogsToken);
 
-    client.con.query("SELECT * FROM `blacklist` WHERE `userid`=?;", [message.author.id], async (error: any, result: any) => {
-        if(result.length == 0) {
+    client.con.query('SELECT * FROM blacklist WHERE id = ?;', [message.author.id], async (error: any, result: any) => {
+        if (result.length === 0) {
             if (message.channel.type === 'dm') {
                 return executeDM();
             } else {
                 return executeGuild();
             }
         }
-    })
+    });
 
     async function executeDM() {
         if (message.content && message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) {
@@ -98,12 +98,12 @@ module.exports = async (client, message) => {
                 const wait: any = timestamp.get(message.author.id) + cooldown;
 
                 if (current < wait) {
-                    
+
                     const timeLeft: number = (wait - current) / 1000;
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', '`' + cmdName + '`'));
                 }
             }
-            
+
             if (cmd.bot_permissions.length > 0) {
                 let bot_permissions_channel: any = message.channel.permissionsFor(message.guild.me);
                 bot_permissions_channel = new Permissions(bot_permissions_channel.bitfield);
@@ -120,11 +120,11 @@ module.exports = async (client, message) => {
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.bot_permissions_missing')).replace('$permission', bot_permissions_missing));
                 }
             }
-            
+
             if (cmd.user_permissions.length > 0 && !client.config.secrets.developers.includes(message.author.id)) {
                 let user_permissions_channel: any = message.channel.permissionsFor(message.member);
                 user_permissions_channel = new Permissions(user_permissions_channel.bitfield);
-                
+
                 if (!user_permissions_channel.has(cmd.bot_permissions)) {
                     let user_permissions_filter: any = cmd.user_permissions.filter(permission => user_permissions_channel.has(permission) === false).join(', ');
                     let user_permissions_missing: string = '';
@@ -133,7 +133,7 @@ module.exports = async (client, message) => {
                         if (result[0].language === 'en_us') return user_permissions_missing = client.config.permissions.EN[user_permissions_filter];
                         if (result[0].language === 'de_de') return user_permissions_missing = client.config.permissions.DE[user_permissions_filter];
                     });
-                    
+
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.user_permissions_missing')).replace('$permission', user_permissions_missing).replace('$user', message.member.user.username));
                 }
             }

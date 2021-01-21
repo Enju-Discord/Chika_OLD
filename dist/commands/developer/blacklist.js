@@ -6,28 +6,30 @@ module.exports = {
     dm: true,
     group: 'Bot Owner',
     cooldown: 10,
-    bot_permissions: [''],
+    bot_permissions: [],
     user_permissions: [],
     aliases: ['bl'],
     async execute(message, args, client, prefix) {
         if (args[0]) {
-            let target = message.mentions.members.first() || { id: args[0] };
+            let target = message.mentions.members.first() || {
+                id: args[0]
+            };
             target = target.id;
             if (client.config.secrets.developers.includes(target))
-                return client.embeds.error(message.channel, "You can't blacklist a Bot Owner.");
-            client.con.query("SELECT * FROM `blacklist` WHERE `userid`=?;", [target], async (error, result) => {
+                return client.embeds.error(message.channel, 'You can\'t blacklist a Bot Owner.');
+            client.con.query('SELECT * FROM blacklist WHERE id = ?;', [target], async (error, result) => {
                 if (result.length !== 0) {
-                    client.con.query("DELETE FROM `blacklist` WHERE `userid`=?;", [target]);
-                    client.embeds.success(message.channel, "Removed <@" + target + "> (`" + target + "`) from the Blacklist.");
+                    client.con.query('DELETE FROM blacklist WHERE id = ?;', [target]);
+                    return client.embeds.success(message.channel, 'Removed <@' + target + '> (`' + target + '`) from the blacklist.');
                 }
                 else {
-                    client.con.query("INSERT INTO `blacklist`(`userid`, `blacklisted`) VALUES (?,?)", [target, "true"]);
-                    client.embeds.success(message.channel, "Added <@" + target + "> (`" + target + "`) to the Blacklist.");
+                    client.con.query('INSERT INTO blacklist(id, blacklisted) VALUES(?, ?)', [target, 'true']);
+                    return client.embeds.success(message.channel, 'Added <@' + target + '> (`' + target + '`) to the blacklist.');
                 }
             });
         }
         else {
-            client.embeds.error(message.channel, "You have to ping the user or give me the UserID.");
+            return client.embeds.notice(message.channel, '⚠️ You have to ping a user or give me their ID.');
         }
     }
 };
