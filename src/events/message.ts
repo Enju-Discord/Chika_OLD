@@ -10,12 +10,11 @@ module.exports = async (client, message) => {
     const webhookCMD: WebhookClient = new WebhookClient(client.config.secrets.CMDLogsID, client.config.secrets.CMDLogsToken);
 
     client.con.query('SELECT * FROM blacklist WHERE id = ?;', [message.author.id], async (error: any, result: any) => {
-        if (result.length === 0) {
-            if (message.channel.type === 'dm') {
-                return executeDM();
-            } else {
-                return executeGuild();
-            }
+        if (result.length === 0) return undefined;
+        if (message.channel.type === 'dm') {
+            return executeDM();
+        } else {
+            return executeGuild();
         }
     });
 
