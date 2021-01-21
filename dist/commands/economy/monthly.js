@@ -31,9 +31,9 @@ module.exports = {
             if (result.length === 1) {
                 const dateFromDatabase = result[0].monthly;
                 const difference = new Date().getTime() - dateFromDatabase;
-                if (difference <= 2628000000) {
+                if (difference <= 2592000) {
                     let timeLeft;
-                    const differenceDate = new Date(2628000000 - difference);
+                    const differenceDate = new Date(2592000 - difference);
                     if (differenceDate.getUTCDate() - 1 === 0) {
                         timeLeft = differenceDate.getUTCHours() + 'h ' + differenceDate.getUTCMinutes() + 'm ' + differenceDate.getUTCSeconds() + 's ';
                     }

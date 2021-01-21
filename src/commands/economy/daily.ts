@@ -33,9 +33,9 @@ module.exports = {
                 const dateFromDatabase: any = result[0].daily;
                 const difference: number = new Date().getTime() - dateFromDatabase;
 
-                if (difference <= 86400000) {
+                if (difference <= 86400) {
                     let timeLeft: any;
-                    const differenceDate: Date = new Date(86400000 - difference);
+                    const differenceDate: Date = new Date(86400 - difference);
 
                     if (differenceDate.getUTCHours() === 0) {
                         timeLeft = differenceDate.getUTCMinutes() + 'm ' + differenceDate.getUTCSeconds() + 's ';
