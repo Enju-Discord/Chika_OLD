@@ -34,11 +34,14 @@ module.exports = {
                 if (difference <= 2628000000) {
                     let timeLeft;
                     const differenceDate = new Date(2628000000 - difference);
-                    if (differenceDate.getUTCHours() === 0) {
+                    if (differenceDate.getUTCDate() - 1 === 0) {
+                        timeLeft = differenceDate.getUTCHours() + 'h ' + differenceDate.getUTCMinutes() + 'm ' + differenceDate.getUTCSeconds() + 's ';
+                    }
+                    else if (differenceDate.getUTCHours() === 0) {
                         timeLeft = differenceDate.getUTCMinutes() + 'm ' + differenceDate.getUTCSeconds() + 's ';
                     }
                     else {
-                        timeLeft = differenceDate.getUTCHours() + 'h ' + differenceDate.getUTCMinutes() + 'm ' + differenceDate.getUTCSeconds() + 's ';
+                        timeLeft = differenceDate.getUTCDate() - 1 + 'd ' + differenceDate.getUTCHours() + 'h ' + differenceDate.getUTCMinutes() + 'm ' + differenceDate.getUTCSeconds() + 's ';
                     }
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'cmd.monthly.claimed')).replace('$timeleft', timeLeft).replace('$user', message.author.tag));
                 }
