@@ -14,11 +14,11 @@ module.exports = {
         const serverQueue = client.queue.get(message.guild.id);
         try {
             if (!serverQueue)
-                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.pause.noqueue'));
+                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.stop.noqueue'));
             if (!voiceChannel)
-                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.pause.nochannel'));
+                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.stop.nochannel'));
             if (voiceChannel !== message.guild.me.voice.channel)
-                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.pause.nochannel_bot'));
+                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.stop.nochannel_bot'));
             client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
                 if (error)
                     return client.embeds.error(message.channel, '```js\n' + error + '```');
