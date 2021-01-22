@@ -5,8 +5,8 @@ module.exports = async (client, message) => {
     const webhookDM = new discord_js_1.WebhookClient(client.config.secrets.DMLogsID, client.config.secrets.DMLogsToken);
     const webhookCMD = new discord_js_1.WebhookClient(client.config.secrets.CMDLogsID, client.config.secrets.CMDLogsToken);
     client.con.query('SELECT * FROM blacklist WHERE id = ?;', [message.author.id], async (error, result) => {
-        if (result.length === 0)
-            return undefined;
+        if (result.length == 1)
+            return;
         if (message.channel.type === 'dm') {
             return executeDM();
         }
