@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.colors = exports.verification = exports.permissions = exports.badges = exports.status = exports.emotes = exports.secrets = void 0;
+exports.colors = exports.features = exports.verification = exports.permissions = exports.badges = exports.status = exports.emotes = exports.secrets = void 0;
 exports.secrets = {
     "token": "NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY",
     "devToken": "Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA",
-    "runOnDev": false,
+    "runOnDev": true,
     "prefix": "c+",
     "mysqlhost": "newtox.de",
     "mysqluser": "admin",
@@ -31,7 +31,6 @@ exports.emotes = {
     "steam": "<:steam:762122414619885578> Steam",
     "origin": "<:origin:692813031976992768> Origin",
     "riot": "<:riot:705069119153635539> Riot",
-    "botdeveloper": "<:AruSmile:726566531428909078> • Bot Developer",
     "trusted": "<:trusted:761281218314108940> • Trusted"
 };
 exports.status = {
@@ -169,6 +168,44 @@ exports.verification = {
         "MEDIUM": "Mittel",
         "HIGH": "Hoch",
         "VERY_HIGH": "Höchste"
+    }
+};
+exports.features = {
+    "EN": {
+        "ANIMATED_ICON": "Animated Server Icon",
+        "BANNER": "Server Banner",
+        "COMMERCE": "Commerce",
+        "COMMUNITY": "Community",
+        "DISCOVERABLE": "Published in Server Discovery",
+        "FEATURABLE": "Featurable",
+        "INVITE_SPLASH": "Splash Banner",
+        "NEWS": "News",
+        "PARTNERED": "Partnered",
+        "PREVIEW_ENABLED": "Preview",
+        "RELAY_ENABLED": "Relay",
+        "VANITY_URL": "Vanity URL",
+        "VERIFIED": "Verified",
+        "VIP_REGIONS": "VIP Region",
+        "WELCOME_SCREEN_ENABLED": "Welcome Screen",
+        "MEMBER_VERIFICATION_GATE_ENABLED": "Verification Gate"
+    },
+    "DE": {
+        "ANIMATED_ICON": "Animiertes Server Icon",
+        "BANNER": "Server Banner",
+        "COMMERCE": "Commerce",
+        "COMMUNITY": "Community",
+        "DISCOVERABLE": "Veröffentlicht in \"Server entdecken\"",
+        "FEATURABLE": "Featurable",
+        "INVITE_SPLASH": "Splash Banner",
+        "NEWS": "News",
+        "PARTNERED": "Partner",
+        "PREVIEW_ENABLED": "Preview",
+        "RELAY_ENABLED": "Relay",
+        "VANITY_URL": "Vanity URL",
+        "VERIFIED": "Verifiziert",
+        "VIP_REGIONS": "VIP Region",
+        "WELCOME_SCREEN_ENABLED": "Willkommensbildschirm",
+        "MEMBER_VERIFICATION_GATE_ENABLED": "Verification Gate"
     }
 };
 exports.colors = {

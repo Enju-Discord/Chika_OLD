@@ -47,14 +47,19 @@ module.exports = {
             });
         } else SplashIcon = await client.strings(message.guild, 'cmd.serverinfo.nosplashicon');
 
-        if (message.guild.features.length > 0) ServerPerks = message.guild.features.sort(client.functions.compare).map(f => f).join(', ').toLowerCase();
-        else ServerPerks = '-';
-
         client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
             if (result[0].language === 'en_us') {
                 moment.locale('en');
                 TimeCreated = moment.default(message.guild.createdAt).format('LLLL') + '\n' + moment.default(message.guild.createdAt, 'YYYYMMDD').fromNow();
                 verificationLevel = client.config.verification.EN[message.guild.verificationLevel];
+
+                if (message.guild.features.length > 0) {
+                    message.guild.features.forEach(gF => {
+                        console.log(gF)
+                        ServerPerks += '`' + client.config.features.EN[gF] + '`, ';
+                    });
+                    ServerPerks = ServerPerks.substring(0, ServerPerks.length - 2);
+                } else ServerPerks = '-';
                 return undefined;
             }
 
@@ -62,6 +67,13 @@ module.exports = {
                 moment.locale('de');
                 TimeCreated = moment.default(message.guild.createdAt).format('LLLL') + '\n' + moment.default(message.guild.createdAt, 'YYYYMMDD').fromNow();
                 verificationLevel = client.config.verification.DE[message.guild.verificationLevel];
+
+                if (message.guild.features.length > 0) {
+                    message.guild.features.forEach(gF => {
+                        ServerPerks += '`' + client.config.features.DE[gF] + '`, ';
+                    });
+                    ServerPerks = ServerPerks.substring(0, ServerPerks.length - 2);
+                } else ServerPerks = '-';
                 return undefined;
             }
         });

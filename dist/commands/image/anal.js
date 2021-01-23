@@ -14,7 +14,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -32,6 +32,7 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
+        return;
         const Neko = new NekoClient.default();
         const image = await Neko.nsfw.anal().then(async (img) => img.url);
         const randomcolor = '#' + ((1 << 24) * Math.random() | 0).toString(16);

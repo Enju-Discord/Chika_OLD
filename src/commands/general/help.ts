@@ -120,11 +120,11 @@ module.exports = {
                         client.functions.generateCommands('general', prefix),
                         false
                     ],
-                    [
-                        await client.strings(message.guild, 'cmd.help.image'),
-                        client.functions.generateCommands('image', prefix),
-                        false
-                    ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.help.image'),
+                    //     client.functions.generateCommands('image', prefix),
+                    //     false
+                    // ],
                     [
                         await client.strings(message.guild, 'cmd.help.moderation'),
                         client.functions.generateCommands('moderation', prefix),

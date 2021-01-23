@@ -12,6 +12,7 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
+        return;
         try {
             const result = await axios.default.get('https://api.thecatapi.com/v1/images/search');
             const image = result.data[0].url;

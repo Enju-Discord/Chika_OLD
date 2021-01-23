@@ -12,6 +12,7 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
+        return;
         const Neko: NekoClient = new NekoClient.default();
         const image: string = await Neko.nsfw.feet().then(async img => img.url);
         const randomcolor: string = '#' + ((1 << 24) * Math.random() | 0).toString(16);

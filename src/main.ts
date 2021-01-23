@@ -1,10 +1,10 @@
 import {
-    Chika
+	Chika
 } from './structures/Client';
 import * as config from './utils/config';
 import * as fs from 'fs';
 import {
-    join
+	join
 } from 'path';
 
 const client: Chika = new Chika();
@@ -29,7 +29,7 @@ for (const file of fs.readdirSync(join(__dirname, 'events'))) {
 	client.on(eventName, event.bind(null, client));
 }
 
-if(config.secrets.runOnDev == true) {
+if (config.secrets.runOnDev == true) {
 	client.login(config.secrets.devToken);
 } else {
 	client.login(config.secrets.token);
