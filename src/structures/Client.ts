@@ -24,7 +24,7 @@ export class Chika extends Client {
     public oldsongs: Array < number > ;
     constructor(options = {}) {
         super({
-            disableMentions: 'all',
+            disableMentions: 'everyone',
             shardCount: 1,
             ws: {
                 intents: Intents.ALL
