@@ -75,8 +75,7 @@ module.exports = {
                 verificationLevel = client.config.verification.EN[message.guild.verificationLevel];
                 if (message.guild.features.length > 0) {
                     message.guild.features.forEach(gF => {
-                        console.log(gF);
-                        ServerPerks += '`' + client.config.features.EN[gF] + '`, ';
+                        ServerPerks += client.config.features.EN[gF] + ', ';
                     });
                     ServerPerks = ServerPerks.substring(0, ServerPerks.length - 2);
                 }
@@ -90,7 +89,7 @@ module.exports = {
                 verificationLevel = client.config.verification.DE[message.guild.verificationLevel];
                 if (message.guild.features.length > 0) {
                     message.guild.features.forEach(gF => {
-                        ServerPerks += '`' + client.config.features.DE[gF] + '`, ';
+                        ServerPerks += client.config.features.DE[gF] + ', ';
                     });
                     ServerPerks = ServerPerks.substring(0, ServerPerks.length - 2);
                 }

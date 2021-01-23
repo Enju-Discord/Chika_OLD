@@ -55,8 +55,7 @@ module.exports = {
 
                 if (message.guild.features.length > 0) {
                     message.guild.features.forEach(gF => {
-                        console.log(gF)
-                        ServerPerks += '`' + client.config.features.EN[gF] + '`, ';
+                        ServerPerks += client.config.features.EN[gF] + ', ';
                     });
                     ServerPerks = ServerPerks.substring(0, ServerPerks.length - 2);
                 } else ServerPerks = '-';
@@ -70,7 +69,7 @@ module.exports = {
 
                 if (message.guild.features.length > 0) {
                     message.guild.features.forEach(gF => {
-                        ServerPerks += '`' + client.config.features.DE[gF] + '`, ';
+                        ServerPerks += client.config.features.DE[gF] + ', ';
                     });
                     ServerPerks = ServerPerks.substring(0, ServerPerks.length - 2);
                 } else ServerPerks = '-';
