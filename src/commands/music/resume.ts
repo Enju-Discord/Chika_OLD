@@ -31,6 +31,7 @@ module.exports = {
                     if (serverQueue.playing === false) {
                         serverQueue.playing = true;
                         serverQueue.connection.dispatcher.resume();
+                        serverQueue.connection.dispatcher.resume();
                         await message.react('⏯️');
                     } else {
                         return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.resume.resumed_no'));
