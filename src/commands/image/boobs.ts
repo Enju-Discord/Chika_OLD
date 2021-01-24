@@ -1,4 +1,4 @@
-import * as NekoClient from 'nekos.life';
+import * as axios from 'axios';
 
 module.exports = {
     name: 'cmd.boobs.name',
@@ -12,14 +12,13 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
-        return;
-        const Neko: NekoClient = new NekoClient.default();
-        const image: string = await Neko.nsfw.boobs().then(async img => img.url);
+        const result: axios.AxiosResponse = await axios.default.get('http://api.nekos.fun:8080/api/boobs');
+        const image: string = result.data.image;
         const randomcolor: string = '#' + ((1 << 24) * Math.random() | 0).toString(16);
 
         if (message.channel.nsfw) {
             try {
-                return client.embeds.uni(message.channel, null, null, null, image, null, randomcolor, null);
+                return client.embeds.uni(message.channel, null, null, null, image, null, randomcolor, '⚡️ nekos.fun');
             } catch (error) {
                 return client.embeds.error(message.channel, '```js\n' + error + '```');
             }

@@ -32,7 +32,6 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
-        return;
         try {
             const result = await axios.default.get('https://random.dog/woof.json');
             const image = result.data.url;

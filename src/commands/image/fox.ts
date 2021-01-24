@@ -12,10 +12,9 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
-        return;
         try {
-            const result = await axios.default.get('https://randomfox.ca/floof/');
-            const image = result.data.image;
+            const result: axios.AxiosResponse = await axios.default.get('https://randomfox.ca/floof/');
+            const image: string = result.data.image;
             const randomcolor: string = '#' + ((1 << 24) * Math.random() | 0).toString(16);
 
             return client.embeds.uni(message.channel, null, null, null, image, null, randomcolor, null);

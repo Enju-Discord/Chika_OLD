@@ -14,12 +14,12 @@ module.exports = {
             if (error)
                 return client.embeds.error(message.channel, '```js\n' + error + '```');
             const newPrefix = args[0];
-            if (newPrefix.includes('/tts'))
-                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.prefix.error'));
             if (result.length === 1) {
                 if (args.join(' ') === '') {
                     return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.prefix.currentprefix')).replace('$prefix', result[0].prefix));
                 }
+                if (newPrefix.includes('/tts'))
+                    return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.prefix.error'));
                 if (newPrefix.length > 5 && prefix !== 'reset')
                     return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.prefix.length'));
             }

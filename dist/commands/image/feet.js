@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const NekoClient = __importStar(require("nekos.life"));
+const axios = __importStar(require("axios"));
 module.exports = {
     name: 'cmd.feet.name',
     description: 'cmd.feet.description',
@@ -32,13 +32,12 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
-        return;
-        const Neko = new NekoClient.default();
-        const image = await Neko.nsfw.feet().then(async (img) => img.url);
+        const result = await axios.default.get('http://api.nekos.fun:8080/api/feet');
+        const image = result.data.image;
         const randomcolor = '#' + ((1 << 24) * Math.random() | 0).toString(16);
         if (message.channel.nsfw) {
             try {
-                return client.embeds.uni(message.channel, null, null, null, image, null, randomcolor, null);
+                return client.embeds.uni(message.channel, null, null, null, image, null, randomcolor, '⚡️ nekos.fun');
             }
             catch (error) {
                 return client.embeds.error(message.channel, '```js\n' + error + '```');
