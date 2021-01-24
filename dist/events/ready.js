@@ -17,7 +17,7 @@ module.exports = async (client) => {
                 text: client.commands.filter(cmd => cmd.group != 'Bot Owner').size + ' commands',
                 type: 2
             }, {
-                text: 'on Shard ' + client.options.shards[0] + ' for ' + client.guilds.cache.size + ' Servers',
+                text: 'on Shard ' + client.options.shards[0] + ' for ' + client.guilds.cache.size + ' servers',
                 type: 0
             }
         ];
@@ -27,24 +27,21 @@ module.exports = async (client) => {
         });
     }, 10000);
     setInterval(async () => {
-        /*  axios.post('https://api.voidbots.net/bot/stats/742732203955454044',
-        {
-           server_count: client.guilds.cache.size,
-           shard_count: 0
-        },
-        {
-            headers: {Authorization: client.config.secrets.VoidbotsToken}
-        })
-*/
+        // axios.post('https://api.voidbots.net/bot/stats/742732203955454044', 
+        // {
+        //    server_count: client.guilds.cache.size,
+        //    shard_count: 0 
+        // }, 
+        // {
+        //     headers: {Authorization: client.config.secrets.VoidbotsToken}
+        // });
         axios_1.default.post('https://discordbotlist.com/api/v1/bots/742732203955454044/stats', {
-            guilds: client.guilds.cache.size,
-            users: client.users.cache.size,
+            guilds: client.guilds.cache.size
         }, {
             headers: {
                 Authorization: client.config.secrets.DiscordBotlist
             }
         });
-        console.log('Posted Stats');
     }, 300000);
     console.log('READY!');
 };

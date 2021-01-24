@@ -48,14 +48,14 @@ export class Chika extends Client {
                 return undefined;
             }
 
-            connection.query('SELECT * FROM guild_settings WHERE id = ?;', [guild.id], async (e, r) => {
+            connection.query('SELECT * FROM guild_settings WHERE id = ?;', [guild.id], async (error: any, result: any) => {
                 let language: any;
 
-                if (!r[0]) {
+                if (!result[0]) {
                     language = 'en_us';
                     connection.query('INSERT INTO guild_settings(id, language) VALUES(?, ?);', [guild.id, language]);
                 } else {
-                    language = r[0].language;
+                    language = result[0].language;
                 }
 
                 const languageSelected: any = require('../utils/languages/' + language + '.js');

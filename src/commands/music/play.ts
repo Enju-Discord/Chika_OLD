@@ -117,6 +117,7 @@ module.exports = {
 
                 queue.voiceChannel.leave();
                 client.queue.delete(message.guild.id);
+                await message.react('⏏️');
             }
 
             if (!song) return undefined;
