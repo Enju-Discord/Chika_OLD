@@ -32,8 +32,7 @@ module.exports = {
                 async function resume() {
                     if (serverQueue.playing === false) {
                         serverQueue.playing = true;
-                        serverQueue.connection.dispatcher.resume();
-                        serverQueue.connection.dispatcher.resume();
+                        await serverQueue.connection.dispatcher.resume();
                         await message.react('⏯️');
                     }
                     else {
