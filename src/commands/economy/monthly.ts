@@ -21,7 +21,8 @@ module.exports = {
                     return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', client.functions.numberWithCommas(amount)).replace('$user', message.author.tag));
                 } else {
                     client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [message.author.id, amount]);
-                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', client.functions.numberWithCommas(amount)).replace('$user', message.author.tag));
+                    client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.monthly.get')).replace('$yen', client.functions.numberWithCommas(amount)).replace('$user', message.author.tag));
+                    return this.execute(message, args, client, prefix);
                 }
             });
         }

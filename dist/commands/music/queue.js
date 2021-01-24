@@ -8,7 +8,7 @@ module.exports = {
     cooldown: 10,
     bot_permissions: ['EMBED_LINKS', 'ADD_REACTIONS'],
     user_permissions: [],
-    aliases: ['p'],
+    aliases: ['q'],
     async execute(message, args, client, prefix) {
         const serverQueue = client.queue.get(message.guild.id);
         if (!serverQueue)

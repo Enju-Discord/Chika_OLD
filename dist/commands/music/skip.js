@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 module.exports = {
     name: 'cmd.skip.name',
     description: 'cmd.skip.description',
@@ -8,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Music',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: ['EMBED_LINKS', 'ADD_REACTIONS'],
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
@@ -26,7 +24,7 @@ module.exports = {
                     return client.embeds.error(message.channel, '```js\n' + error + '```');
                 const role = message.guild.roles.cache.get(result[0].dj_id);
                 if (!serverQueue.playing)
-                    return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.skip.pause'));
+                    return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.skip.pause'));
                 const amountSkip = Math.ceil(voiceChannel.members.size / 2);
                 if (!serverQueue.songs[0].voteSkips)
                     serverQueue.songs[0].voteSkips = [];
@@ -40,7 +38,7 @@ module.exports = {
                     return voteSkip();
                 }
                 async function skip() {
-                    client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.skip.skipped')).replace('$song', `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`));
+                    await message.react('⏩');
                     return serverQueue.connection.dispatcher.end();
                 }
                 async function voteSkip() {

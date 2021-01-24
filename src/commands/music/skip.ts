@@ -1,5 +1,3 @@
-import { isNull } from "util";
-
 module.exports = {
     name: 'cmd.skip.name',
     description: 'cmd.skip.description',
@@ -8,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Music',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: ['EMBED_LINKS', 'ADD_REACTIONS'],
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
@@ -25,7 +23,7 @@ module.exports = {
 
                 const role: any = message.guild.roles.cache.get(result[0].dj_id);
 
-                if (!serverQueue.playing) return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.skip.pause'));
+                if (!serverQueue.playing) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.skip.pause'));
 
                 const amountSkip: number = Math.ceil(voiceChannel.members.size / 2);
 
@@ -39,7 +37,7 @@ module.exports = {
                 }
 
                 async function skip() {
-					client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.skip.skipped')).replace('$song', `[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`));
+                    await message.react('⏩');
 					return serverQueue.connection.dispatcher.end();
                 }
                 

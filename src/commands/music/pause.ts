@@ -6,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Music',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: ['EMBED_LINKS', 'ADD_REACTIONS'],
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
@@ -31,7 +31,7 @@ module.exports = {
                     if (serverQueue.playing === true) {
                         serverQueue.playing = false;
                         serverQueue.connection.dispatcher.pause();
-                        return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.pause.paused'));
+                        await message.react('⏸️');
                     } else {
                         return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.pause.paused_no'));
                     }

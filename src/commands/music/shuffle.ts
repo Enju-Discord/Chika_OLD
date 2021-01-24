@@ -34,8 +34,7 @@ module.exports = {
 
                     serverQueue.songs = songs;
                     client.queue.set(message.guild.id, serverQueue);
-
-                    return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.shuffle.shuffle'));
+                    await message.react('🔀');
                 }
             });
         } catch (error) {

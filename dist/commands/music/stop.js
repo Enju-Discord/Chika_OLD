@@ -6,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Music',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: ['EMBED_LINKS', 'ADD_REACTIONS'],
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
@@ -39,7 +39,7 @@ module.exports = {
                         }
                         serverQueue.voiceChannel.leave();
                         client.queue.delete(message.guild.id);
-                        return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.stop.stopped'));
+                        await message.react('⏹️');
                     }
                 }
             });

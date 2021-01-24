@@ -6,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Music',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: ['EMBED_LINKS', 'ADD_REACTIONS'],
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
@@ -24,24 +24,23 @@ module.exports = {
 
                 const role: any = message.guild.roles.cache.get(result[0].dj_id);
 
-				if (message.member.roles.cache.has(role.id) || message.member.permissions.has('MANAGE_GUILD') || message.member.permissions.has('ADMINISTRATOR') || message.member.permissions.has('MANAGE_MESSAGES') || client.config.secrets.developers.includes(message.author.id)) return stopmusic();
+                if (message.member.roles.cache.has(role.id) || message.member.permissions.has('MANAGE_GUILD') || message.member.permissions.has('ADMINISTRATOR') || message.member.permissions.has('MANAGE_MESSAGES') || client.config.secrets.developers.includes(message.author.id)) return stopmusic();
                 else return client.embeds.error(message.channel, (await client.strings(message.guild, 'dj.perms_missing')).replace('$user', message.member.user.tag).replace('$role', role));
 
                 async function stopmusic() {
-					if (!serverQueue.playing || serverQueue.playing) {
-						if (client.oldsongs.find(msg => msg.guildid === message.guild.id)) {
-							client.oldsongs.find(msg => msg.guildid === message.guild.id).message.delete();
-							const index: any = client.oldsongs.indexOf(client.oldsongs.find(msg => msg.guildid === message.guild.id));
+                    if (!serverQueue.playing || serverQueue.playing) {
+                        if (client.oldsongs.find(msg => msg.guildid === message.guild.id)) {
+                            client.oldsongs.find(msg => msg.guildid === message.guild.id).message.delete();
+                            const index: any = client.oldsongs.indexOf(client.oldsongs.find(msg => msg.guildid === message.guild.id));
 
-							if (index > -1) client.oldsongs.splice(index, 1);
-						}
+                            if (index > -1) client.oldsongs.splice(index, 1);
+                        }
 
-						serverQueue.voiceChannel.leave();
-						client.queue.delete(message.guild.id);
-
-						return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.stop.stopped'));
-					}
-				}
+                        serverQueue.voiceChannel.leave();
+                        client.queue.delete(message.guild.id);
+                        await message.react('⏹️');
+                    }
+                }
             });
         } catch (error) {
             return client.embeds.error(message.channel, '```js\n' + error + '```');

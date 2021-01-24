@@ -6,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Music',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: ['EMBED_LINKS', 'ADD_REACTIONS'],
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
@@ -31,7 +31,7 @@ module.exports = {
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'dj.perms_missing')).replace('$user', message.member.user.tag).replace('$role', role));
                 async function skipto() {
                     if (!serverQueue.playing)
-                        return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.skipto.pause'));
+                        return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.skipto.pause'));
                     if (serverQueue.songs.length < args[0])
                         return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.skipto.nosongs'));
                     else {
@@ -42,7 +42,7 @@ module.exports = {
                             serverQueue.playing = true;
                             serverQueue.songs = serverQueue.songs.slice(args[0] - 2);
                             serverQueue.connection.dispatcher.end();
-                            return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.skipto.skipped')).replace('$songs', args[0] - 1));
+                            await message.react('⏩');
                         }
                     }
                 }
