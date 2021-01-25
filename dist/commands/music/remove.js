@@ -37,7 +37,7 @@ module.exports = {
                     const song = serverQueue.songs.splice(args[0] - 1, 1);
                     if (song.length < 1)
                         return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.remove.validsong'));
-                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.remove.removed')).replace('$song', `[${song[0].title}](${song[0].url})`).replace('$requester', `[${song.requester}]`));
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.remove.removed')).replace('$song', `[${song[0].title}](${song[0].url})`).replace('$requester', `[${song[0].requester}]`));
                 }
             });
         }
