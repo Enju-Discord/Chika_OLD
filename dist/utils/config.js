@@ -10,7 +10,7 @@ exports.secrets = {
     "mysqluser": "admin",
     "mysqldb": "chika",
     "mysqlpw": "whQ3GY1vtOjBjVSM",
-    "YTAPIKey": "",
+    "YTAPIKey": "AIzaSyA3-i0r1Y7B0s7bN3zu6LQL40Dds1kiRjs",
     "topggToken": "",
     "azuToken": "9tbzoEZ25a0ISRC121vwK0YVBgxBEgwzdro6Y4y58XwFMUsXLu",
     "guildLogsID": "800137207066394634",

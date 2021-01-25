@@ -302,6 +302,7 @@ export default {
     "cmd.playlist.usage": "`playlist` (<link>) - add a playlist to the queue",
     "cmd.playlist.nochannel": "🚫 You need to join a voice channel to play music.",
     "cmd.playlist.linkrequired": "⚠️ Please enter a valid youtube link.",
+    "cmd.playlist.api": "🚫 I currently exceeded my requests to youtube.\nTry again later.",
     "cmd.playlist.nospotify": "🚫 Spotify is currently not supported. <:spotify:800180960494354432>",
     "cmd.playlist.play": "⚠️ If you want to play a video, use the `play` command.",
     "cmd.playlist.added": "✅ Added $list to the queue.",

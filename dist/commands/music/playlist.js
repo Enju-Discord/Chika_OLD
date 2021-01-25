@@ -68,10 +68,6 @@ module.exports = {
             volume: 100,
             playing: true
         };
-        if (spotifyRegExp.test(args[0]))
-            return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.playlist.nospotify'));
-        if (videoRegExp.test(args[0]))
-            return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.playlist.play'));
         try {
             if (urlcheck) {
                 try {
@@ -79,9 +75,14 @@ module.exports = {
                     videos = await playlist.getVideos(350);
                 }
                 catch (error) {
-                    return client.embeds.error(message.channel, '```js\n' + error + '```');
+                    if (error.errors[0].message === 'The request cannot be completed because you have exceeded your <a href="/youtube/v3/getting-started#quota">quota</a>.')
+                        return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.playlist.api'));
                 }
             }
+            else if (spotifyRegExp.test(args[0]))
+                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.playlist.nospotify'));
+            else
+                return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.playlist.play'));
         }
         catch (error) {
             return client.embeds.error(message.channel, '```js\n' + error + '```');
