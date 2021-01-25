@@ -40,7 +40,7 @@ module.exports = {
             let welcome = '';
             const channel = message.mentions.channels.first() || message.guild.channels.cache.find(channel => channel.name === args[0]) || message.guild.channels.cache.get(args[0]);
             if (!channel)
-                return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.welcome.channelnotfound'));
+                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.welcome.channelnotfound'));
             args.shift();
             if (args[1]) {
                 welcome = args.join(' ');

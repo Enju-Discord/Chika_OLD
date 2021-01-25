@@ -35,7 +35,7 @@ module.exports = {
 
                     if (song.length < 1) return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.remove.validsong'));
 
-                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.remove.removed')).replace('$song', `[${song[0].title}](${song[0].url})`)); 
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.remove.removed')).replace('$song', `[${song[0].title}](${song[0].url})`).replace('$requester', `[${song.requester}]`)); 
                 }
             });
         } catch (error) {

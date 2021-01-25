@@ -210,9 +210,9 @@ exports.features = {
 };
 exports.colors = {
     "error": "#dc143c",
-    "dev": "#ffa000",
+    "dev": "#00b7eb",
     "notice": "#f1c40f",
-    "default": "#00b7eb",
+    "default": "#ecd2db",
     "standard": "#7289da",
     "logGreen": "#00ff00",
     "logRed": "#ff0000",

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
     "dj.perms_missing": "🚫 $user, you need the `Manage Messages` permission or the $role role to use this command.",
-    "message.dev": "🚫 You are not permitted to use this command.",
+    "message.dev": "🔧 You are not permitted to use this command.",
     "message.dm": "🚫 You cannot use this command inside Direct Messages.",
     "message.cooldown": "🚫 You have to wait $seconds seconds before you're able to reuse the $cmd command.",
     "message.dm.error": "🚫 There was an error while trying to execute this command.",
@@ -292,7 +292,7 @@ exports.default = {
     "cmd.play.duration": "Duration",
     "cmd.play.channel": "Youtube Channel",
     "cmd.play.added": "✅ Added to queue",
-    "cmd.play.start": "🎶 Music started playing",
+    "cmd.play.start": "🎶 Now playing",
     "cmd.play.noresults": "🚫 I was not able to obtain any search results.",
     "cmd.play.enter": "Please enter a number between 1-$videos to select your song.",
     "cmd.play.canceled": "🚫 No or invalid number entered, song selection has been canceled.",
@@ -308,7 +308,7 @@ exports.default = {
     "cmd.remove.nochannel": "🚫 You need to be in a voice channel to use the `remove` command.",
     "cmd.remove.nochannel_bot": "🚫 I'm not in your voice channel.",
     "cmd.remove.validsong": "⚠️ Please enter a valid number.",
-    "cmd.remove.removed": "Removed $song from the music queue.",
+    "cmd.remove.removed": "Removed $song $requester",
     "cmd.resume.name": "resume",
     "cmd.resume.description": "resume the current song",
     "cmd.resume.usage": "`resume` - resume the playback",
