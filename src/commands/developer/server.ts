@@ -5,7 +5,7 @@ module.exports = {
     args: true,
     dm: true,
     group: 'Bot Owner',
-    cooldown: 10,
+    cooldown: 2,
     bot_permissions: ['EMBED_LINKS'],
     user_permissions: [],
     aliases: [],
