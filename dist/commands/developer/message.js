@@ -24,7 +24,7 @@ module.exports = {
             if (this.shard.ids[0] === ${pickedShard[0][0]}) { 
                 this.users.cache.get("${user}").send("${msg}");
             }`);
-            return client.embeds.success(webhook, pickedShard[1].tag + ' :' + msg);
+            return client.embeds.success(webhook, pickedShard[1].tag + ': ' + msg);
         }
         catch (error) {
             return client.embeds.error(message.channel, '```js\n' + error + '```');
