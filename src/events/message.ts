@@ -10,7 +10,7 @@ module.exports = async (client, message) => {
     const webhookCMD: WebhookClient = new WebhookClient(client.config.secrets.CMDLogsID, client.config.secrets.CMDLogsToken);
 
     client.con.query('SELECT * FROM blacklist WHERE id = ?;', [message.author.id], async (error: any, result: any) => {
-        if (result.length == 1) return;
+        if (result.length === 1) return;
         if (message.channel.type === 'dm') {
             return executeDM();
         } else {
@@ -24,7 +24,7 @@ module.exports = async (client, message) => {
         }
         if (!message.content.startsWith(client.config.secrets.prefix) || message.author.bot) return undefined;
 
-        const args: any = message.content.slice(client.config.secrets.prefix).trim().split(' ');
+        const args: any = message.content.slice(client.config.secrets.prefix.length).trim().split(' ');
         const cmdName: any = args.shift().toLowerCase();
         const cmd: any = client.commands.get(cmdName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName));
 
@@ -93,11 +93,11 @@ module.exports = async (client, message) => {
             const current: number = Date.now();
             const timestamp: any = client.cooldowns.get(cmd.name);
             const cooldown: number = (cmd.cooldown) * 1000;
+
             if (timestamp.has(message.author.id) && !client.config.secrets.developers.includes(message.author.id)) {
                 const wait: any = timestamp.get(message.author.id) + cooldown;
 
                 if (current < wait) {
-
                     const timeLeft: number = (wait - current) / 1000;
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.cooldown')).replace('$seconds', timeLeft.toFixed(1)).replace('$cmd', '`' + cmdName + '`'));
                 }
