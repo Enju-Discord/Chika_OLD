@@ -316,7 +316,7 @@ export default {
     "cmd.queue.noqueue": "🚫 Auf diesem Server befindet sich keine Musikwarteschlange.",
     "cmd.queue.queue": "Musikwarteschlange: $server",
     "cmd.remove.name": "remove",
-    "cmd.remove.description": "entferne einen bestimmten Song aus der Musikwarteschlange.",
+    "cmd.remove.description": "entferne einen bestimmten Song aus der Musikwarteschlange",
     "cmd.remove.usage": "`remove` (<nummer>) - entferne Song",
     "cmd.remove.noqueue": "🚫 Auf diesem Server befindet sich keine Musikwarteschlange.",
     "cmd.remove.nochannel": "🚫 Du musst dich in einem Sprachkanal befinden damit du den `remove` Befehl verwenden kannst.",

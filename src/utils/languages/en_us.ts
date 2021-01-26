@@ -316,7 +316,7 @@ export default {
     "cmd.queue.noqueue": "🚫 There is no music queue on this server.",
     "cmd.queue.queue": "Queue: $server",
     "cmd.remove.name": "remove",
-    "cmd.remove.description": "remove a specific song from the music queue.",
+    "cmd.remove.description": "remove a specific song from the music queue",
     "cmd.remove.usage": "`remove` (<number>) - remove song",
     "cmd.remove.noqueue": "🚫 There is nothing playing.",
     "cmd.remove.nochannel": "🚫 You need to be in a voice channel to use the `remove` command.",
