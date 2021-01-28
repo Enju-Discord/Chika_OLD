@@ -6,7 +6,7 @@ exports.default = {
     "message.dm": "🚫 Du kannst diesen Befehl nicht in den Direktnachrichten verwenden.",
     "message.cooldown": "🚫 Du musst noch $seconds Sekunden warten bevor du den $cmd Befehl erneut verwenden kannst.",
     "message.dm.error": "🚫 Beim Ausführen dieses Befehls ist ein Fehler aufgetreten.",
-    "message.bot_permissions_missing": "🚫 Mir fehlen Berechtigungen zum Ausführen dieser Aktion.\nIch benötige dazu die `$permission` Berechtigung.",
+    "message.bot_permissions_missing": "🚫 Mir fehlen Berechtigungen zum Ausführen dieser Aktion.\nIch benötige folgende Berechtigungen: `$permission`.",
     "message.user_permissions_missing": "🚫 $user, du benötigst die `$permission` Berechtigung damit du diesen Befehl verwenden kannst.",
     "message.server.error": "🚫 Beim Ausführen dieses Befehls ist ein Fehler aufgetreten.",
     "cmd.autorole.name": "autorole",

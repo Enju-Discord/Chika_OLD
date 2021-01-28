@@ -4,9 +4,9 @@ module.exports = {
     usage: 'cmd.waifupack.usage',
     args: true,
     dm: true,
-    group: 'Waifu',
+    group: 'Bot Owner',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS', 'ADD_REACTIONS'],
+    bot_permissions: ['ADD_REACTIONS'],
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
@@ -22,7 +22,7 @@ module.exports = {
                         return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.waifupack.nomoney'));
                     }
                     else {
-                        if (result[0].coins < price) {
+                        if (result[0].yen < price) {
                             return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.waifupack.nomoney'));
                         }
                         else {

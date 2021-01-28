@@ -2,10 +2,10 @@ import * as fs from 'fs';
 
 export function numberWithCommas(numb: number) {
     return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-} 
+}
 export function clean(text) {
     if (typeof text === 'string')
-    return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@​/g, '@​' + String.fromCharCode(8203));
+        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@​/g, '@​' + String.fromCharCode(8203));
     else return text;
 }
 export function shorten(string: string, maxLength: number, separator: string = ' ') {
@@ -41,7 +41,7 @@ export function mock(text: string) {
 
 export function getUptime(process: any) {
     const d: Date = new Date(process);
-    var str: string = '';
+    let str: string = '';
     str += d.getUTCMonth() + 'mo, ';
     str += d.getUTCDate() - 1 + 'd, ';
     str += d.getUTCHours() + 'h, ';
@@ -73,7 +73,7 @@ export function generateLength(x: any, in_min: any, in_max: any, out_min: any, o
 
 export function generateCommands(category: string, prefix: string) {
     let commandsListed: string = '';
-    const group: Array < string > = fs.readdirSync(`./src/commands/${category}`);
+    let group: Array < string > = fs.readdirSync(`./src/commands/${category}`);
 
     for (const command of group) {
         commandsListed += ' `' + prefix + command.split('.')[0] + '`,';
@@ -81,6 +81,17 @@ export function generateCommands(category: string, prefix: string) {
 
     commandsListed = commandsListed.slice(0, -1);
     return commandsListed;
+}
+
+export function generatePermissions(permissions: Array < string > , choosedLang: string) {
+    let bot_permissions_missing: string = '';
+
+    for (const permission of permissions) {
+        bot_permissions_missing += choosedLang[permission] + ' | ';
+    }
+
+    bot_permissions_missing = bot_permissions_missing.slice(0, -3);
+    return bot_permissions_missing;
 }
 
 export function shuffleSongs(songs: any) {
