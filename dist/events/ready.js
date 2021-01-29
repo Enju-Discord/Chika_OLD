@@ -7,8 +7,11 @@ const axios_1 = __importDefault(require("axios"));
 const dblapi_js_1 = __importDefault(require("dblapi.js"));
 const discord_js_1 = require("discord.js");
 module.exports = async (client) => {
-    const dbl = new dblapi_js_1.default(client.config.secrets.DBL, { webhookPort: 5000, webhookAuth: "2fdug327fbz32gf7g2zfg6823tf83f2z78f23" });
-    const voteclient = new discord_js_1.WebhookClient("804765757979361310", "6oKmrSRIV3pvDjCxDupNnU5xZHWWRGfRQHAqU2UIiQuOaGr49YFWbBgCe3EoCP1yoAhn");
+    const dbl = new dblapi_js_1.default(client.config.secrets.DBL, {
+        webhookPort: 5000,
+        webhookAuth: client.config.secrets.DBLAuth
+    });
+    const voteclient = new discord_js_1.WebhookClient(client.config.secrets.voteLogsID, client.config.secrets.voteLogsToken);
     setInterval(async function () {
         let presences = [{
                 text: 'DMs for Support',
@@ -52,16 +55,21 @@ module.exports = async (client) => {
         dbl.postStats(client.guilds.cache.size);
     }, 1800000);
     dbl.webhook.on('ready', hook => {
-        console.log("Vote Webhook ready!");
+        console.log('Vote Webhook ready!');
     });
     dbl.webhook.on('vote', vote => {
-        /* client.db.query("SELECT * FROM economy WHERE id = ?", [vote.user], async (error, result) => {
-            if(result.length == 1) {
-                client.db.query("UPDATE economy SET yen = ? WHERE id = ?", [Number(result[0].yen) + 10000, vote.user])
-            } else {
-                client.db.query("INSERT INTO economy (id, yen) VALUES (?, ?)", [vote.user, 10000])
+        client.db.query('SELECT * FROM economy WHERE id = ?', [vote.user], async (error, result) => {
+            try {
+                client.embeds.success(voteclient, client.users.cache.get(vote.user).tag + ' voted!');
             }
-        }) */
+            catch (error) {
+                return undefined;
+            }
+            if (result.length == 1)
+                return client.db.query('UPDATE economy SET yen = ? WHERE id = ?', [Number(result[0].yen) + 10000, vote.user]);
+            else
+                return client.db.query('INSERT INTO economy (id, yen) VALUES (?, ?)', [vote.user, 10000]);
+        });
         console.log(`${vote.user} has voted!`);
     });
     console.log('READY!');

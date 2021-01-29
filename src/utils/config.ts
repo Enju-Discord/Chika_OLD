@@ -16,9 +16,12 @@ export const secrets = {
     "DMLogsToken": "VEiE4wIBFJUULrnNx65bq_pp6mcbgbSTCQsXkW8ZFOXooYi4C6LruLHaaBtRgnzFS-Bm",
     "CMDLogsID": "800136897719435264",
     "CMDLogsToken": "5gS3LDBfmba_bi7cTYN2_yVQNmbDZm4EHBf4I-98q1KdmnVaGYWFoyyo8TVzb7xQuKnu",
+    "voteLogsID": "804765757979361310",
+    "voteLogsToken": "6oKmrSRIV3pvDjCxDupNnU5xZHWWRGfRQHAqU2UIiQuOaGr49YFWbBgCe3EoCP1yoAhn",
     "VoidbotsToken": "VOID_0E7hsTA0dVEicfR4zhfD9HB5JpW5e6IAdy7xYIWtoxouT0gv",
     "DiscordBotlist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoxLCJpZCI6Ijc0MjczMjIwMzk1NTQ1NDA0NCIsImlhdCI6MTYxMTEzMTMwOH0.hzuOQg8F0IzPxZwh55VOtUkn8trhupWx2osnVBvqhzA",
     "DBL": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0MjczMjIwMzk1NTQ1NDA0NCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjExOTIyMzQxfQ.lp_zYPfFsbUQ7vd7wMqwmiwEkpNpBnLhyfBGqEZ_CDw",
+    "DBLAuth": "2fdug327fbz32gf7g2zfg6823tf83f2z78f23",
     "developers": ["402483602094555138", "292588280304893952", "273797150880563201"]
 }
 
