@@ -1,6 +1,8 @@
 import axios from 'axios';
+import top from 'dblapi.js' 
 
 module.exports = async client => {
+    const dbl: any = new top(client.config.secrets.DBL, client)
     setInterval(async function () {
         let presences = [{
                 text: 'DMs for Support',
@@ -39,6 +41,7 @@ module.exports = async client => {
                 Authorization: client.config.secrets.DiscordBotlist
             }
         });
-    }, 300000);
+        dbl.postStats(client.guilds.cache.size, client.shards.id, client.shards.total)
+    }, 1800000);
     console.log('READY!');
 }

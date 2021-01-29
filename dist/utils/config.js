@@ -4,7 +4,7 @@ exports.colors = exports.features = exports.verification = exports.permissions =
 exports.secrets = {
     "token": "NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA._AmkS9xQ6VG7d9RKjToMSKqREFY",
     "devToken": "Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.b9l9NFT9h2Nqoc59PP_VFdE4ctA",
-    "runOnDev": false,
+    "runOnDev": true,
     "prefix": "c+",
     "mysqlhost": "newtox.de",
     "mysqluser": "admin",
@@ -21,6 +21,7 @@ exports.secrets = {
     "CMDLogsToken": "5gS3LDBfmba_bi7cTYN2_yVQNmbDZm4EHBf4I-98q1KdmnVaGYWFoyyo8TVzb7xQuKnu",
     "VoidbotsToken": "VOID_0E7hsTA0dVEicfR4zhfD9HB5JpW5e6IAdy7xYIWtoxouT0gv",
     "DiscordBotlist": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoxLCJpZCI6Ijc0MjczMjIwMzk1NTQ1NDA0NCIsImlhdCI6MTYxMTEzMTMwOH0.hzuOQg8F0IzPxZwh55VOtUkn8trhupWx2osnVBvqhzA",
+    "DBL": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0MjczMjIwMzk1NTQ1NDA0NCIsImJvdCI6dHJ1ZSwiaWF0IjoxNjExOTIyMzQxfQ.lp_zYPfFsbUQ7vd7wMqwmiwEkpNpBnLhyfBGqEZ_CDw",
     "developers": ["402483602094555138", "292588280304893952", "273797150880563201"]
 };
 exports.emotes = {

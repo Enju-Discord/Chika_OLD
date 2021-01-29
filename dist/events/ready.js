@@ -4,7 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
+const dblapi_js_1 = __importDefault(require("dblapi.js"));
 module.exports = async (client) => {
+    const dbl = new dblapi_js_1.default(client.config.secrets.DBL, client);
     setInterval(async function () {
         let presences = [{
                 text: 'DMs for Support',
@@ -42,6 +44,7 @@ module.exports = async (client) => {
                 Authorization: client.config.secrets.DiscordBotlist
             }
         });
-    }, 300000);
+        dbl.postStats(client.guilds.cache.size, client.shards.id, client.shards.total);
+    }, 1800000);
     console.log('READY!');
 };
