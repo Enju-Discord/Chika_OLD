@@ -11,7 +11,7 @@ module.exports = async (client) => {
         webhookPort: 5000,
         webhookAuth: client.config.secrets.DBLAuth
     });
-    const voteclient = new discord_js_1.WebhookClient(client.config.secrets.voteLogsID, client.config.secrets.voteLogsToken);
+    const webhookVote = new discord_js_1.WebhookClient(client.config.secrets.voteLogsID, client.config.secrets.voteLogsToken);
     setInterval(async function () {
         let presences = [{
                 text: 'DMs for Support',
@@ -58,17 +58,12 @@ module.exports = async (client) => {
         console.log('Vote Webhook ready!');
     });
     dbl.webhook.on('vote', vote => {
-        client.db.query('SELECT * FROM economy WHERE id = ?', [vote.user], async (error, result) => {
-            try {
-                client.embeds.success(voteclient, client.users.cache.get(vote.user).tag + ' voted!');
-            }
-            catch (error) {
-                return undefined;
-            }
-            if (result.length == 1)
-                return client.db.query('UPDATE economy SET yen = ? WHERE id = ?', [Number(result[0].yen) + 10000, vote.user]);
+        client.con.query('SELECT * FROM economy WHERE id = ?;', [vote.user], async (error, result) => {
+            client.embeds.uni(webhookVote, `${client.users.cache.get(vote.user).tag} has voted!`, null, null, null, null, null, null);
+            if (result.length === 1)
+                return client.con.query('UPDATE economy SET yen = ? WHERE id = ?;', [Number(result[0].yen) + 10000, vote.user]);
             else
-                return client.db.query('INSERT INTO economy (id, yen) VALUES (?, ?)', [vote.user, 10000]);
+                return client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [vote.user, 10000]);
         });
         console.log(`${vote.user} has voted!`);
     });
