@@ -44,7 +44,7 @@ module.exports = async (client) => {
                 Authorization: client.config.secrets.DiscordBotlist
             }
         });
-        dbl.postStats(client.guilds.cache.size, client.shards.id, client.shards.total);
+        dbl.postStats(client.guilds.cache.size);
     }, 1800000);
     console.log('READY!');
 };
