@@ -139,21 +139,21 @@ module.exports = {
                         target.id,
                         true
                     ],
-                    [
-                        await client.strings(message.guild, 'cmd.userinfo.status'),
-                        UserGotStatus,
-                        true
-                    ],
-                    [
-                        await client.strings(message.guild, 'cmd.userinfo.activity'),
-                        UserGotActivity,
-                        true
-                    ],
-                    [
-                        await client.strings(message.guild, 'cmd.userinfo.client'),
-                        UserClient,
-                        true
-                    ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.userinfo.status'),
+                    //     UserGotStatus,
+                    //     true
+                    // ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.userinfo.activity'),
+                    //     UserGotActivity,
+                    //     true
+                    // ],
+                    // [
+                    //     await client.strings(message.guild, 'cmd.userinfo.client'),
+                    //     UserClient,
+                    //     true
+                    // ],
                     [
                         await client.strings(message.guild, 'cmd.userinfo.selfMute'),
                         (await client.strings(message.guild, 'cmd.userinfo.selfMute.options')).replace('$self', `${target.voice.selfMute ? client.config.emotes.yes : client.config.emotes.no}`).replace('$server', `${target.voice.serverMute ? client.config.emotes.yes : client.config.emotes.no}`),

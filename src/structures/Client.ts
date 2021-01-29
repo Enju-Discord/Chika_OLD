@@ -26,9 +26,9 @@ export class Chika extends Client {
         super({
             disableMentions: 'everyone',
             shardCount: 1,
-            // ws: {
-            //     intents: Intents.ALL
-            // }
+            ws: {
+                intents: Intents.NON_PRIVILEGED
+            }
         });
         this.commands = new Collection();
         this.cooldowns = new Collection();

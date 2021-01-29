@@ -4,7 +4,7 @@ module.exports = {
     usage: 'cmd.autorole.usage',
     args: true,
     dm: false,
-    group: 'Configuration',
+    group: 'Bot Owner',
     cooldown: 10,
     bot_permissions: ['MANAGE_ROLES'],
     user_permissions: ['MANAGE_GUILD'],

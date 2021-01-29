@@ -12,7 +12,7 @@ module.exports = {
     cooldown: 10,
     bot_permissions: ['EMBED_LINKS'],
     user_permissions: [],
-    aliases: ["-"],
+    aliases: [],
     async execute(message, args, client, prefix) {
         client.con.query("SELECT * FROM own_waifu WHERE userid = ?", [message.author.id], async (erorr, result) => {
             if (!result[0]) {
