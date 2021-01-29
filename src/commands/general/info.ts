@@ -7,7 +7,7 @@ module.exports = {
     usage: 'cmd.info.usage',
     args: true,
     dm: true,
-    group: 'General',
+    group: 'Bot Owner',
     cooldown: 10,
     bot_permissions: [],
     user_permissions: [],
