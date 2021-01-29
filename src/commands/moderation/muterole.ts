@@ -6,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Moderation',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS', 'MANAGE_ROLES'],
+    bot_permissions: ['MANAGE_ROLES'],
     user_permissions: ['MANAGE_GUILD'],
     aliases: ['setmute', 'setmuterole'],
     async execute(message: any, args: any, client: any, prefix: any) {

@@ -4,7 +4,7 @@ export default {
     "message.dm": "🚫 You cannot use this command inside Direct Messages.",
     "message.cooldown": "🚫 You have to wait $seconds seconds before you're able to reuse the $cmd command.",
     "message.dm.error": "🚫 There was an error while trying to execute this command.",
-    "message.bot_permissions_missing": "🚫 I'm missing permissions to perform this action.\nI need the `$permission` permission to do so.",
+    "message.bot_permissions_missing": "🚫 I'm missing permissions to perform this action.\nI need the following permissions: `$permission`.",
     "message.user_permissions_missing": "🚫 $user, you need the `$permission` permission so you're able to use this command.",
     "message.server.error": "🚫 There was an error while trying to execute this command.",
     "cmd.autorole.name": "autorole",

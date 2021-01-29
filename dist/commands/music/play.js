@@ -32,7 +32,7 @@ module.exports = {
     dm: false,
     group: 'Music',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS', 'CONNECT', 'SPEAK', 'USE_VAD'],
+    bot_permissions: ['CONNECT', 'SPEAK', 'USE_VAD'],
     user_permissions: [],
     aliases: ['p'],
     async execute(message, args, client, prefix) {

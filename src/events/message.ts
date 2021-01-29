@@ -10,7 +10,7 @@ module.exports = async (client, message) => {
     const webhookCMD: WebhookClient = new WebhookClient(client.config.secrets.CMDLogsID, client.config.secrets.CMDLogsToken);
 
     client.con.query('SELECT * FROM blacklist WHERE id = ?;', [message.author.id], async (error: any, result: any) => {
-        if (result.length === 1) return;
+        if (result.length === 1) return undefined;
         if (message.channel.type === 'dm') {
             return executeDM();
         } else {
@@ -108,12 +108,13 @@ module.exports = async (client, message) => {
                 bot_permissions_channel = new Permissions(bot_permissions_channel.bitfield);
 
                 if (!bot_permissions_channel.has(cmd.bot_permissions)) {
-                    let bot_permissions_filter: any = cmd.bot_permissions.filter(permission => bot_permissions_channel.has(permission) === false).join(', ');
+                    let bot_permissions_filter: any = cmd.bot_permissions.filter(permission => bot_permissions_channel.has(permission) === false);
                     let bot_permissions_missing: string = '';
 
-                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
-                        if (result[0].language === 'en_us') return bot_permissions_missing = client.config.permissions.EN[bot_permissions_filter];
-                        if (result[0].language === 'de_de') return bot_permissions_missing = client.config.permissions.DE[bot_permissions_filter];
+                    client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {        
+                        if (error) return undefined;                
+                        if (result[0].language === 'en_us') return bot_permissions_missing = client.functions.generatePermissions(bot_permissions_filter, client.config.permissions.EN);
+                        if (result[0].language === 'de_de') return bot_permissions_missing = client.functions.generatePermissions(bot_permissions_filter, client.config.permissions.DE);
                     });
 
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.bot_permissions_missing')).replace('$permission', bot_permissions_missing));
@@ -125,12 +126,13 @@ module.exports = async (client, message) => {
                 user_permissions_channel = new Permissions(user_permissions_channel.bitfield);
 
                 if (!user_permissions_channel.has(cmd.bot_permissions)) {
-                    let user_permissions_filter: any = cmd.user_permissions.filter(permission => user_permissions_channel.has(permission) === false).join(', ');
+                    let user_permissions_filter: any = cmd.user_permissions.filter(permission => user_permissions_channel.has(permission) === false);
                     let user_permissions_missing: string = '';
 
                     client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
-                        if (result[0].language === 'en_us') return user_permissions_missing = client.config.permissions.EN[user_permissions_filter];
-                        if (result[0].language === 'de_de') return user_permissions_missing = client.config.permissions.DE[user_permissions_filter];
+                        if (error) return undefined;
+                        if (result[0].language === 'en_us') return user_permissions_missing = client.functions.generatePermissions(user_permissions_filter, client.config.permissions.EN);
+                        if (result[0].language === 'de_de') return user_permissions_missing = client.functions.generatePermissions(user_permissions_filter, client.config.permissions.DE);
                     });
 
                     return client.embeds.error(message.channel, (await client.strings(message.guild, 'message.user_permissions_missing')).replace('$permission', user_permissions_missing).replace('$user', message.member.user.username));

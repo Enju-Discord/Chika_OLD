@@ -19,7 +19,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProgressBar = exports.setRolePermissions = exports.resetRolePermissions = exports.shuffleSongs = exports.generateCommands = exports.generateLength = exports.generateXP = exports.compare = exports.getUptime = exports.mock = exports.shorten = exports.clean = exports.numberWithCommas = void 0;
+exports.ProgressBar = exports.setRolePermissions = exports.resetRolePermissions = exports.shuffleSongs = exports.generatePermissions = exports.generateCommands = exports.generateLength = exports.generateXP = exports.compare = exports.getUptime = exports.mock = exports.shorten = exports.clean = exports.numberWithCommas = void 0;
 const fs = __importStar(require("fs"));
 function numberWithCommas(numb) {
     return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -63,7 +63,7 @@ function mock(text) {
 exports.mock = mock;
 function getUptime(process) {
     const d = new Date(process);
-    var str = '';
+    let str = '';
     str += d.getUTCMonth() + 'mo, ';
     str += d.getUTCDate() - 1 + 'd, ';
     str += d.getUTCHours() + 'h, ';
@@ -94,7 +94,7 @@ function generateLength(x, in_min, in_max, out_min, out_max) {
 exports.generateLength = generateLength;
 function generateCommands(category, prefix) {
     let commandsListed = '';
-    const group = fs.readdirSync(`./src/commands/${category}`);
+    let group = fs.readdirSync(`./src/commands/${category}`);
     for (const command of group) {
         commandsListed += ' `' + prefix + command.split('.')[0] + '`,';
     }
@@ -102,6 +102,15 @@ function generateCommands(category, prefix) {
     return commandsListed;
 }
 exports.generateCommands = generateCommands;
+function generatePermissions(permissions, choosedLang) {
+    let bot_permissions_missing = '';
+    for (const permission of permissions) {
+        bot_permissions_missing += choosedLang[permission] + ' | ';
+    }
+    bot_permissions_missing = bot_permissions_missing.slice(0, -3);
+    return bot_permissions_missing;
+}
+exports.generatePermissions = generatePermissions;
 function shuffleSongs(songs) {
     for (let i = songs.length - 1; i > 1; i--) {
         const j = 1 + Math.floor(Math.random() * i);

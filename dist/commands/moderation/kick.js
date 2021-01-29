@@ -6,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Moderation',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS', 'KICK_MEMBERS'],
+    bot_permissions: ['KICK_MEMBERS'],
     user_permissions: ['KICK_MEMBERS'],
     aliases: [],
     async execute(message, args, client, prefix) {

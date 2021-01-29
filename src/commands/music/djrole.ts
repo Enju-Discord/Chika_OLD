@@ -6,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Music',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS', 'MANAGE_ROLES'],
+    bot_permissions: ['MANAGE_ROLES'],
     user_permissions: ['MANAGE_MESSAGES'],
     aliases: ['setdj', 'dj'],
     async execute(message: any, args: any, client: any, prefix: any) {
