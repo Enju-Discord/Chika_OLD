@@ -7,7 +7,7 @@ module.exports = {
     usage: 'cmd.switch.usage',
     args: true,
     dm: true,
-    group: 'Waifu',
+    group: 'Bot Owner',
     cooldown: 10,
     bot_permissions: ['EMBED_LINKS'],
     user_permissions: [],
