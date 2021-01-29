@@ -51,18 +51,18 @@ module.exports = async (client) => {
         });
         dbl.postStats(client.guilds.cache.size);
     }, 1800000);
-    dbl.webhook.on('ready', hook => {
-        console.log("Vote Webhook ready!");
-    });
+    /* dbl.webhook.on('ready', hook => {
+          console.log("Vote Webhook ready!")
+      })
     dbl.webhook.on('vote', vote => {
-        /* client.db.query("SELECT * FROM economy WHERE id = ?", [vote.user], async (error, result) => {
-            if(result.length == 1) {
-                client.db.query("UPDATE economy SET yen = ? WHERE id = ?", [Number(result[0].yen) + 10000, vote.user])
-            } else {
-                client.db.query("INSERT INTO economy (id, yen) VALUES (?, ?)", [vote.user, 10000])
-            }
-        }) */
-        console.log(`${vote.user} has voted!`);
-    });
+          /* client.db.query("SELECT * FROM economy WHERE id = ?", [vote.user], async (error, result) => {
+              if(result.length == 1) {
+                  client.db.query("UPDATE economy SET yen = ? WHERE id = ?", [Number(result[0].yen) + 10000, vote.user])
+              } else {
+                  client.db.query("INSERT INTO economy (id, yen) VALUES (?, ?)", [vote.user, 10000])
+              }
+          })
+          console.log(`${vote.user} has voted!`)
+      }) */
     console.log('READY!');
 };

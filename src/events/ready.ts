@@ -50,7 +50,7 @@ module.exports = async client => {
         });
         dbl.postStats(client.guilds.cache.size);
     }, 1800000);
-   dbl.webhook.on('ready', hook => {
+  /* dbl.webhook.on('ready', hook => {
         console.log("Vote Webhook ready!")
     })
   dbl.webhook.on('vote', vote => {
@@ -60,8 +60,8 @@ module.exports = async client => {
             } else {
                 client.db.query("INSERT INTO economy (id, yen) VALUES (?, ?)", [vote.user, 10000])
             } 
-        }) */
+        }) 
         console.log(`${vote.user} has voted!`)
-    }) 
+    }) */
         console.log('READY!');
 }
