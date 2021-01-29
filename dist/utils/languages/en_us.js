@@ -155,6 +155,9 @@ exports.default = {
     "cmd.info.support": "Support",
     "cmd.info.support.info": "$link",
     "cmd.info.invite": "Invite",
+    "cmd.privacypolicy.name": "Privacy Policy",
+    "cmd.privacypolicy.description": "displays you the Privacy Policy of Chika",
+    "cmd.privacypolicy.usage": "`privacypolicy` - shows Privacy Policy",
     "cmd.anal.name": "anal",
     "cmd.anal.description": "displays an anal image",
     "cmd.anal.usage": "`anal` - displays image",
@@ -439,7 +442,4 @@ exports.default = {
     "cmd.waifupack.usage": "`waifupack` - buy a waifu pack",
     "cmd.waifupack.already": "🚫 You already own 5 Waifus.",
     "cmd.waifupack.nomoney": "🚫 You do not have enough money to buy a pack.",
-    "cmd.privacypolicy.name": "Privacy Policy",
-    "cmd.privacypolicy.description": "Shows you the Privacy Policy of Chika.",
-    "cmd.privacypolicy.usage": "`privacypolicy` - shows you the Privacy Policy of Chika"
 };

@@ -67,7 +67,7 @@ module.exports = {
                     }
                 });
                 if (target.roles.highest.color === 0)
-                    UserGotColor = client.config.colors.default;
+                    UserGotColor = client.config.colors.standard;
                 else
                     UserGotColor = target.roles.highest.color;
                 if (target.user.username !== target.displayName)

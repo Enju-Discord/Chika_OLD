@@ -17,7 +17,7 @@ module.exports = async (client, message) => {
     async function executeDM() {
         if (message.content && message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id)) {
             if (!message.content.startsWith(client.config.secrets.prefix))
-                return client.embeds.uni(webhookDM, `I recieved a message from ${message.author.tag} (${message.author.id}): ` + message.content, null, null, null, null, client.config.colors.standard, null);
+                return client.embeds.uni(webhookDM, `I recieved a message from ${message.author.tag} (${message.author.id}): ` + message.content, null, null, null, null, null, null);
         }
         if (!message.content.startsWith(client.config.secrets.prefix) || message.author.bot)
             return undefined;
@@ -48,7 +48,7 @@ module.exports = async (client, message) => {
         }, cooldown);
         try {
             if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id))
-                client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmdName}\nin DM's`, null, null, null, null, client.config.colors.standard, null);
+                client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmdName}\nin DM's`, null, null, null, null, null, null);
             cmd.execute(message, args, client, client.config.secrets.prefix);
         }
         catch (error) {
@@ -137,7 +137,7 @@ module.exports = async (client, message) => {
             }, cooldown);
             try {
                 if (message.author.id !== client.user.id && !client.config.secrets.developers.includes(message.author.id))
-                    client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmdName}\non ${message.guild.name}\nin ${message.channel.name}`, null, null, null, null, client.config.colors.standard, null);
+                    client.embeds.uni(webhookCMD, `User ${message.author.tag} (${message.author.id})\nused ${cmdName}\non ${message.guild.name}\nin ${message.channel.name}`, null, null, null, null, null, null);
                 cmd.execute(message, args, client, prefixToUse);
             }
             catch (error) {
