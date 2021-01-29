@@ -81,11 +81,19 @@ module.exports = {
 };
 async function printCard(picture, backgroundImage, description, name, health) {
     return new Promise(async (resolve, reject) => {
-        await canvas_1.registerFont("./fonts/Exo2-Black.ttf", { family: "Exo 2 Black" });
-        canvas_1.registerFont("./fonts/Bubbleboddy-FatTrial.ttf", { family: "Bubbleboddy-1" });
-        canvas_1.registerFont("./fonts/Bubbleboddy-ExtraLightTrial.ttf", { family: "Bubbleboddy" });
+        await canvas_1.registerFont("./fonts/Exo2-Black.ttf", {
+            family: "Exo 2 Black"
+        });
+        canvas_1.registerFont("./fonts/Bubbleboddy-FatTrial.ttf", {
+            family: "Bubbleboddy-1"
+        });
+        canvas_1.registerFont("./fonts/Bubbleboddy-ExtraLightTrial.ttf", {
+            family: "Bubbleboddy"
+        });
         console.log("1");
-        canvas_1.registerFont("./fonts/Arista-Pro-Alternate-Bold-trial.ttf", { family: "Arista" });
+        canvas_1.registerFont("./fonts/Arista-Pro-Alternate-Bold-trial.ttf", {
+            family: "Arista"
+        });
         console.log("2");
         let canvas = canvas_1.createCanvas(608, 822);
         let ctx = canvas.getContext('2d');

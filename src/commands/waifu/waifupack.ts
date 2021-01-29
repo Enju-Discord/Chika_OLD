@@ -18,7 +18,7 @@ module.exports = {
             } else {
                 client.con.query('SELECT * FROM economy WHERE id = ?;', [message.author.id], async (err: any, result: any) => {
                     if (result.length === 0) {
-                        client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?)', [message.author.id, 0]);
+                        client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [message.author.id, 0]);
                         return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.waifupack.nomoney'));
                     } else {
                         if (result[0].yen < price) {
