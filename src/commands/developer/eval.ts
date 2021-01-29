@@ -8,7 +8,7 @@ module.exports = {
     dm: true,
     group: 'Bot Owner',
     cooldown: 2,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: [],
     user_permissions: [],
     aliases: ['ev'],
     async execute(message: any, args: any, client: any, prefix: any) {

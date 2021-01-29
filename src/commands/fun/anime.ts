@@ -7,7 +7,7 @@ module.exports = {
     dm: true,
     group: 'Fun',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: [],
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {

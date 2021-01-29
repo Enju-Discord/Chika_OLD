@@ -28,7 +28,7 @@ module.exports = {
     dm: false,
     group: 'Image',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: [],
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {

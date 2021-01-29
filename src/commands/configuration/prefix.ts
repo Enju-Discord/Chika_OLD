@@ -6,7 +6,7 @@ module.exports = {
     dm: false,
     group: 'Configuration',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: [],
     user_permissions: ['MANAGE_GUILD'],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {

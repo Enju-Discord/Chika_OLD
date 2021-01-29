@@ -29,7 +29,7 @@ module.exports = {
     dm: true,
     group: 'General',
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: [],
     user_permissions: [],
     aliases: ['botinfo', 'stats', 'support', 'invite'],
     async execute(message, args, client, prefix) {
