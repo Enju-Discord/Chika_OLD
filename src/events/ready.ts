@@ -1,8 +1,9 @@
 import axios from 'axios';
-import top from 'dblapi.js' 
+import top from 'dblapi.js'
 
 module.exports = async client => {
-    const dbl: any = new top(client.config.secrets.DBL, client)
+    const dbl: any = new top(client.config.secrets.DBL, client);
+
     setInterval(async function () {
         let presences = [{
                 text: 'DMs for Support',
@@ -10,6 +11,9 @@ module.exports = async client => {
             },
             {
                 text: 'to the student council',
+                type: 3
+            }, {
+                text: client.config.secrets.prefix + 'help',
                 type: 3
             }, {
                 text: client.commands.filter(cmd => cmd.group != 'Bot Owner').size + ' commands',

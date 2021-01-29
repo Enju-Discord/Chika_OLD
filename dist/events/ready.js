@@ -16,6 +16,9 @@ module.exports = async (client) => {
                 text: 'to the student council',
                 type: 3
             }, {
+                text: client.config.secrets.prefix + 'help',
+                type: 3
+            }, {
                 text: client.commands.filter(cmd => cmd.group != 'Bot Owner').size + ' commands',
                 type: 2
             }, {
