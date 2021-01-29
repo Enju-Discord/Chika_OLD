@@ -53,7 +53,7 @@ module.exports = async client => {
             }
         });
         dbl.postStats(client.guilds.cache.size);
-    }, 1800000);
+    }, 120000);
 
     dbl.webhook.on('ready', hook => {
         console.log('Vote Webhook ready!');
