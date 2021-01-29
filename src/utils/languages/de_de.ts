@@ -437,4 +437,7 @@ export default {
     "cmd.waifupack.usage": "`waifupack` - kaufe ein Packet an Waifus",
     "cmd.waifupack.already": "🚫 Du besitzt bereits 5 Waifus.",
     "cmd.waifupack.nomoney": "🚫 Du besitzt nicht genug Geld!",
+    "cmd.privacypolicy.name": "Datenschutz-Bestimmungen",
+    "cmd.privacypolicy.description": "Zeigt dir die Datenschutz-Bestimmungen von Chika",
+    "cmd.privacypolicy.usage": "`privacypolicy` - zeigt dir die Datenschutz-Bestimmungen von Chika"
 }
