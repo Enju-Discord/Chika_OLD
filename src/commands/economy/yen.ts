@@ -10,7 +10,7 @@ module.exports = {
     user_permissions: [],
     aliases: ['money', 'balance'],
     async execute(message: any, args: any, client: any, prefix: any) {
-        const target: any = (message.channel.type === 'dm') ? message.author : (message.mentions.members.first().user || message.guild.members.cache.get(args[0]).user || message.member.user);
+        const target: any = (message.channel.type === 'dm') ? message.author : (message.mentions.members.first().user || message.guild.members.cache.get(args[0]).user || message.author);
 
         client.con.query('SELECT * FROM economy WHERE id = ?;', [target.id], async (error: any, result: any) => {
             if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
