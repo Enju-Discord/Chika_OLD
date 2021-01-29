@@ -10,16 +10,16 @@ module.exports = {
     user_permissions: [],
     aliases: ['money', 'balance'],
     async execute(message, args, client, prefix) {
-        const target = (message.channel.type === 'dm') ? message.author : (message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.author);
+        const target = (message.channel.type === 'dm') ? message.author : (message.mentions.users.first() || message.guild.users.cache.get(args[0]) || message.author);
         client.con.query('SELECT * FROM economy WHERE id = ?;', [target.id], async (error, result) => {
             if (error)
                 return client.embeds.error(message.channel, '```js\n' + error + '```');
             if (result.length === 1) {
-                client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.yen.result')).replace('$yen', client.functions.numberWithCommas(result[0].yen)).replace('$user', target.tag));
+                return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.yen.result')).replace('$yen', client.functions.numberWithCommas(result[0].yen)).replace('$user', target.tag));
             }
             else {
                 client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [target.id, 0]);
-                client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.yen.result')).replace('$yen', client.functions.numberWithCommas(result[0].yen)).replace('$user', target.tag));
+                return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.yen.result')).replace('$yen', client.functions.numberWithCommas(result[0].yen)).replace('$user', target.tag));
             }
         });
     }

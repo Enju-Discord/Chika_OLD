@@ -63,7 +63,7 @@ module.exports = {
             }, 2000);
         }
         else {
-            client.embeds.error(message.channel, '🚫 This Instance is not running on the vServer.');
+            return client.embeds.error(message.channel, '🚫 This Instance is not running on the vServer.');
         }
     }
 };
