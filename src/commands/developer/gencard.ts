@@ -14,7 +14,7 @@ module.exports = {
     async execute(message: any, args: any, client: any, prefix: any) {
         let name = args.join(" ").slice(" ")
         client.con.query("SELECT * FROM cards WHERE name = ?", [name], async (error, result) => {
-            let card: any = printCard(result[0].type, result[0].picture ,result[0].description, name, result[0].health)
+            let card: any = printCard(result[0].picture, result[0].type, result[0].description, name, result[0].health)
             let attach = new MessageAttachment(card)
             message.channel.send(attach)
         })
@@ -30,9 +30,7 @@ async function printCard(picture, backgroundImage, description, name, health) {
         await registerFont("./fonts/Exo2-Black.ttf", { family: "Exo 2 Black" });
         registerFont("./fonts/Bubbleboddy-FatTrial.ttf", { family: "Bubbleboddy-1" });
         registerFont("./fonts/Bubbleboddy-ExtraLightTrial.ttf", { family: "Bubbleboddy" });
-        console.log("1")
         registerFont("./fonts/Arista-Pro-Alternate-Bold-trial.ttf", {family: "Arista"})
-        console.log("2")
         let canvas = createCanvas(608, 822)
         let ctx = canvas.getContext('2d')
 

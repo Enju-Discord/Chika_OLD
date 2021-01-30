@@ -16,7 +16,7 @@ module.exports = {
     async execute(message, args, client, prefix) {
         let name = args.join(" ").slice(" ");
         client.con.query("SELECT * FROM cards WHERE name = ?", [name], async (error, result) => {
-            let card = printCard(result[0].type, result[0].picture, result[0].description, name, result[0].health);
+            let card = printCard(result[0].picture, result[0].type, result[0].description, name, result[0].health);
             let attach = new discord_js_1.MessageAttachment(card);
             message.channel.send(attach);
         });
@@ -27,9 +27,7 @@ async function printCard(picture, backgroundImage, description, name, health) {
         await canvas_1.registerFont("./fonts/Exo2-Black.ttf", { family: "Exo 2 Black" });
         canvas_1.registerFont("./fonts/Bubbleboddy-FatTrial.ttf", { family: "Bubbleboddy-1" });
         canvas_1.registerFont("./fonts/Bubbleboddy-ExtraLightTrial.ttf", { family: "Bubbleboddy" });
-        console.log("1");
         canvas_1.registerFont("./fonts/Arista-Pro-Alternate-Bold-trial.ttf", { family: "Arista" });
-        console.log("2");
         let canvas = canvas_1.createCanvas(608, 822);
         let ctx = canvas.getContext('2d');
         let cardImage = await canvas_1.loadImage(picture);
