@@ -50,7 +50,6 @@ async function printCard(picture, backgroundImage, description, name, health) {
         ctx.fillStyle = "#FFFFFF";
         ctx.textAlign = "start";
         printAtWordWrap(ctx, description, 57, 660, 20, 490)
-        console.log(canvas.toBuffer())
         resolve(canvas.toBuffer());
     })
 }
