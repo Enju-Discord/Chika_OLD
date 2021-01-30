@@ -14,8 +14,8 @@ module.exports = {
     async execute(message: any, args: any, client: any, prefix: any) {
         let name = args.join(" ").slice(" ")
         client.con.query("SELECT * FROM cards WHERE name = ?", [name], async (error, result) => {
-            let card: any = await printCard(result[0].picture, result[0].type, result[0].description, name, result[0].health)
-            let attach = new MessageAttachment(card)
+            let card: any = await printCard(result[0].picture, result[0].type, result[0].description, result[0].name, "Test")
+            let attach: MessageAttachment = new MessageAttachment(card)
             message.channel.send(attach)
         })
 
@@ -50,6 +50,7 @@ async function printCard(picture, backgroundImage, description, name, health) {
         ctx.fillStyle = "#FFFFFF";
         ctx.textAlign = "start";
         printAtWordWrap(ctx, description, 57, 660, 20, 490)
+        console.log(canvas.toBuffer())
         resolve(canvas.toBuffer());
     })
 }
