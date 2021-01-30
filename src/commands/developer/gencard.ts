@@ -36,7 +36,7 @@ async function printCard(picture, backgroundImage, description, name, health) {
 
         let cardImage = await loadImage(picture);
         let background = await loadImage("https://cdn.discordapp.com/attachments/669265222023774240/802575922372935680/Common.png");
-        ctx.drawImage(cardImage, 47, 118, 558, 625);
+        ctx.drawImage(cardImage, 47, 118, canvas.width, canvas.height);
         ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
         ctx.font = "40px 'Exo 2 Black'";
         ctx.fillStyle = "#FFFFFF";
