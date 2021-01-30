@@ -16,9 +16,14 @@ module.exports = {
     async execute(message, args, client, prefix) {
         let name = args.join(" ").slice(" ");
         client.con.query("SELECT * FROM cards WHERE name = ?", [name], async (error, result) => {
-            let card = await printCard(result[0].picture, result[0].type, result[0].description, result[0].name, "Test");
-            let attach = new discord_js_1.MessageAttachment(card);
-            message.channel.send(attach);
+            if (!result) {
+                return message.reply("No.");
+            }
+            else {
+                let card = await printCard(result[0].picture, result[0].type, result[0].description, result[0].name, "Test");
+                let attach = new discord_js_1.MessageAttachment(card);
+                message.channel.send(attach);
+            }
         });
     }
 };

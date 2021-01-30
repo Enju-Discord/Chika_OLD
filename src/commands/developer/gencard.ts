@@ -14,9 +14,13 @@ module.exports = {
     async execute(message: any, args: any, client: any, prefix: any) {
         let name = args.join(" ").slice(" ")
         client.con.query("SELECT * FROM cards WHERE name = ?", [name], async (error, result) => {
-            let card: any = await printCard(result[0].picture, result[0].type, result[0].description, result[0].name, "Test")
-            let attach: MessageAttachment = new MessageAttachment(card)
-            message.channel.send(attach)
+            if(!result) {
+                return message.reply("No.")
+            } else {
+                let card: any = await printCard(result[0].picture, result[0].type, result[0].description, result[0].name, "Test")
+                let attach: MessageAttachment = new MessageAttachment(card)
+                message.channel.send(attach)
+            }
         })
 
     }
