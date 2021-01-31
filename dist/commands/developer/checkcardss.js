@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const canvas_1 = require("canvas");
 const discord_js_1 = require("discord.js");
 module.exports = {
-    name: 'checkcards',
+    name: 'checkcardss',
     description: 'Generates all cards for you',
     usage: '`gencards` - generates all card for you',
     args: true,

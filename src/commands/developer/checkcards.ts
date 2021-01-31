@@ -13,14 +13,14 @@ module.exports = {
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
-        let name = args.join(" ").slice(" ")
-        client.con.query("SELECT * FROM cards", [name], async (error, result) => {
+        client.con.query("SELECT * FROM cards", async (error, result) => {
             if(!result) {
                 return message.reply("No.")
             } else {
                 let rC = 0
                 setInterval(async () => {
                     let res = result[rC]
+                    if(rC >= result.length) return;
                     rC++
                     let card: any = await printCard(res.picture, res.type, res.description, res.name, "Test")
                     let attach: MessageAttachment = new MessageAttachment(card)
