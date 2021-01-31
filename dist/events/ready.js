@@ -59,7 +59,7 @@ module.exports = async (client) => {
     });
     dbl.webhook.on('vote', vote => {
         client.con.query('SELECT * FROM economy WHERE id = ?;', [vote.user], async (error, result) => {
-            client.embeds.uni(webhookVote, `${client.users.cache.get(vote.user).tag} has voted!`, null, null, null, null, null, null);
+            client.embeds.uni(webhookVote, `<@${vote.user}> has voted!`, null, null, null, null, null, null);
             if (result.length === 1)
                 return client.con.query('UPDATE economy SET yen = ? WHERE id = ?;', [Number(result[0].yen) + 10000, vote.user]);
             else
