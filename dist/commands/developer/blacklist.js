@@ -1,7 +1,7 @@
 module.exports = {
-    name: "cmd.blacklist.name",
-    description: "cmd.blacklist.description",
-    usage: "cmd.blacklist.usage",
+    name: null,
+    description: null,
+    usage: null,
     args: true,
     dm: true,
     group: "Bot Owner",

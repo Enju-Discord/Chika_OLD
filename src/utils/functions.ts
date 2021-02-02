@@ -8,11 +8,13 @@ import {
 export function numberWithCommas(numb: number) {
     return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
 export function clean(text) {
     if (typeof text === "string")
         return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@​/g, "@​" + String.fromCharCode(8203));
     else return text;
 }
+
 export function shorten(string: string, maxLength: number, separator: string = " ") {
     let array: Array < any > = [];
 
@@ -128,44 +130,8 @@ export async function setRolePermissions(messageObject: any, role: any) {
     });
 }
 
-export class ProgressBar {
-    value: any;
-    maxValue: any;
-    barSize: any;
-    constructor(value: any, maxValue: any, barSize: any) {
-        this.value = value - 1;
-        this.maxValue = maxValue;
-        this.barSize = barSize;
-    }
-
-    public createDurationBar() {
-        const percentage: number = this.value / this.maxValue;
-        const progress: number = Math.round((this.barSize * percentage));
-        const emptyProgress: number = this.barSize - progress;
-
-        const progressText: string = "—".repeat(progress);
-        const emptyProgressText: string = "—".repeat(emptyProgress);
-        const percentageText: string = Math.round(percentage * 100) + "%";
-        const bar: string = "`" + progressText + "⚪" + emptyProgressText + "\n" + new Date(this.value).toISOString().substr(11, 8) + " / " + new Date(this.maxValue).toISOString().substr(11, 8) + "`";
-        return bar;
-    }
-
-    public createVolumeBar() {
-        const percentage: number = this.value / this.maxValue;
-        const progress: number = Math.round((this.barSize * percentage));
-        const emptyProgress: number = this.barSize - progress;
-
-        const progressText: string = "<:middle_full:730066734349942876>".repeat(progress);
-        const emptyProgressText: string = "<:middle_blank:730066734320582669>".repeat(emptyProgress);
-        const percentageText: string = Math.round(percentage * 100) + "%";
-        const bar = "🔇 " + progressText + emptyProgressText + " 🔊";
-        return bar;
-    }
-}
-
-export async function printCard(picture, backgroundImage, description, name, health) {
-    return new Promise(async (resolve, reject) => {
-
+export async function printCard(picture: string, backgroundImage: string, description: string, name: string, health: string) {
+    return new Promise(async (resolve: any, reject: any) => {
         await registerFont("./fonts/Exo2-Black.ttf", {
             family: "Exo 2 Black"
         });
@@ -198,33 +164,96 @@ export async function printCard(picture, backgroundImage, description, name, hea
         ctx.textAlign = "start";
         printAtWordWrap(ctx, description, 57, 660, 20, 490)
         resolve(canvas.toBuffer());
-    })
+    });
+}
 
-    async function printAtWordWrap(context, text, x, y, lineHeight, fitWidth) {
-        fitWidth = fitWidth || 0;
+async function printAtWordWrap(context: any, text: string, x: number, y: number, lineHeight: number, fitWidth: number) {
+    fitWidth = fitWidth || 0;
 
-        if (fitWidth <= 0) {
-            context.fillText(text, x, y);
-            return;
-        }
-        var words = text.split(" ");
-        var currentLine = 0;
-        var idx = 1;
-        while (words.length > 0 && idx <= words.length) {
-            var str = words.slice(0, idx).join(" ");
-            var w = context.measureText(str).width;
-            if (w > fitWidth) {
-                if (idx == 1) {
-                    idx = 2;
-                }
-                context.fillText(words.slice(0, idx - 1).join(" "), x, y + (lineHeight * currentLine));
-                currentLine++;
-                words = words.splice(idx - 1);
-                idx = 1;
-            } else {
-                idx++;
+    if (fitWidth <= 0) {
+        context.fillText(text, x, y);
+        return;
+    }
+    var words = text.split(" ");
+    var currentLine = 0;
+    var idx = 1;
+    while (words.length > 0 && idx <= words.length) {
+        var str = words.slice(0, idx).join(" ");
+        var w = context.measureText(str).width;
+        if (w > fitWidth) {
+            if (idx == 1) {
+                idx = 2;
             }
+            context.fillText(words.slice(0, idx - 1).join(" "), x, y + (lineHeight * currentLine));
+            currentLine++;
+            words = words.splice(idx - 1);
+            idx = 1;
+        } else {
+            idx++;
         }
-        if (idx > 0) context.fillText(words.join(" "), x, y + (lineHeight * currentLine));
+    }
+    if (idx > 0) context.fillText(words.join(" "), x, y + (lineHeight * currentLine));
+}
+
+export async function genRarity() {
+    return new Promise(async (resolve: any, reject: any) => {
+        let r = [{
+            "name": "Legendary",
+            "chance": 0.05
+        }, {
+            "name": "Mystic",
+            "chance": 1
+        }, {
+            "name": "Rare",
+            "chance": "10"
+        }, {
+            "name": "Common",
+            "chance": 88.5
+        }];
+
+        let rr = [];
+
+        r.forEach((n: any) => {
+            let a: any = n.chance * 100;
+            for (let i = 0; i < a; i++) {
+                rr.push(n)
+            }
+        })
+        resolve(rr[Math.floor(Math.random() ** rr.length)].name)
+    });
+}
+
+export class ProgressBar {
+    value: any;
+    maxValue: any;
+    barSize: any;
+    constructor(value: any, maxValue: any, barSize: any) {
+        this.value = value - 1;
+        this.maxValue = maxValue;
+        this.barSize = barSize;
+    }
+
+    public createDurationBar() {
+        const percentage: number = this.value / this.maxValue;
+        const progress: number = Math.round((this.barSize * percentage));
+        const emptyProgress: number = this.barSize - progress;
+
+        const progressText: string = "—".repeat(progress);
+        const emptyProgressText: string = "—".repeat(emptyProgress);
+        const percentageText: string = Math.round(percentage * 100) + "%";
+        const bar: string = "`" + progressText + "⚪" + emptyProgressText + "\n" + new Date(this.value).toISOString().substr(11, 8) + " / " + new Date(this.maxValue).toISOString().substr(11, 8) + "`";
+        return bar;
+    }
+
+    public createVolumeBar() {
+        const percentage: number = this.value / this.maxValue;
+        const progress: number = Math.round((this.barSize * percentage));
+        const emptyProgress: number = this.barSize - progress;
+
+        const progressText: string = "<:middle_full:730066734349942876>".repeat(progress);
+        const emptyProgressText: string = "<:middle_blank:730066734320582669>".repeat(emptyProgress);
+        const percentageText: string = Math.round(percentage * 100) + "%";
+        const bar = "🔇 " + progressText + emptyProgressText + " 🔊";
+        return bar;
     }
 }

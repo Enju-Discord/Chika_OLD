@@ -8,9 +8,9 @@ import {
 //git pull git@chika:Chika-Discord/Chika.git && npm i && pm2 restart chika
 
 module.exports = {
-  name: "cmd.update.name",
-  description: "cmd.update.description",
-  usage: "cmd.update.usage",
+  name: null,
+  description: null,
+  usage: null,
   args: true,
   dm: true,
   group: "Bot Owner",

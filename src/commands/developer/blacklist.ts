@@ -1,7 +1,7 @@
 module.exports = {
-    name: "cmd.blacklist.name",
-    description: "cmd.blacklist.description",
-    usage: "cmd.blacklist.usage",
+    name: null,
+    description: null,
+    usage: null,
     args: true,
     dm: true,
     group: "Bot Owner",
@@ -19,7 +19,7 @@ module.exports = {
             if (client.config.secrets.developers.includes(target)) return client.embeds.error(message.channel, "You can\"t blacklist a Bot Owner.");
             client.con.query("SELECT * FROM blacklist WHERE id = ?;", [target], async (error: any, result: any) => {
                 if (result.length !== 0) {
-                    client.con.query("DELETE FROM blacklist WHERE id = ?;", [target])
+                    client.con.query("DELETE FROM blacklist WHERE id = ?;", [target]);
                     return client.embeds.success(message.channel, "Removed <@" + target + "> (`" + target + "`) from the blacklist.");
                 } else {
                     client.con.query("INSERT INTO blacklist(id) VALUES(?)", [target]);

@@ -33,31 +33,3 @@ module.exports = {
         });
     }
 }
-
-async function genRarity() {
-    return new Promise(async (resolve: any, reject: any) => {
-        let r = [{
-            "name": "Legendary",
-            "chance": 0.05
-        }, {
-            "name": "Mystic",
-            "chance": 1
-        }, {
-            "name": "Rare",
-            "chance": "10"
-        }, {
-            "name": "Common",
-            "chance": 88.5
-        }];
-
-        let rr = [];
-
-        r.forEach((n: any) => {
-            let a: any = n.chance * 100;
-            for (let i = 0; i < a; i++) {
-                rr.push(n)
-            }
-        })
-        resolve(rr[Math.floor(Math.random() ** rr.length)].name)
-    });
-}

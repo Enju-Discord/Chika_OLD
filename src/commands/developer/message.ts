@@ -3,9 +3,9 @@ import {
 } from "discord.js";
 
 module.exports = {
-    name: "cmd.message.name",
-    description: "cmd.message.description",
-    usage: "cmd.message.usage",
+    name: null,
+    description: null,
+    usage: null,
     args: true,
     dm: true,
     group: "Bot Owner",

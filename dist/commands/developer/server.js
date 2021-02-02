@@ -1,7 +1,7 @@
 module.exports = {
-    name: "cmd.server.name",
-    description: "cmd.server.description",
-    usage: "cmd.server.usage",
+    name: null,
+    description: null,
+    usage: null,
     args: true,
     dm: true,
     group: "Bot Owner",
