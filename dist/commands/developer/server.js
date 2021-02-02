@@ -1,18 +1,18 @@
 module.exports = {
-    name: 'cmd.server.name',
-    description: 'cmd.server.description',
-    usage: 'cmd.server.usage',
+    name: "cmd.server.name",
+    description: "cmd.server.description",
+    usage: "cmd.server.usage",
     args: true,
     dm: true,
-    group: 'Bot Owner',
+    group: "Bot Owner",
     cooldown: 2,
     bot_permissions: [],
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
-        const findServers = await client.shard.broadcastEval(`(this.guilds.cache.find(server => server.name === "${args.join(' ')}") || this.guilds.cache.get("${args.join(' ')}"));`);
+        const findServers = await client.shard.broadcastEval(`(this.guilds.cache.find(server => server.name === "${args.join(" ")}") || this.guilds.cache.get("${args.join(" ")}"));`);
         const guild = (findServers.find((x) => !!x) || false);
-        if (args.join(' ') !== '') {
+        if (args.join(" ") !== "") {
             try {
                 await client.shard.broadcastEval(`
                 if (this.guilds.cache.get("${guild.id}")) {
@@ -25,11 +25,11 @@ module.exports = {
                         }
                     });
                 }`).then(async (invite) => {
-                    return message.channel.send('discord.gg/' + invite[0].code);
+                    return message.channel.send("discord.gg/" + invite[0].code);
                 });
             }
             catch (error) {
-                return client.embeds.error(message.channel, '```js\n' + error + '```');
+                return client.embeds.error(message.channel, "```js\n" + error + "```");
             }
         }
     }

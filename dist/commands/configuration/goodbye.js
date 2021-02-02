@@ -1,28 +1,28 @@
 module.exports = {
-    name: 'cmd.goodbye.name',
-    description: 'cmd.goodbye.description',
-    usage: 'cmd.goodbye.usage',
+    name: "cmd.goodbye.name",
+    description: "cmd.goodbye.description",
+    usage: "cmd.goodbye.usage",
     args: true,
     dm: false,
-    group: 'Bot Owner',
+    group: "Bot Owner",
     cooldown: 10,
     bot_permissions: [],
-    user_permissions: ['MANAGE_GUILD'],
-    aliases: ['bye'],
+    user_permissions: ["MANAGE_GUILD"],
+    aliases: ["bye"],
     async execute(message, args, client, prefix) {
-        client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error, result) => {
+        client.con.query("SELECT * FROM guild_settings WHERE id = ?;", [message.guild.id], async (error, result) => {
             if (error)
-                return client.embeds.error(message.channel, '```js\n' + error + '```');
+                return client.embeds.error(message.channel, "```js\n" + error + "```");
             if (!args[0]) {
                 if (result[0] && result[0].bye_id != null) {
                     let contents = [
                         [
-                            await client.strings(message.guild, 'cmd.goodbye.currentchan'),
+                            await client.strings(message.guild, "cmd.goodbye.currentchan"),
                             message.guild.channels.cache.get(result[0].bye_id),
                             true
                         ],
                         [
-                            await client.strings(message.guild, 'cmd.goodbye.currentmsg'),
+                            await client.strings(message.guild, "cmd.goodbye.currentmsg"),
                             result[0].bye_msg,
                             true
                         ]
@@ -30,32 +30,32 @@ module.exports = {
                     return client.embeds.uni(message.channel, null, null, contents, null, null, client.config.colors.default, null);
                 }
                 else {
-                    return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.goodbye.channelrequired'));
+                    return client.embeds.notice(message.channel, await client.strings(message.guild, "cmd.goodbye.channelrequired"));
                 }
             }
-            if (args[0].toLowerCase() === 'delete') {
-                client.con.query('UPDATE guild_settings SET bye_id = ?, bye_msg = ? WHERE id = ?;', [null, null, message.guild.id]);
-                return client.embeds.success(message.channel, await client.strings(message.guild, 'cmd.goodbye.deleted'));
+            if (args[0].toLowerCase() === "delete") {
+                client.con.query("UPDATE guild_settings SET bye_id = ?, bye_msg = ? WHERE id = ?;", [null, null, message.guild.id]);
+                return client.embeds.success(message.channel, await client.strings(message.guild, "cmd.goodbye.deleted"));
             }
-            let welcome = '';
+            let welcome = "";
             const channel = message.mentions.channels.first() || message.guild.channels.cache.find(channel => channel.name === args[0]) || message.guild.channels.cache.get(args[0]);
             if (!channel)
-                return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.goodbye.channelnotfound'));
+                return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.goodbye.channelnotfound"));
             args.shift();
             if (args[1]) {
-                welcome = args.join(' ');
+                welcome = args.join(" ");
                 if (welcome.length > 800)
-                    return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.goodbye.length'));
+                    return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.goodbye.length"));
             }
-            else if (args[0] === 'reset') {
-                welcome = await client.strings(message.guild, 'cmd.goodbye.message.default');
+            else if (args[0] === "reset") {
+                welcome = await client.strings(message.guild, "cmd.goodbye.message.default");
             }
             else {
-                welcome = await client.strings(message.guild, 'cmd.goodbye.message.default');
+                welcome = await client.strings(message.guild, "cmd.goodbye.message.default");
             }
             if (result.length === 1) {
-                client.con.query('UPDATE guild_settings SET bye_id = ?, bye_msg = ? WHERE id = ?;', [channel.id, welcome, message.guild.id]);
-                return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.goodbye.set')).replace('$channel', channel));
+                client.con.query("UPDATE guild_settings SET bye_id = ?, bye_msg = ? WHERE id = ?;", [channel.id, welcome, message.guild.id]);
+                return client.embeds.success(message.channel, (await client.strings(message.guild, "cmd.goodbye.set")).replace("$channel", channel));
             }
         });
     }

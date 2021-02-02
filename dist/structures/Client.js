@@ -14,7 +14,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -28,7 +28,7 @@ const embeds = __importStar(require("../structures/Embeds"));
 class Chika extends discord_js_1.Client {
     constructor(options = {}) {
         super({
-            disableMentions: 'everyone',
+            disableMentions: "everyone",
             shardCount: 1,
             ws: {
                 intents: discord_js_1.Intents.NON_PRIVILEGED
@@ -46,20 +46,20 @@ class Chika extends discord_js_1.Client {
     strings(guild, strings) {
         return new Promise((resolve, reject) => {
             if (!guild) {
-                const languageSelected = require('../utils/languages/en_us.js');
+                const languageSelected = require("../utils/languages/en_us.js");
                 resolve(languageSelected.default[strings]);
                 return undefined;
             }
-            Database_1.connection.query('SELECT * FROM guild_settings WHERE id = ?;', [guild.id], async (error, result) => {
+            Database_1.connection.query("SELECT * FROM guild_settings WHERE id = ?;", [guild.id], async (error, result) => {
                 let language;
                 if (!result[0]) {
-                    language = 'en_us';
-                    Database_1.connection.query('INSERT INTO guild_settings(id, language) VALUES(?, ?);', [guild.id, language]);
+                    language = "en_us";
+                    Database_1.connection.query("INSERT INTO guild_settings(id, language) VALUES(?, ?);", [guild.id, language]);
                 }
                 else {
                     language = result[0].language;
                 }
-                const languageSelected = require('../utils/languages/' + language + '.js');
+                const languageSelected = require("../utils/languages/" + language + ".js");
                 resolve(languageSelected.default[strings]);
             });
         });

@@ -14,32 +14,32 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios = __importStar(require("axios"));
 module.exports = {
-    name: 'cmd.dog.name',
-    description: 'cmd.dog.description',
-    usage: 'cmd.dog.usage',
+    name: "cmd.dog.name",
+    description: "cmd.dog.description",
+    usage: "cmd.dog.usage",
     args: true,
     dm: true,
-    group: 'Image',
+    group: "Image",
     cooldown: 10,
     bot_permissions: [],
     user_permissions: [],
     aliases: [],
     async execute(message, args, client, prefix) {
         try {
-            const result = await axios.default.get('https://random.dog/woof.json');
+            const result = await axios.default.get("https://random.dog/woof.json");
             const image = result.data.url;
-            const randomcolor = '#' + ((1 << 24) * Math.random() | 0).toString(16);
+            const randomcolor = "#" + ((1 << 24) * Math.random() | 0).toString(16);
             return client.embeds.uni(message.channel, null, null, null, image, null, randomcolor, null);
         }
         catch (error) {
-            return client.embeds.error(message.channel, '```js\n' + error + '```');
+            return client.embeds.error(message.channel, "```js\n" + error + "```");
         }
     }
 };

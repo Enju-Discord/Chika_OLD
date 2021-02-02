@@ -1,46 +1,46 @@
 module.exports = {
-	name: 'cmd.queue.name',
-	description: 'cmd.queue.description',
-	usage: 'cmd.queue.usage',
+	name: "cmd.queue.name",
+	description: "cmd.queue.description",
+	usage: "cmd.queue.usage",
 	args: true,
 	dm: false,
-	group: 'Music',
+	group: "Music",
 	cooldown: 10,
-	bot_permissions: ['ADD_REACTIONS'],
+	bot_permissions: ["ADD_REACTIONS"],
 	user_permissions: [],
-	aliases: ['q'],
+	aliases: ["q"],
 	async execute(message: any, args: any, client: any, prefix: any) {
 		const serverQueue: any = client.queue.get(message.guild.id);
 
-		if (!serverQueue) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.queue.noqueue'));
+		if (!serverQueue) return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.queue.noqueue"));
 
 		let page: number = 1;
 
-		const songList: any = serverQueue.songs.map((song, index) => `\`${index + 1}\` ${song.requester} \`[${song.duration}]\` [${song.title}](${song.url})`).join('\n');
+		const songList: any = serverQueue.songs.map((song, index) => `\`${index + 1}\` ${song.requester} \`[${song.duration}]\` [${song.title}](${song.url})`).join("\n");
 
-		const shortLists: any = client.functions.shorten(songList, 1000, '\n');
+		const shortLists: any = client.functions.shorten(songList, 1000, "\n");
 
 		let contents: Array < any > = [
 			[
-				'Songs',
+				"Songs",
 				serverQueue.songs.length,
 				true
 			]
 		];
 
 
-		client.embeds.uni(message.channel, shortLists[page - 1], (await client.strings(message.guild, 'cmd.queue.queue')).replace('$server', message.guild.name), contents, null, null, client.config.colors.default, `${page + '/' + shortLists.length}`).then(async m => {
-			await m.react('⏪');
-			await m.react('◀️');
-			await m.react('⏹️');
-			await m.react('▶️');
-			await m.react('⏩');
+		client.embeds.uni(message.channel, shortLists[page - 1], (await client.strings(message.guild, "cmd.queue.queue")).replace("$server", message.guild.name), contents, null, null, client.config.colors.default, `${page + "/" + shortLists.length}`).then(async m => {
+			await m.react("⏪");
+			await m.react("◀️");
+			await m.react("⏹️");
+			await m.react("▶️");
+			await m.react("⏩");
 
-			const startFilter = (reaction: any, user: any) => reaction.emoji.name === '⏪' && user.id === message.author.id;
-			const backwardsFilter = (reaction: any, user: any) => reaction.emoji.name === '◀️' && user.id === message.author.id;
-			const stopFilter = (reaction: any, user: any) => reaction.emoji.name === '⏹️' && user.id === message.author.id;
-			const forwardsFilter = (reaction: any, user: any) => reaction.emoji.name === '▶️' && user.id === message.author.id;
-			const endFilter = (reaction: any, user: any) => reaction.emoji.name === '⏩' && user.id === message.author.id;
+			const startFilter = (reaction: any, user: any) => reaction.emoji.name === "⏪" && user.id === message.author.id;
+			const backwardsFilter = (reaction: any, user: any) => reaction.emoji.name === "◀️" && user.id === message.author.id;
+			const stopFilter = (reaction: any, user: any) => reaction.emoji.name === "⏹️" && user.id === message.author.id;
+			const forwardsFilter = (reaction: any, user: any) => reaction.emoji.name === "▶️" && user.id === message.author.id;
+			const endFilter = (reaction: any, user: any) => reaction.emoji.name === "⏩" && user.id === message.author.id;
 
 			const start: any = m.createReactionCollector(startFilter, {
 				time: 60000
@@ -52,7 +52,7 @@ module.exports = {
 			const end: any = m.createReactionCollector(endFilter);
 
 
-			start.on('collect', async (reaction: any, user: any) => {
+			start.on("collect", async (reaction: any, user: any) => {
 				reaction.users.remove(user);
 				if (page === 1) return undefined;
 
@@ -60,14 +60,14 @@ module.exports = {
 				const embed: any = m.embeds[0];
 
 				embed.setDescription(shortLists[page - 1]);
-				embed.setFooter(`${page + '/' + shortLists.length}`);
+				embed.setFooter(`${page + "/" + shortLists.length}`);
 
 				m.edit(embed).catch(async error => {
-					return client.embeds.error(message.channel + '```js\n' + error + '```');
+					return client.embeds.error(message.channel + "```js\n" + error + "```");
 				});
 			});
 
-			backwards.on('collect', async (reaction: any, user: any) => {
+			backwards.on("collect", async (reaction: any, user: any) => {
 				reaction.users.remove(user);
 				if (page === 1) return undefined;
 
@@ -75,18 +75,18 @@ module.exports = {
 				const embed: any = m.embeds[0];
 
 				embed.setDescription(shortLists[page - 1]);
-				embed.setFooter(`${page + '/' + shortLists.length}`);
+				embed.setFooter(`${page + "/" + shortLists.length}`);
 
 				m.edit(embed).catch(async error => {
-					return client.embeds.error(message.channel + '```js\n' + error + '```');
+					return client.embeds.error(message.channel + "```js\n" + error + "```");
 				});
 			});
 
-			stop.on('collect', async (reaction: any, user: any) => {
+			stop.on("collect", async (reaction: any, user: any) => {
 				m.reactions.removeAll();
 			});
 
-			forward.on('collect', async (reaction: any, user: any) => {
+			forward.on("collect", async (reaction: any, user: any) => {
 				reaction.users.remove(user);
 				if (page === shortLists.length) return undefined;
 
@@ -94,14 +94,14 @@ module.exports = {
 				const embed: any = m.embeds[0];
 
 				embed.setDescription(shortLists[page - 1]);
-				embed.setFooter(`${page + '/' + shortLists.length}`);
+				embed.setFooter(`${page + "/" + shortLists.length}`);
 
 				m.edit(embed).catch(async error => {
-					return client.embeds.error(message.channel + '```js\n' + error + '```');
+					return client.embeds.error(message.channel + "```js\n" + error + "```");
 				});
 			});
 
-			end.on('collect', async (reaction: any, user: any) => {
+			end.on("collect", async (reaction: any, user: any) => {
 				reaction.users.remove(user);
 				if (page === shortLists.length) return undefined;
 
@@ -109,30 +109,30 @@ module.exports = {
 				const embed: any = m.embeds[0];
 
 				embed.setDescription(shortLists[page - 1]);
-				embed.setFooter(`${page + '/' + shortLists.length}`);
+				embed.setFooter(`${page + "/" + shortLists.length}`);
 
 				m.edit(embed).catch(async error => {
-					return client.embeds.error(message.channel + '```js\n' + error + '```');
+					return client.embeds.error(message.channel + "```js\n" + error + "```");
 				});
 			});
 
-			start.on('end', async (reaction: any, user: any) => {
+			start.on("end", async (reaction: any, user: any) => {
 				m.reactions.removeAll();
 			});
 
-			backwards.on('end', async (reaction: any, user: any) => {
+			backwards.on("end", async (reaction: any, user: any) => {
 				m.reactions.removeAll();
 			});
 
-			stop.on('end', async (reaction: any, user: any) => {
+			stop.on("end", async (reaction: any, user: any) => {
 				m.reactions.removeAll();
 			});
 
-			forward.on('end', async (reaction: any, user: any) => {
+			forward.on("end", async (reaction: any, user: any) => {
 				m.reactions.removeAll();
 			});
 
-			end.on('end', async (reaction: any, user: any) => {
+			end.on("end", async (reaction: any, user: any) => {
 				m.reactions.removeAll();
 			});
 		});

@@ -14,7 +14,7 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
@@ -25,8 +25,8 @@ const config = __importStar(require("../utils/config"));
 function error(channel, description) {
     const embed = new discord_js_1.MessageEmbed()
         .setColor(config.colors.error)
-        .setTitle('Error')
-        .setDescription(description || '')
+        .setTitle("Error")
+        .setDescription(description || "")
         .setTimestamp();
     return channel.send(embed);
 }
@@ -34,7 +34,7 @@ exports.error = error;
 function dev(channel, description) {
     const embed = new discord_js_1.MessageEmbed()
         .setColor(config.colors.dev)
-        .setDescription(description || '')
+        .setDescription(description || "")
         .setTimestamp();
     return channel.send(embed);
 }
@@ -42,7 +42,7 @@ exports.dev = dev;
 function notice(channel, description) {
     const embed = new discord_js_1.MessageEmbed()
         .setColor(config.colors.notice)
-        .setDescription(description || '')
+        .setDescription(description || "")
         .setTimestamp();
     return channel.send(embed);
 }
@@ -50,7 +50,7 @@ exports.notice = notice;
 function success(channel, description) {
     const embed = new discord_js_1.MessageEmbed()
         .setColor(config.colors.default)
-        .setDescription(description || '')
+        .setDescription(description || "")
         .setTimestamp();
     return channel.send(embed);
 }
@@ -58,18 +58,18 @@ exports.success = success;
 function uni(channel, description, title, contents, image, thumbnail, color, footer) {
     const embed = new discord_js_1.MessageEmbed()
         .setColor(color || config.colors.standard)
-        .setTitle(title || '')
-        .setDescription(description || '')
-        .setThumbnail(thumbnail || '')
-        .setImage(image || '');
+        .setTitle(title || "")
+        .setDescription(description || "")
+        .setThumbnail(thumbnail || "")
+        .setImage(image || "");
     if (footer === null) {
-        embed.setFooter('');
+        embed.setFooter("");
     }
     else {
         embed.setFooter(footer);
     }
     embed.setTimestamp();
-    if (contents && (typeof contents !== 'undefined' || contents !== [])) {
+    if (contents && (typeof contents !== "undefined" || contents !== [])) {
         contents.forEach((element) => {
             embed.addField(element[0], element[1], element[2]);
         });

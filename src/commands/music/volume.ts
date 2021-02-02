@@ -1,14 +1,14 @@
 module.exports = {
-    name: 'cmd.volume.name',
-    description: 'cmd.volume.description',
-    usage: 'cmd.volume.usage',
+    name: "cmd.volume.name",
+    description: "cmd.volume.description",
+    usage: "cmd.volume.usage",
     args: true,
     dm: false,
-    group: 'Music',
+    group: "Music",
     cooldown: 10,
     bot_permissions: [],
     user_permissions: [],
-    aliases: ['vol'],
+    aliases: ["vol"],
     async execute(message: any, args: any, client: any, prefix: any) {
         const voiceChannel: any = message.member.voice.channel;
         const serverQueue: any = client.queue.get(message.guild.id);
@@ -16,27 +16,27 @@ module.exports = {
         let volumeBar: any;
 
         try {
-            if (!serverQueue) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.volume.noqueue'));
-			if (!voiceChannel) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.volume.nochannel'));
-            if (voiceChannel !== message.guild.me.voice.channel) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.volume.nochannel_bot'));
+            if (!serverQueue) return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.volume.noqueue"));
+			if (!voiceChannel) return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.volume.nochannel"));
+            if (voiceChannel !== message.guild.me.voice.channel) return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.volume.nochannel_bot"));
 
-            client.con.query('SELECT * FROM guild_settings WHERE id = ?;', [message.guild.id], async (error: any, result: any) => {
-                if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
+            client.con.query("SELECT * FROM guild_settings WHERE id = ?;", [message.guild.id], async (error: any, result: any) => {
+                if (error) return client.embeds.error(message.channel, "```js\n" + error + "```");
                 if (result[0].dj_id == null) return volume();
 
                 const role: any = message.guild.roles.cache.get(result[0].dj_id);
 
-                if (message.member.roles.cache.has(role.id) || message.member.permissions.has('MANAGE_GUILD') || message.member.permissions.has('ADMINISTRATOR') || message.member.permissions.has('MANAGE_MESSAGES') || client.config.basics.developers.includes(message.author.id)) return volume();
-                else return client.embeds.error(message.channel, (await client.strings(message.guild, 'dj.perms_missing')).replace('$user', message.member.user.tag).replace('$role', role));
+                if (message.member.roles.cache.has(role.id) || message.member.permissions.has("MANAGE_GUILD") || message.member.permissions.has("ADMINISTRATOR") || message.member.permissions.has("MANAGE_MESSAGES") || client.config.basics.developers.includes(message.author.id)) return volume();
+                else return client.embeds.error(message.channel, (await client.strings(message.guild, "dj.perms_missing")).replace("$user", message.member.user.tag).replace("$role", role));
 
                 async function volume() {
                     bar = new client.functions.ProgressBar(serverQueue.volume, 200, 10);
                     volumeBar = bar.createVolumeBar();
 
-                    if (!args[0]) return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.volume.current')).replace('$volume', serverQueue.volume + '%') + '\n' + volumeBar);
-                    if (args[0].includes('-') || args[0].includes('.') || args[0].includes(',')) return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.volume.numberrequired'));
-                    if (isNaN(args[0])) return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.volume.numberrequired'));
-                    if (args[0] > 200) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.volume.max'));
+                    if (!args[0]) return client.embeds.success(message.channel, (await client.strings(message.guild, "cmd.volume.current")).replace("$volume", serverQueue.volume + "%") + "\n" + volumeBar);
+                    if (args[0].includes("-") || args[0].includes(".") || args[0].includes(",")) return client.embeds.notice(message.channel, await client.strings(message.guild, "cmd.volume.numberrequired"));
+                    if (isNaN(args[0])) return client.embeds.notice(message.channel, await client.strings(message.guild, "cmd.volume.numberrequired"));
+                    if (args[0] > 200) return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.volume.max"));
 
                     serverQueue.volume = args[0];
 
@@ -45,11 +45,11 @@ module.exports = {
 
                     serverQueue.connection.dispatcher.setVolume(args[0] / 200);
 
-                    return client.embeds.success(message.channel, (await client.strings(message.guild, 'cmd.volume.set')).replace('$volume', serverQueue.volume + '%') + '\n' + volumeBar);
+                    return client.embeds.success(message.channel, (await client.strings(message.guild, "cmd.volume.set")).replace("$volume", serverQueue.volume + "%") + "\n" + volumeBar);
                 }
             });
         } catch (error) {
-            return client.embeds.error(message.channel, '```js\n' + error + '```');
+            return client.embeds.error(message.channel, "```js\n" + error + "```");
         }
     }
 }

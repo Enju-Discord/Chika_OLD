@@ -1,33 +1,33 @@
-import ytdl from 'ytdl-core';
-import * as search from 'yt-search';
+import ytdl from "ytdl-core";
+import * as search from "yt-search";
 
 module.exports = {
-    name: 'cmd.play.name',
-    description: 'cmd.play.description',
-    usage: 'cmd.play.usage',
+    name: "cmd.play.name",
+    description: "cmd.play.description",
+    usage: "cmd.play.usage",
     args: true,
     dm: false,
-    group: 'Music',
+    group: "Music",
     cooldown: 10,
-    bot_permissions: ['CONNECT', 'SPEAK', 'USE_VAD'],
+    bot_permissions: ["CONNECT", "SPEAK", "USE_VAD"],
     user_permissions: [],
-    aliases: ['p'],
+    aliases: ["p"],
     async execute(message: any, args: any, client: any, prefix: any) {
         const voiceChannel: any = message.member.voice.channel;
         const serverQueue: any = client.queue.get(message.guild.id);
 
-        let GuildIcon: string = '';
+        let GuildIcon: string = "";
 
         if (message.guild.iconURL()) {
             GuildIcon = message.guild.iconURL({
                 dynamic: true,
                 size: 1024,
-                format: 'png'
+                format: "png"
             });
         }
 
-        if (!voiceChannel) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.nochannel'));
-        if (!args[0]) return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.play.linkrequired'));
+        if (!voiceChannel) return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.play.nochannel"));
+        if (!args[0]) return client.embeds.notice(message.channel, await client.strings(message.guild, "cmd.play.linkrequired"));
 
         const videoRegExp: RegExp = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi;
         const playlistRegExp: RegExp = /^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/g;
@@ -47,26 +47,26 @@ module.exports = {
             playing: true
         }
 
-        if (spotifyRegExp.test(args[0])) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.nospotify'));
+        if (spotifyRegExp.test(args[0])) return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.play.nospotify"));
 
         try {
             if (urlcheck) {
                 try {
                     songData = args[0];
                 } catch (error) {
-                    return client.embeds.error(message.channel, '```js\n' + error + '```');
+                    return client.embeds.error(message.channel, "```js\n" + error + "```");
                 }
             } else {
                 songData = await ytSearch(message, args, client);
             }
 
-            if (playlistRegExp.test(args[0])) return client.embeds.notice(message.channel, await client.strings(message.guild, 'cmd.play.playlistuse'));
+            if (playlistRegExp.test(args[0])) return client.embeds.notice(message.channel, await client.strings(message.guild, "cmd.play.playlistuse"));
         } catch (error) {
-            return client.embeds.error(message.channel, '```js\n' + error + '```');
+            return client.embeds.error(message.channel, "```js\n" + error + "```");
         }
 
         songData = await ytdl.getInfo(songData).catch(async error => {
-            return client.embeds.error(message.channel, '```js\n' + error + '```');
+            return client.embeds.error(message.channel, "```js\n" + error + "```");
         });
 
         song = {
@@ -84,22 +84,22 @@ module.exports = {
 
             let contents: Array < any > = [
                 [
-                    await client.strings(message.guild, 'cmd.play.requester'),
+                    await client.strings(message.guild, "cmd.play.requester"),
                     song.requester,
                     true
                 ],
                 [
-                    await client.strings(message.guild, 'cmd.play.duration'),
+                    await client.strings(message.guild, "cmd.play.duration"),
                     song.duration,
                     true
                 ],
                 [
-                    await client.strings(message.guild, 'cmd.play.channel'),
+                    await client.strings(message.guild, "cmd.play.channel"),
                     song.channel,
                     true
                 ]
             ];
-            return client.embeds.uni(message.channel, `[${song.title}](${song.url})`, await client.strings(message.guild, 'cmd.play.added'), contents, song.thumbnail, GuildIcon, client.config.colors.default, null);
+            return client.embeds.uni(message.channel, `[${song.title}](${song.url})`, await client.strings(message.guild, "cmd.play.added"), contents, song.thumbnail, GuildIcon, client.config.colors.default, null);
         }
 
         client.queue.set(message.guild.id, queueConstruct);
@@ -121,47 +121,47 @@ module.exports = {
 
             if (!song) return undefined;
             const dispatcher: any = queue.connection.play(await ytdl(song.url), {
-                    quality: 'highestaudio',
-                    filter: 'audioonly',
+                    quality: "highestaudio",
+                    filter: "audioonly",
                     highWaterMark: 1024
                 })
-                .on('finish', async reason => {
+                .on("finish", async reason => {
                     if (queue.loop) {
-                        if (reason === 'Stream is not generating quickly enough') return client.embeds.error(message.channel, 'Stream is not generating quickly enough');
+                        if (reason === "Stream is not generating quickly enough") return client.embeds.error(message.channel, "Stream is not generating quickly enough");
                         queueConstruct.songs.shift();
                         queueConstruct.songs.push(song);
                         play(queueConstruct.songs[0]);
                     } else {
-                        if (reason === 'Stream is not generating quickly enough') return client.embeds.error(message.channel, 'Stream is not generating quickly enough');
+                        if (reason === "Stream is not generating quickly enough") return client.embeds.error(message.channel, "Stream is not generating quickly enough");
                         queueConstruct.songs.shift();
                         play(queueConstruct.songs[0]);
                     }
                 })
-                .on('error', error => {
-                    if (error == 'Error: ffmpeg stream: write EPIPE') {
+                .on("error", error => {
+                    if (error == "Error: ffmpeg stream: write EPIPE") {
                         queueConstruct.songs.shift();
                         queueConstruct.songs.push(song);
                         play(queueConstruct.songs[0]);
                         return undefined;
                     }
-                    return client.embeds.error(message.channel, '```js\n' + error + '```');
+                    return client.embeds.error(message.channel, "```js\n" + error + "```");
                 });
 
             dispatcher.setVolume(queue.volume / 200);
 
             let contents: Array < any > = [
                 [
-                    await client.strings(message.guild, 'cmd.play.requester'),
+                    await client.strings(message.guild, "cmd.play.requester"),
                     song.requester,
                     true
                 ],
                 [
-                    await client.strings(message.guild, 'cmd.play.duration'),
+                    await client.strings(message.guild, "cmd.play.duration"),
                     song.duration,
                     true
                 ],
                 [
-                    await client.strings(message.guild, 'cmd.play.channel'),
+                    await client.strings(message.guild, "cmd.play.channel"),
                     song.channel,
                     true
                 ]
@@ -173,7 +173,7 @@ module.exports = {
                 if (index > -1) client.oldsongs.splice(index, 1);
             }
 
-            const msg: any = await client.embeds.uni(queueConstruct.textChannel, `[${song.title}](${song.url})`, await client.strings(message.guild, 'cmd.play.start'), contents, song.thumbnail, GuildIcon, client.config.colors.default, null);
+            const msg: any = await client.embeds.uni(queueConstruct.textChannel, `[${song.title}](${song.url})`, await client.strings(message.guild, "cmd.play.start"), contents, song.thumbnail, GuildIcon, client.config.colors.default, null);
 
             client.oldsongs.push({
                 message: msg,
@@ -189,38 +189,38 @@ module.exports = {
         } catch (error) {
             client.queue.delete(message.guild.id);
             await voiceChannel.leave();
-            return client.embeds.error(message.channel, '```js\n' + error + '```');
+            return client.embeds.error(message.channel, "```js\n" + error + "```");
         }
     }
 }
 
 function ytSearch(message: any, args: any, client: any) {
     return new Promise(function (resolve, reject) {
-        if (args.join(' ') !== '') {
-			search.default(args.join(' '), async function (error, result) {
-                if (error) return client.embeds.error(message.channel, '```js\n' + error + '```');
+        if (args.join(" ") !== "") {
+			search.default(args.join(" "), async function (error, result) {
+                if (error) return client.embeds.error(message.channel, "```js\n" + error + "```");
 
                 const videos: any = result.videos.slice(0, 10);
 
-                if (videos.length === 0) return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.noresults'));
+                if (videos.length === 0) return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.play.noresults"));
 
-                let response: string = '';
+                let response: string = "";
 
                 for (const i in videos) {
                     response += `${parseInt(i) + 1}: [${videos[i].title}](${videos[i].url})\n`;
                 }
 
-                client.embeds.uni(message.channel, response, (await client.strings(message.guild, 'cmd.play.enter')).replace('$videos', videos.length), null, null, null, client.config.colors.default, null);
+                client.embeds.uni(message.channel, response, (await client.strings(message.guild, "cmd.play.enter")).replace("$videos", videos.length), null, null, null, client.config.colors.default, null);
                 try {
                     const videocollection = await message.channel.awaitMessages(music => !isNaN(music.content) && music.content > 0 && music.content < 11 && music.author.id === message.author.id, {
                         max: 1,
                         time: 10000,
-                        errors: ['time']
+                        errors: ["time"]
                     });
                     const videoIndex: number = parseInt(videocollection.first().content);
                     resolve(videos[videoIndex - 1].url);
                 } catch (error) {
-                    return client.embeds.error(message.channel, await client.strings(message.guild, 'cmd.play.canceled'));
+                    return client.embeds.error(message.channel, await client.strings(message.guild, "cmd.play.canceled"));
                 }
             });
         }

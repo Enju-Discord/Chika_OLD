@@ -14,25 +14,26 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.printCard = exports.ProgressBar = exports.setRolePermissions = exports.resetRolePermissions = exports.shuffleSongs = exports.generatePermissions = exports.generateCommands = exports.generateLength = exports.generateXP = exports.compare = exports.getUptime = exports.mock = exports.shorten = exports.clean = exports.numberWithCommas = void 0;
 const fs = __importStar(require("fs"));
+const canvas_1 = require("canvas");
 function numberWithCommas(numb) {
-    return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 exports.numberWithCommas = numberWithCommas;
 function clean(text) {
-    if (typeof text === 'string')
-        return text.replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@​/g, '@​' + String.fromCharCode(8203));
+    if (typeof text === "string")
+        return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@​/g, "@​" + String.fromCharCode(8203));
     else
         return text;
 }
 exports.clean = clean;
-function shorten(string, maxLength, separator = ' ') {
+function shorten(string, maxLength, separator = " ") {
     let array = [];
     if (string.length <= maxLength) {
         array.push(string);
@@ -47,7 +48,7 @@ function shorten(string, maxLength, separator = ' ') {
 }
 exports.shorten = shorten;
 function mock(text) {
-    let result = '';
+    let result = "";
     let next = Math.floor(Math.random() * 3) + 1;
     for (let i = 0; i < text.length; ++i) {
         if (i === next) {
@@ -63,12 +64,12 @@ function mock(text) {
 exports.mock = mock;
 function getUptime(process) {
     const d = new Date(process);
-    let str = '';
-    str += d.getUTCMonth() + 'mo, ';
-    str += d.getUTCDate() - 1 + 'd, ';
-    str += d.getUTCHours() + 'h, ';
-    str += d.getUTCMinutes() + 'm, ';
-    str += d.getUTCSeconds() + 's';
+    let str = "";
+    str += d.getUTCMonth() + "mo, ";
+    str += d.getUTCDate() - 1 + "d, ";
+    str += d.getUTCHours() + "h, ";
+    str += d.getUTCMinutes() + "m, ";
+    str += d.getUTCSeconds() + "s";
     return str;
 }
 exports.getUptime = getUptime;
@@ -93,19 +94,19 @@ function generateLength(x, in_min, in_max, out_min, out_max) {
 }
 exports.generateLength = generateLength;
 function generateCommands(category, prefix) {
-    let commandsListed = '';
+    let commandsListed = "";
     let group = fs.readdirSync(`./src/commands/${category}`);
     for (const command of group) {
-        commandsListed += ' `' + prefix + command.split('.')[0] + '`,';
+        commandsListed += " `" + prefix + command.split(".")[0] + "`,";
     }
     commandsListed = commandsListed.slice(0, -1);
     return commandsListed;
 }
 exports.generateCommands = generateCommands;
 function generatePermissions(permissions, choosedLang) {
-    let bot_permissions_missing = '';
+    let bot_permissions_missing = "";
     for (const permission of permissions) {
-        bot_permissions_missing += choosedLang[permission] + ' | ';
+        bot_permissions_missing += choosedLang[permission] + " | ";
     }
     bot_permissions_missing = bot_permissions_missing.slice(0, -3);
     return bot_permissions_missing;
@@ -125,7 +126,7 @@ async function resetRolePermissions(messageObject, role) {
             ADD_REACTIONS: null,
             SPEAK: null,
             USE_VAD: null
-        }, 'Removed overwrites for the old Muted role.');
+        }, "Removed overwrites for the old Muted role.");
     });
 }
 exports.resetRolePermissions = resetRolePermissions;
@@ -136,7 +137,7 @@ async function setRolePermissions(messageObject, role) {
             ADD_REACTIONS: false,
             SPEAK: false,
             USE_VAD: false
-        }, 'Created overwrites for the Muted role.');
+        }, "Created overwrites for the Muted role.");
     });
 }
 exports.setRolePermissions = setRolePermissions;
@@ -150,33 +151,40 @@ class ProgressBar {
         const percentage = this.value / this.maxValue;
         const progress = Math.round((this.barSize * percentage));
         const emptyProgress = this.barSize - progress;
-        const progressText = '—'.repeat(progress);
-        const emptyProgressText = '—'.repeat(emptyProgress);
-        const percentageText = Math.round(percentage * 100) + '%';
-        const bar = '`' + progressText + '⚪' + emptyProgressText + '\n' + new Date(this.value).toISOString().substr(11, 8) + ' / ' + new Date(this.maxValue).toISOString().substr(11, 8) + '`';
+        const progressText = "—".repeat(progress);
+        const emptyProgressText = "—".repeat(emptyProgress);
+        const percentageText = Math.round(percentage * 100) + "%";
+        const bar = "`" + progressText + "⚪" + emptyProgressText + "\n" + new Date(this.value).toISOString().substr(11, 8) + " / " + new Date(this.maxValue).toISOString().substr(11, 8) + "`";
         return bar;
     }
     createVolumeBar() {
         const percentage = this.value / this.maxValue;
         const progress = Math.round((this.barSize * percentage));
         const emptyProgress = this.barSize - progress;
-        const progressText = '<:middle_full:730066734349942876>'.repeat(progress);
-        const emptyProgressText = '<:middle_blank:730066734320582669>'.repeat(emptyProgress);
-        const percentageText = Math.round(percentage * 100) + '%';
-        const bar = '🔇 ' + progressText + emptyProgressText + ' 🔊';
+        const progressText = "<:middle_full:730066734349942876>".repeat(progress);
+        const emptyProgressText = "<:middle_blank:730066734320582669>".repeat(emptyProgress);
+        const percentageText = Math.round(percentage * 100) + "%";
+        const bar = "🔇 " + progressText + emptyProgressText + " 🔊";
         return bar;
     }
 }
 exports.ProgressBar = ProgressBar;
-const canvas_1 = require("canvas");
 async function printCard(picture, backgroundImage, description, name, health) {
     return new Promise(async (resolve, reject) => {
-        await canvas_1.registerFont("./fonts/Exo2-Black.ttf", { family: "Exo 2 Black" });
-        canvas_1.registerFont("./fonts/Bubbleboddy-FatTrial.ttf", { family: "Bubbleboddy-1" });
-        canvas_1.registerFont("./fonts/Bubbleboddy-ExtraLightTrial.ttf", { family: "Bubbleboddy" });
-        canvas_1.registerFont("./fonts/Arista-Pro-Alternate-Bold-trial.ttf", { family: "Arista" });
+        await canvas_1.registerFont("./fonts/Exo2-Black.ttf", {
+            family: "Exo 2 Black"
+        });
+        canvas_1.registerFont("./fonts/Bubbleboddy-FatTrial.ttf", {
+            family: "Bubbleboddy-1"
+        });
+        canvas_1.registerFont("./fonts/Bubbleboddy-ExtraLightTrial.ttf", {
+            family: "Bubbleboddy"
+        });
+        canvas_1.registerFont("./fonts/Arista-Pro-Alternate-Bold-trial.ttf", {
+            family: "Arista"
+        });
         let canvas = canvas_1.createCanvas(608, 822);
-        let ctx = canvas.getContext('2d');
+        let ctx = canvas.getContext("2d");
         let cardImage = await canvas_1.loadImage(picture);
         let background = await canvas_1.loadImage("https://cdn.discordapp.com/attachments/669265222023774240/802575922372935680/Common.png");
         ctx.drawImage(cardImage, 47, 118, canvas.width, canvas.height);
@@ -201,17 +209,17 @@ async function printCard(picture, backgroundImage, description, name, health) {
             context.fillText(text, x, y);
             return;
         }
-        var words = text.split(' ');
+        var words = text.split(" ");
         var currentLine = 0;
         var idx = 1;
         while (words.length > 0 && idx <= words.length) {
-            var str = words.slice(0, idx).join(' ');
+            var str = words.slice(0, idx).join(" ");
             var w = context.measureText(str).width;
             if (w > fitWidth) {
                 if (idx == 1) {
                     idx = 2;
                 }
-                context.fillText(words.slice(0, idx - 1).join(' '), x, y + (lineHeight * currentLine));
+                context.fillText(words.slice(0, idx - 1).join(" "), x, y + (lineHeight * currentLine));
                 currentLine++;
                 words = words.splice(idx - 1);
                 idx = 1;
@@ -221,7 +229,7 @@ async function printCard(picture, backgroundImage, description, name, health) {
             }
         }
         if (idx > 0)
-            context.fillText(words.join(' '), x, y + (lineHeight * currentLine));
+            context.fillText(words.join(" "), x, y + (lineHeight * currentLine));
     }
 }
 exports.printCard = printCard;

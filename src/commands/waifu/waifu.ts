@@ -2,20 +2,20 @@ import {
     registerFont,
     createCanvas,
     loadImage
-} from 'canvas';
+} from "canvas";
 import {
     MessageAttachment
-} from 'discord.js';
+} from "discord.js";
 
 module.exports = {
-    name: 'cmd.waifu.name',
-    description: 'cmd.waifu.description',
-    usage: 'cmd.waifu.usage',
+    name: "cmd.waifu.name",
+    description: "cmd.waifu.description",
+    usage: "cmd.waifu.usage",
     args: true,
     dm: true,
-    group: 'Bot Owner',
+    group: "Bot Owner",
     cooldown: 10,
-    bot_permissions: ['EMBED_LINKS'],
+    bot_permissions: ["EMBED_LINKS"],
     user_permissions: [],
     aliases: [],
     async execute(message: any, args: any, client: any, prefix: any) {
@@ -44,27 +44,27 @@ module.exports = {
                         message.channel.send(attach)
                         /*    let contents: Array < any > = [
                                 [
-                                    await client.strings(message.guild, 'cmd.waifu.name_field'),
+                                    await client.strings(message.guild, "cmd.waifu.name_field"),
                                     result[0].name,
                                     false
                                 ],
                                 [
-                                    await client.strings(message.guild, 'cmd.waifu.type_field'),
+                                    await client.strings(message.guild, "cmd.waifu.type_field"),
                                     result[0].type,
                                     false
                                 ],
                                 [
-                                    await client.strings(message.guild, 'cmd.waifu.health_field'),
+                                    await client.strings(message.guild, "cmd.waifu.health_field"),
                                     health,
                                     false
                                 ],
                                 [
-                                    await client.strings(message.guild, 'cmd.waifu.strength_field'),
+                                    await client.strings(message.guild, "cmd.waifu.strength_field"),
                                     strength,
                                     false
                                 ],
                                 [
-                                    await client.strings(message.guild, 'cmd.waifu.second'),
+                                    await client.strings(message.guild, "cmd.waifu.second"),
                                     second,
                                     false
                                 ],
@@ -74,7 +74,7 @@ module.exports = {
                                     false
                                 ]
                             ];
-                            return client.embeds.uni(message.channel, null, result[0].waifu, contents, result[0].picture,  null, client.config.colors.default, await client.strings(message.guild, 'cmd.waifu.footer'))
+                            return client.embeds.uni(message.channel, null, result[0].waifu, contents, result[0].picture,  null, client.config.colors.default, await client.strings(message.guild, "cmd.waifu.footer"))
                         */
                     })
 
@@ -102,7 +102,7 @@ async function printCard(picture, backgroundImage, description, name, health) {
         })
         console.log("2")
         let canvas = createCanvas(608, 822)
-        let ctx = canvas.getContext('2d')
+        let ctx = canvas.getContext("2d")
 
         let cardImage = await loadImage(picture);
         let background = await loadImage("https://cdn.discordapp.com/attachments/669265222023774240/802575922372935680/Common.png");
@@ -132,17 +132,17 @@ async function printAtWordWrap(context, text, x, y, lineHeight, fitWidth) {
         context.fillText(text, x, y);
         return;
     }
-    var words = text.split(' ');
+    var words = text.split(" ");
     var currentLine = 0;
     var idx = 1;
     while (words.length > 0 && idx <= words.length) {
-        var str = words.slice(0, idx).join(' ');
+        var str = words.slice(0, idx).join(" ");
         var w = context.measureText(str).width;
         if (w > fitWidth) {
             if (idx == 1) {
                 idx = 2;
             }
-            context.fillText(words.slice(0, idx - 1).join(' '), x, y + (lineHeight * currentLine));
+            context.fillText(words.slice(0, idx - 1).join(" "), x, y + (lineHeight * currentLine));
             currentLine++;
             words = words.splice(idx - 1);
             idx = 1;
@@ -150,5 +150,5 @@ async function printAtWordWrap(context, text, x, y, lineHeight, fitWidth) {
             idx++;
         }
     }
-    if (idx > 0) context.fillText(words.join(' '), x, y + (lineHeight * currentLine));
+    if (idx > 0) context.fillText(words.join(" "), x, y + (lineHeight * currentLine));
 }

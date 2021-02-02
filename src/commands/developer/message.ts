@@ -3,20 +3,20 @@ import {
 } from "discord.js";
 
 module.exports = {
-    name: 'cmd.message.name',
-    description: 'cmd.message.description',
-    usage: 'cmd.message.usage',
+    name: "cmd.message.name",
+    description: "cmd.message.description",
+    usage: "cmd.message.usage",
     args: true,
     dm: true,
-    group: 'Bot Owner',
+    group: "Bot Owner",
     cooldown: 2,
     bot_permissions: [],
     user_permissions: [],
-    aliases: ['sendmsg', 'msg', 'dm'],
+    aliases: ["sendmsg", "msg", "dm"],
     async execute(message: any, args: any, client: any, prefix: any) {
         const webhook: WebhookClient = new WebhookClient(client.config.secrets.DMLogsID, client.config.secrets.DMLogsToken);
         const user: string = args[0];
-        const msg: string = args.slice(1).join(' ');
+        const msg: string = args.slice(1).join(" ");
 
         try {
             await message.delete();
@@ -27,9 +27,9 @@ module.exports = {
             if (this.shard.ids[0] === ${pickedShard[0][0]}) { 
                 this.users.cache.get("${user}").send("${msg}");
             }`);
-            return client.embeds.success(webhook, pickedShard[1].tag + ': ' + msg);
+            return client.embeds.success(webhook, pickedShard[1].tag + ": " + msg);
         } catch (error) {
-            return client.embeds.error(message.channel, '```js\n' + error + '```');
+            return client.embeds.error(message.channel, "```js\n" + error + "```");
         }
     }
 }
