@@ -60,10 +60,14 @@ module.exports = async (client) => {
     dbl.webhook.on('vote', vote => {
         client.con.query('SELECT * FROM economy WHERE id = ?;', [vote.user], async (error, result) => {
             client.embeds.uni(webhookVote, `<@${vote.user}> has voted!`, null, null, null, null, null, null);
-            if (result.length === 1)
-                return client.con.query('UPDATE economy SET yen = ? WHERE id = ?;', [Number(result[0].yen) + 10000, vote.user]);
-            else
-                return client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [vote.user, 10000]);
+            if (result.length === 1) {
+                client.con.query('UPDATE economy SET yen = ? WHERE id = ?;', [Number(result[0].yen) + 10000, vote.user]);
+                return;
+            }
+            else {
+                client.con.query('INSERT INTO economy(id, yen) VALUES(?, ?);', [vote.user, 10000]);
+                return;
+            }
         });
         console.log(`${vote.user} has voted!`);
     });
