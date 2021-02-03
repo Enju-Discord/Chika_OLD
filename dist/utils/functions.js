@@ -14,14 +14,13 @@ var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (
 var __importStar = (this && this.__importStar) || function (mod) {
     if (mod && mod.__esModule) return mod;
     var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
     __setModuleDefault(result, mod);
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProgressBar = exports.genRarity = exports.printCard = exports.setRolePermissions = exports.resetRolePermissions = exports.shuffleSongs = exports.generatePermissions = exports.generateCommands = exports.generateLength = exports.generateXP = exports.compare = exports.getUptime = exports.mock = exports.shorten = exports.clean = exports.numberWithCommas = void 0;
+exports.ProgressBar = exports.setRolePermissions = exports.resetRolePermissions = exports.shuffleSongs = exports.generatePermissions = exports.generateCommands = exports.generateLength = exports.generateXP = exports.compare = exports.getUptime = exports.mock = exports.shorten = exports.clean = exports.numberWithCommas = void 0;
 const fs = __importStar(require("fs"));
-const canvas_1 = require("canvas");
 function numberWithCommas(numb) {
     return numb.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -141,96 +140,6 @@ async function setRolePermissions(messageObject, role) {
     });
 }
 exports.setRolePermissions = setRolePermissions;
-async function printCard(picture, backgroundImage, description, name, health) {
-    return new Promise(async (resolve, reject) => {
-        await canvas_1.registerFont("./fonts/Exo2-Black.ttf", {
-            family: "Exo 2 Black"
-        });
-        canvas_1.registerFont("./fonts/Bubbleboddy-FatTrial.ttf", {
-            family: "Bubbleboddy-1"
-        });
-        canvas_1.registerFont("./fonts/Bubbleboddy-ExtraLightTrial.ttf", {
-            family: "Bubbleboddy"
-        });
-        canvas_1.registerFont("./fonts/Arista-Pro-Alternate-Bold-trial.ttf", {
-            family: "Arista"
-        });
-        let canvas = canvas_1.createCanvas(608, 822);
-        let ctx = canvas.getContext("2d");
-        let cardImage = await canvas_1.loadImage(picture);
-        let background = await canvas_1.loadImage("https://cdn.discordapp.com/attachments/669265222023774240/802575922372935680/Common.png");
-        ctx.drawImage(cardImage, 47, 118, canvas.width, canvas.height);
-        ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-        ctx.font = "40px 'Exo 2 Black'";
-        ctx.fillStyle = "#FFFFFF";
-        ctx.textAlign = "start";
-        printAtWordWrap(ctx, name, 57, 85, 40, 490);
-        ctx.font = "30px 'Arista'";
-        ctx.fillStyle = "#FFFFFF";
-        ctx.textAlign = "start";
-        printAtWordWrap(ctx, `Health: ${health}`, 58, 620, 235, 100);
-        ctx.font = "20px 'Sans'";
-        ctx.fillStyle = "#FFFFFF";
-        ctx.textAlign = "start";
-        printAtWordWrap(ctx, description, 57, 660, 20, 490);
-        resolve(canvas.toBuffer());
-    });
-}
-exports.printCard = printCard;
-async function printAtWordWrap(context, text, x, y, lineHeight, fitWidth) {
-    fitWidth = fitWidth || 0;
-    if (fitWidth <= 0) {
-        context.fillText(text, x, y);
-        return;
-    }
-    var words = text.split(" ");
-    var currentLine = 0;
-    var idx = 1;
-    while (words.length > 0 && idx <= words.length) {
-        var str = words.slice(0, idx).join(" ");
-        var w = context.measureText(str).width;
-        if (w > fitWidth) {
-            if (idx == 1) {
-                idx = 2;
-            }
-            context.fillText(words.slice(0, idx - 1).join(" "), x, y + (lineHeight * currentLine));
-            currentLine++;
-            words = words.splice(idx - 1);
-            idx = 1;
-        }
-        else {
-            idx++;
-        }
-    }
-    if (idx > 0)
-        context.fillText(words.join(" "), x, y + (lineHeight * currentLine));
-}
-async function genRarity() {
-    return new Promise(async (resolve, reject) => {
-        let r = [{
-                "name": "Legendary",
-                "chance": 0.05
-            }, {
-                "name": "Mystic",
-                "chance": 1
-            }, {
-                "name": "Rare",
-                "chance": "10"
-            }, {
-                "name": "Common",
-                "chance": 88.5
-            }];
-        let rr = [];
-        r.forEach((n) => {
-            let a = n.chance * 100;
-            for (let i = 0; i < a; i++) {
-                rr.push(n);
-            }
-        });
-        resolve(rr[Math.floor(Math.random() ** rr.length)].name);
-    });
-}
-exports.genRarity = genRarity;
 class ProgressBar {
     constructor(value, maxValue, barSize) {
         this.value = value - 1;
