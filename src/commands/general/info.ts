@@ -24,9 +24,9 @@ module.exports = {
                 [
                     await client.strings(message.guild, "cmd.info.basics"),
                     (await client.strings(message.guild, "cmd.info.basics.info")).replace("$users", client.functions.numberWithCommas(results[1].reduce((x, users) => x + users, 0)))
-                    .replace("$devs", client.users.cache.get(client.config.secrets.developers[0]).tag + 
-                    ", " + client.users.cache.get(client.config.secrets.developers[1]).tag + 
-                    " and " + client.users.cache.get(client.config.secrets.developers[2]).tag)
+                    .replace("$devs", "DieKatze#4864" + 
+                    ", " + "Newtox#3261" + 
+                    " and " + "Basti 🔮🛡#4048")
                     .replace("$guilds", client.functions.numberWithCommas(results[0].reduce((x, guilds) => x + guilds, 0)))
                     .replace("$uptime", client.functions.getUptime(client.uptime)).replace("$ping", Math.round(client.ws.ping) + "ms").replace("$client", client.user.username),
                     false
