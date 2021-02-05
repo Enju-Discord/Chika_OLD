@@ -1,7 +1,7 @@
 export const secrets = {
     "token": "NzQyNzMyMjAzOTU1NDU0MDQ0.XzKZRA.UGZ6wNX-Uyb_3W53MQe-e5e3OTw",
     "devToken": "Nzk3ODE2Njc5NjU5NzMzMDIz.X_r-rw.CBROQ6JlTyiwZYXYgaszULpxH5A",
-    "runOnDev": true,
+    "runOnDev": false,
     "prefix": "c+",
     "mysqlhost": "88.99.23.122",
     "mysqluser": "chika",
