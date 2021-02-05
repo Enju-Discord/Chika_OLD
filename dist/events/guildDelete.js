@@ -31,7 +31,7 @@ module.exports = async (client, guild) => {
             ],
             [
                 "Owner",
-                pickedShard[1].tag,
+                pickedShard[0].tag,
                 true
             ],
             [
