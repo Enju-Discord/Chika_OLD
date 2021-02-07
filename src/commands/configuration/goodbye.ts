@@ -4,7 +4,7 @@ module.exports = {
     usage: "cmd.goodbye.usage",
     args: true,
     dm: false,
-    group: "Bot Owner",
+    group: "Configuration",
     cooldown: 10,
     bot_permissions: [],
     user_permissions: ["MANAGE_GUILD"],
